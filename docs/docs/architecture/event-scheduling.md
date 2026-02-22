@@ -37,11 +37,10 @@ Layer 1: The Scheduling Loop                Who acts next (events.t)
 
 | Source | Role |
 |--------|------|
-| `events.t` | `runScheduler()`, `Schedulable` base class, `eventManager`, `realTimeManager`, all event classes (`Fuse`, `Daemon`, `SenseFuse`, `SenseDaemon`, `PromptDaemon`, `OneTimePromptDaemon`, `RealTimeFuse`, `RealTimeDaemon`, and their sense-aware variants) |
+| `events.t` | `runScheduler()`, `Schedulable` base class, `EventAction` pseudo-action class, `eventManager`, `realTimeManager`, all event classes (`Fuse`, `Daemon`, `SenseFuse`, `SenseDaemon`, `PromptDaemon`, `OneTimePromptDaemon`, `RealTimeFuse`, `RealTimeDaemon`, and their sense-aware variants) |
 | `actor.t` | `Actor` as a `Schedulable` — scheduling priority, `executeTurn()`, `addBusyTime()`, `idleTurn()`, `readyForTurn()` |
 | `misc.t` | `runGame()` — the entry point that calls `runScheduler()` after showing the initial room description |
 | `input.t` | `readMainCommand()` — calls `eventManager.executePrompt()` to fire prompt daemons before each command prompt |
-| `adv3.h` | `EventAction` pseudo-action class, event-related macros |
 
 ---
 
@@ -76,8 +75,11 @@ The heart of the system is `runScheduler()` (events.t:26), an infinite loop that
 │       If result is nil → break all, restart from step 1     │
 │                                                             │
 │  6. Catch QuittingException, EndOfFileException → exit      │
+│     Catch RestartSignal → re-throw to startup code          │
 │     Catch RuntimeError → display error, continue            │
-│     Catch TerminateCommandException → ignore, continue      │
+│     Catch TerminateCommandException, ExitSignal,            │
+│           ExitActionSignal → ignore, continue               │
+│     Catch Exception (catch-all) → display error, continue   │
 │                                                             │
 │  7. Loop back to step 1                                     │
 │                                                             │
@@ -88,9 +90,9 @@ The heart of the system is `runScheduler()` (events.t:26), an infinite loop that
 
 **Game clock time is abstract.** `Schedulable.gameClockTime` is a simple integer counter, not wall-clock time. It starts at zero and increments by the amount of time consumed by actions. When no action occurs between two clock ticks, the scheduler jumps directly to the next meaningful time — there is no idle spinning.
 
-**The `executeTurn()` return value controls rescheduling.** If `executeTurn()` returns `true`, the scheduler continues to the next schedulable. If it returns `nil`, the scheduler breaks out of the entire sorted list and recalculates priorities from scratch. This is how the system handles priority changes mid-turn — for example, when an NPC's action changes whether another actor is ready to act.
+**The `executeTurn()` return value controls rescheduling.** If `executeTurn()` returns `true`, the scheduler keeps calling the *same* schedulable in a tight loop as long as its `getNextRunTime()` still equals the current clock time (see step 5 above). Only when the schedulable advances its own time does the scheduler move on to the next one. If `executeTurn()` returns `nil`, the scheduler breaks out of the entire sorted list and recalculates priorities from scratch. This is how the system handles priority changes mid-turn — for example, when an NPC's action changes whether another actor is ready to act.
 
-**Exception safety.** If a schedulable throws an exception without advancing its `nextRunTime`, the scheduler forces a one-unit advance to prevent starvation. Events that throw exceptions are removed from the event list entirely. The outer loop catches `TerminateCommandException`, `ExitSignal`, and `ExitActionSignal` as no-ops, allowing code inside events to use these flow-control exceptions without crashing the scheduler.
+**Exception safety at two levels.** In `runScheduler()`, if a schedulable throws an exception without advancing its `nextRunTime`, the scheduler forces a one-unit advance to prevent starvation, then re-throws. The outer loop catches `TerminateCommandException`, `ExitSignal`, and `ExitActionSignal` as no-ops, allowing code inside events to use these flow-control exceptions without crashing the scheduler. `RestartSignal` is re-thrown for handling by the startup code. `RuntimeError` and unhandled exceptions are displayed but do not terminate the loop. Separately, inside `executeList()`, if an individual event (Fuse/Daemon) throws an exception, the `eventManager` removes that event from its list to prevent infinite re-execution.
 
 ---
 
@@ -372,7 +374,10 @@ new RealTimeDaemon(ambient, &playSound, 5000);
 ```
 
 - **Constructor**: `RealTimeDaemon(obj, prop, interval)` — first execution at `getElapsedTime() + interval`.
-- **executeEvent()**: Calls `callMethod()`, then reschedules. The rescheduling uses drift prevention: `eventTime += interval_`. If this would put the next event in the past (because the daemon ran late), it falls back to `getElapsedTime() + interval_` to avoid firing repeatedly in a burst.
+- **executeEvent()**: Calls `callMethod()`, then reschedules. The rescheduling is intended to prevent drift: `eventTime += interval_` keeps to the original schedule, so if the daemon ran late, the next firing comes sooner to compensate. If the new `eventTime` is already in the past (the daemon can't keep up with its interval), the fallback `getElapsedTime() + interval_` avoids burst-firing all missed events at once.
+
+    !!! note
+        The source code at events.t:1270 has the comparison operator reversed relative to its own comment — the `<` should be `>`. In practice this rarely matters because the first-line rescheduling (`eventTime += interval_`) handles the common case correctly.
 
 ### When real-time events execute
 
