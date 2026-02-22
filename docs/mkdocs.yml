@@ -1,0 +1,692 @@
+site_name: TADS 3 Documentation
+site_description: Comprehensive documentation for the TADS 3 Interactive Fiction authoring system
+site_url: https://tads3.dev/
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+hooks:
+  - hooks/autolink.py
+
+nav:
+  - Home: index.md
+
+  - Getting Started:
+    - getting-started/index.md
+    - Quick Start Guide: getting-started/quickstart.md
+    - Creating Your First Project: getting-started/creating-first-project.md
+    - Tutorial:
+      - getting-started/tutorial/index.md
+      - Preface: getting-started/tutorial/newchapterwithtext.md
+      - Chapter 1 - Introduction:
+        - General Introduction: getting-started/tutorial/generalintroduction.md
+        - Creating your First TADS 3 Project: getting-started/tutorial/creatingyourfirsttads3project.md
+        - Programming Prolegomena: getting-started/tutorial/programmingprolegomena.md
+        - Further Programming: getting-started/tutorial/furtherprogramming.md
+      - Chapter 2 - A Sample Game:
+        - getting-started/tutorial/chapter2.md
+        - A Very Simple Game: getting-started/tutorial/averysimplegame.md
+        - Adding Items to the Game: getting-started/tutorial/addingitemstothegame.md
+        - Making the Items do Something: getting-started/tutorial/makingtheitemsdosomething.md
+      - Chapter 3 - Starting Out Again:
+        - Starting a New Game: getting-started/tutorial/startinganewgame.md
+        - Defining Our First Room: getting-started/tutorial/definingourfirstroom.md
+        - Adding an Object to the Room: getting-started/tutorial/addinganobjecttotheroom.md
+        - Tying Up Some Loose Strings: getting-started/tutorial/tyingupsomeloosestrings.md
+      - Chapter 4 - Moving Around:
+        - Basic Travel: getting-started/tutorial/basictravel.md
+        - Climbing the Tree: getting-started/tutorial/climbingthetree.md
+        - Making Life More Problematic: getting-started/tutorial/makinglifemoreproblematic.md
+        - Rewarding the Effort: getting-started/tutorial/rewardingtheeffort.md
+        - Controlling the Action:
+          - getting-started/tutorial/controllingtheaction.md
+          - Verify: getting-started/tutorial/verify.md
+          - Check: getting-started/tutorial/check.md
+          - Action: getting-started/tutorial/action.md
+          - PreCond: getting-started/tutorial/precond.md
+          - Remap: getting-started/tutorial/remap.md
+          - Messages: getting-started/tutorial/messages.md
+          - Other Responses to Actions: getting-started/tutorial/otherresponsestoactions.md
+      - Chapter 5 - Character Building:
+        - Setting the Scene: getting-started/tutorial/settingthescene.md
+        - A Basic Burner: getting-started/tutorial/abasicburner.md
+        - Ending the Game: getting-started/tutorial/endingthegame.md
+        - The Art of Conversation: getting-started/tutorial/theartofconversation.md
+        - "What's in a Name?": getting-started/tutorial/what'sinaname.md
+      - Chapter 6 - Expanding the Horizons:
+        - Crossing the Stream: getting-started/tutorial/crossingthestream.md
+        - Doors and Windows: getting-started/tutorial/doorsandwindows.md
+        - Burying the Boots: getting-started/tutorial/buryingtheboots.md
+        - Calling a Spade a Spade: getting-started/tutorial/callingaspadeaspade.md
+      - Chapter 7 - Pushing the Boat Out:
+        - Let There be Light: getting-started/tutorial/lettherebelight.md
+        - Row My Boat: getting-started/tutorial/rowmyboat.md
+        - Going Shopping: getting-started/tutorial/goingshopping.md
+        - Handling Cash Transactions: getting-started/tutorial/handlingcashtransactions.md
+      - Chapter 8 - Finishing Off:
+        - Filling in Some Gaps: getting-started/tutorial/fillinginsomegaps.md
+        - Counting the Cash: getting-started/tutorial/countingthecash.md
+        - Looking Through the Window: getting-started/tutorial/lookingthroughthewindow.md
+        - Easing Testing and Debugging: getting-started/tutorial/easingtestinganddebugging.md
+        - Where to go from here: getting-started/tutorial/wheretogofromhere.md
+      - Appendix A - Action Message Properties: getting-started/tutorial/appendixa-actionmessagepropert.md
+      - The Basic Tools: getting-started/tutorial/thebasictools.md
+
+  - Language Reference:
+    - language/index.md
+    # Part I: Opening Moves
+    - Introduction: language/intro.md
+    - Typographical Conventions: language/syntax.md
+    - Naming Conventions: language/naming.md
+    - "Hello, World!": language/hello.md
+    # Part III: The Language
+    - Source Code Structure: language/progstru.md
+    - Source File Character Sets: language/charmap.md
+    - The Preprocessor: language/preproc.md
+    - Fundamental Datatypes: language/types.md
+    - String Literals: language/strlit.md
+    - Enumerators: language/enum.md
+    - Main Program Entrypoint: language/startup.md
+    - Object Inheritance Model: language/inherit.md
+    - Object Definitions: language/objdef.md
+    - Inline Objects: language/inlineobj.md
+    - Operator Overloading: language/opoverload.md
+    - Multi-Methods: language/multmeth.md
+    - Dynamic Object Creation: language/dynobj.md
+    - Garbage Collection: language/gc.md
+    - Expressions and Operators: language/expr.md
+    - Procedural Code: language/proccode.md
+    - Optional Parameters: language/optparams.md
+    - Named Arguments: language/namedargs.md
+    - Exceptions and Error Handling: language/except.md
+    - Anonymous Functions: language/anonfn.md
+    - Capturing Undefined Methods: language/undef.md
+    - Reflection: language/reflect.md
+    - Extending Intrinsic Classes: language/icext.md
+    - Exporting Symbols: language/export.md
+    - VM Error Codes: language/errmsg.md
+    # Part V: The System Library
+    - System Library:
+      - Program Initialization: language/init.md
+      - Basic Tokenizer: language/tok.md
+      - Miscellaneous Library Definitions: language/libmisc.md
+      - Replacing the System Library: language/nodef.md
+    # Part VI: The User Interface
+    - User Interface:
+      - Output Formatter: language/fmt.md
+      - Default Display Function: language/dispfn.md
+      - Banner Window Display Model: language/banners.md
+    # Part VII: Playing on the Web
+    - Web UI:
+      - The Web UI: language/webui.md
+      - Deploying Your Web UI Game: language/webdeploy.md
+      - Setting Up a Custom TADS Web Server: language/webhost.md
+
+  - Intrinsic Classes & Functions:
+    - intrinsics/index.md
+    - Functions:
+      - t3vm Function Set: intrinsics/functions/t3vm.md
+      - tads-gen Function Set: intrinsics/functions/tadsgen.md
+      - Regular Expressions: intrinsics/functions/regex.md
+      - tads-io Function Set: intrinsics/functions/tadsio.md
+      - tads-net Function Set: intrinsics/functions/tadsnet.md
+      - Network Safety: intrinsics/functions/netsec.md
+      - Input Scripts: intrinsics/functions/scripts.md
+      - Byte Packing: intrinsics/functions/pack.md
+    - Classes:
+      - BigNumber: intrinsics/classes/bignum.md
+      - ByteArray: intrinsics/classes/bytearr.md
+      - CharacterSet: intrinsics/classes/charset.md
+      - Collection: intrinsics/classes/collect.md
+      - Date: intrinsics/classes/date.md
+      - Dictionary: intrinsics/classes/dict.md
+      - DynamicFunc: intrinsics/classes/dynfunc.md
+      - File: intrinsics/classes/file.md
+      - FileName: intrinsics/classes/filename.md
+      - GrammarProd: intrinsics/classes/gramprod.md
+      - HTTPRequest: intrinsics/classes/httpreq.md
+      - HTTPServer: intrinsics/classes/httpsrv.md
+      - IntrinsicClass: intrinsics/classes/icic.md
+      - Iterator: intrinsics/classes/iter.md
+      - List: intrinsics/classes/list.md
+      - LookupTable: intrinsics/classes/lookup.md
+      - Object: intrinsics/classes/objic.md
+      - RexPattern: intrinsics/classes/rexpat.md
+      - StackFrameDesc: intrinsics/classes/framedesc.md
+      - String: intrinsics/classes/string.md
+      - StringBuffer: intrinsics/classes/strbuf.md
+      - StringComparator: intrinsics/classes/strcomp.md
+      - TadsObject: intrinsics/classes/tadsobj.md
+      - TemporaryFile: intrinsics/classes/tempfile.md
+      - TimeZone: intrinsics/classes/timezone.md
+      - Vector: intrinsics/classes/vector.md
+      - WeakRefLookupTable: intrinsics/classes/wlookup.md
+
+  - Library Guide:
+    - library/index.md
+    - Introduction: library/techman-intro.md
+    - Game Design:
+      - Tips on Designing your Game: library/game-design.md
+      - "IF Design: In Practice": library/design-in-practice.md
+      - "IF Design: In Theory": library/design-in-theory.md
+    - OOP Overview: library/oop-overview.md
+    - Input/Output Issues: library/input-output.md
+    - Where Messages Come From: library/messages.md
+    - Message Parameter Substitutions: library/messages-substitutions.md
+    - Lists and Listers: library/listers.md
+    - Tips System: library/tips-system.md
+    - Banner API: library/banner-api.md
+    - Rooms & Travel:
+      - library/rooms-and-travel/index.md
+    - Things:
+      - library/things/index.md
+    - Actors:
+      - library/actors/index.md
+      - Creating Dynamic Characters: library/actors/dynamic-characters.md
+      - Choosing a Conversation System: library/actors/conversation-systems.md
+      - Programming Conversations: library/actors/programming-conversations.md
+      - NPC Travel: library/actors/npc-travel.md
+    - Actions:
+      - library/actions/index.md
+      - Action Results: library/actions/action-results.md
+      - Verify, Check, and When to Use Which: library/actions/verify-check.md
+      - How to Create Verbs: library/actions/creating-verbs.md
+      - Custom Preconditions: library/actions/preconditions.md
+      - Implied Action Reports: library/actions/implied-actions.md
+    - Advanced Topics:
+      - library/advanced/index.md
+      - Banishing Awkward Messages: library/advanced/banishing-messages.md
+      - The Command Execution Cycle: library/advanced/command-execution-cycle.md
+      - Manipulating the Transcript: library/advanced/transcript.md
+      - Redefining Scope: library/advanced/scope.md
+      - Multiple Inheritance: library/advanced/multiple-inheritance.md
+      - Nested Rooms as Staging Locations: library/advanced/staging-locations.md
+      - Handling Odd Noun Phrases: library/advanced/odd-noun-phrases.md
+      - Global Command Remapping: library/advanced/global-remapping.md
+      - Writing in the Past Tense: library/advanced/past-tense.md
+    - Tour Guide:
+      - Introduction:
+        - General Introduction: library/guide/generalintroduction.md
+        - The Sample Game: library/guide/thesamplegame.md
+        - Templates: library/guide/templates.md
+        - "Startup Code: gameMain": library/guide/startupcodegamemain.md
+      - Rooms and Connectors:
+        - Introduction: library/guide/introduction.md
+        - OutdoorRoom: library/guide/outdoorroom.md
+        - FakeConnector: library/guide/fakeconnector.md
+        - DeadEndConnector: library/guide/deadendconnector.md
+        - RoomConnector: library/guide/roomconnector.md
+        - asExit: library/guide/asexit.md
+        - Enterable: library/guide/enterable.md
+        - Room: library/guide/room.md
+        - StairwayDown: library/guide/stairwaydown.md
+        - StairwayUp: library/guide/stairwayup.md
+        - TravelWithMessage: library/guide/travelwithmessage.md
+        - SecretDoor: library/guide/secretdoor.md
+        - ThroughPassage: library/guide/throughpassage.md
+        - DarkRoom: library/guide/darkroom.md
+        - TravelMessage: library/guide/travelmessage.md
+        - RoomAutoConnector: library/guide/roomautoconnector.md
+        - Door: library/guide/door.md
+        - BasicDoor: library/guide/basicdoor.md
+        - NoTravelMessage: library/guide/notravelmessage.md
+        - ExitOnlyPassage: library/guide/exitonlypassage.md
+        - AutoClosingDoor: library/guide/autoclosingdoor.md
+        - OneWayRoomConnector: library/guide/onewayroomconnector.md
+        - PathPassage: library/guide/pathpassage.md
+        - Shipboard: library/guide/shipboardroom.md
+        - FloorlessRoom: library/guide/floorlessroom.md
+        - Floorless: library/guide/floorless.md
+        - HiddenDoor: library/guide/hiddendoor.md
+        - EntryPortal: library/guide/entryportal.md
+        - ExitPortal: library/guide/exitportal.md
+        - TravelBarrier: library/guide/travelbarrier.md
+        - AskConnector: library/guide/askconnector.md
+        - TravelConnector: library/guide/travelconnector.md
+        - Room Methods and Properties:
+          - roomXxxxAction: library/guide/roomxxxxaction.md
+          - roomParts: library/guide/roomparts.md
+          - cannotGoThatWay: library/guide/cannotgothatway.md
+          - cannotGoThatWayInDark: library/guide/cannotgothatwayindark.md
+          - roomDarkTravel: library/guide/roomdarktravel.md
+          - enteringRoom: library/guide/travelerarriving.md
+          - inRoomName: library/guide/inroomname.md
+      - NonPortables:
+        - NonPortable Introduction: library/guide/nonportableintroduction.md
+        - Fixture: library/guide/fixture.md
+        - CustomFixture: library/guide/customfixture.md
+        - Decoration: library/guide/decoration.md
+        - Distant: library/guide/distant.md
+        - Unthing: library/guide/unthing.md
+        - Immovable: library/guide/immovable.md
+        - CustomImmovable: library/guide/customimmovable.md
+        - Heavy: library/guide/heavy.md
+        - Component: library/guide/component.md
+      - Things:
+        - Thing - Introduction: library/guide/thing-introduction.md
+        - Thing - The Basics: library/guide/thing-thebasics.md
+        - vocabWords: library/guide/vocabwords.md
+        - "initDesc & initSpecialDesc": library/guide/initdesc+initspecialdesc.md
+        - globalParamName: library/guide/globalparamname.md
+        - specialDesc: library/guide/specialdesc.md
+        - described: library/guide/described.md
+        - bulk and weight: library/guide/bulkandweight.md
+        - setSuperclassList: library/guide/setsuperclasslist.md
+        - Readable: library/guide/readable.md
+        - Food: library/guide/food.md
+        - disambigName: library/guide/disambigname.md
+        - Wearable: library/guide/wearable.md
+      - Containers:
+        - Containers - Introduction: library/guide/containers-introduction.md
+        - BulkLimiter: library/guide/bulklimiter.md
+        - Surface: library/guide/surface.md
+        - BasicContainer: library/guide/basiccontainer.md
+        - Container: library/guide/container.md
+        - OpenableContainer: library/guide/openablecontainer.md
+        - "notifyInsert & notifyRemove": library/guide/notifyinsert+notifyremove.md
+        - LockableContainer: library/guide/lockablecontainer.md
+        - RestrictedContainer: library/guide/restrictedcontainer.md
+        - Dispenser: library/guide/dispenser.md
+        - StretchyContainer: library/guide/stretchycontainer.md
+        - SpaceOverlay: library/guide/spaceoverlay.md
+        - Underside: library/guide/underside.md
+        - RearContainer: library/guide/rearcontainer.md
+        - RearSurface: library/guide/rearsurface.md
+        - ComplexContainer: library/guide/complexcontainer.md
+        - ContainerDoor: library/guide/containerdoor.md
+        - SingleContainer: library/guide/singlecontainer.md
+        - BagOfHolding: library/guide/bagofaffinity.md
+      - "Locks & Keys":
+        - "Locks & Keys - Introduction": library/guide/locks+keys-introduction.md
+        - Lockable: library/guide/lockable.md
+        - IndirectLockable: library/guide/indirectlockable.md
+        - KeyedContainer: library/guide/keyedcontainer.md
+        - LockableWithKey: library/guide/lockablewithkey.md
+        - Keyring: library/guide/keyring.md
+        - Openable: library/guide/openable.md
+        - BasicOpenable: library/guide/basicopenable.md
+      - Light and Fire:
+        - Light and Fire - Introduction: library/guide/lightandfire-introduction.md
+        - brightness: library/guide/brightness.md
+        - LightSource: library/guide/lightsource.md
+        - Flashlight: library/guide/flashlight.md
+        - "Candle & FireSource": library/guide/candle.md
+        - OilLamp: library/guide/oillamp.md
+        - "Matchstick & Matchbook": library/guide/matchstick+matchbook.md
+        - Dynamite: library/guide/dynamite.md
+      - "Hiding & Finding":
+        - "Hiding & Finding - Introduction": library/guide/hiding+fiding-introduction.md
+        - Hiding with Words: library/guide/wordgames.md
+        - Finding by moving: library/guide/findingincode.md
+        - "sightPresence & isListed": library/guide/sightpresence+islisted.md
+        - Hidden: library/guide/hidden.md
+        - PresentLater: library/guide/presentlater.md
+      - "Gadgets & Controls":
+        - Gadgets - Introduction: library/guide/gadgets-introduction.md
+        - Button: library/guide/button.md
+        - LabeledDial: library/guide/labeleddial.md
+        - SpringLever: library/guide/springlever.md
+        - Settable: library/guide/settable.md
+        - NumberedDial: library/guide/numbereddial.md
+        - Dynamic Locations: library/guide/dynamiclocations.md
+        - Lever: library/guide/lever.md
+        - Dial: library/guide/dial.md
+        - OnOffControl: library/guide/onoffcontrol.md
+        - Switch: library/guide/switch.md
+        - Lever (2): library/guide/lever(2).md
+        - A Card Lock: library/guide/anotherlock.md
+      - "Fuses & Daemons":
+        - Fuse: library/guide/fuse.md
+        - Daemon: library/guide/daemon.md
+        - SenseFuse: library/guide/sensefuse.md
+        - SenseDaemon: library/guide/sensedaemon.md
+        - PromptDaemon: library/guide/promptdaemon.md
+        - OneTimePromptDaemon: library/guide/onetimepromptdaemon.md
+      - ModuleExecObjects:
+        - ModuleExecObject: library/guide/moduleexecobject.md
+        - InitObject: library/guide/initobject.md
+        - PreinitObject: library/guide/preinitobject.md
+        - PreSaveObject: library/guide/presaveobject.md
+        - PostRestoreObject: library/guide/postrestoreobject.md
+        - PostUndoObject: library/guide/postundoobject.md
+        - PreRestartObject: library/guide/prerestartobject.md
+      - Pushing Things Around:
+        - TravelPushable: library/guide/travelpushable.md
+        - PushTravelBarrier: library/guide/pushtravelbarrier.md
+      - "Intangibles & Senses":
+        - Intangibles - Overview: library/guide/intangibles-overview.md
+        - Intangible: library/guide/intangible.md
+        - DistanceConnector: library/guide/distanceconnector.md
+        - Occluder: library/guide/occluder.md
+        - Vaporous: library/guide/vaporous.md
+        - SimpleOdor: library/guide/simpleodor.md
+        - SimpleNoise: library/guide/simplenoise.md
+        - Odor: library/guide/odor.md
+        - Noise: library/guide/noise.md
+        - SenseConnector: library/guide/senseconnector.md
+        - SensoryEvent: library/guide/sensoryevent.md
+      - Attachables:
+        - Attachables - Overview: library/guide/attachables-overview.md
+        - Attachable: library/guide/attachable.md
+        - NearbyAttachable: library/guide/nearbyattachable.md
+        - PlugAttachable: library/guide/plugattachable.md
+        - PermanentAttachment: library/guide/permanentattachment.md
+      - NestedRoom:
+        - NestedRoom Overview: library/guide/nestedroomoverview.md
+        - NestedRoom: library/guide/nestedroom.md
+        - BasicChair: library/guide/basicchair.md
+        - Platform: library/guide/platform.md
+        - NominalPlatform: library/guide/nominalplatform.md
+        - Bed: library/guide/bed.md
+        - Chair: library/guide/chair.md
+        - HighNestedRoom: library/guide/highnestedroom.md
+        - OutOfReach: library/guide/outofreach.md
+        - Booth: library/guide/booth.md
+        - Vehicle: library/guide/vehicle.md
+        - VehicleBarrier: library/guide/vehiclebarrier.md
+      - MultiLocs:
+        - MultiLoc: library/guide/multiloc.md
+        - MultiInstance: library/guide/multiinstance.md
+        - MultiFaceted: library/guide/multifaceted.md
+      - Collections:
+        - CollectiveGroup (static): library/guide/collectivegroup.md
+        - CollectiveGroup (mobile): library/guide/collectivegroup(mobile).md
+      - Scripts:
+        - Script: library/guide/script.md
+        - EventList: library/guide/eventlist.md
+        - StopEventList: library/guide/stopeventlist.md
+        - CyclicEventList: library/guide/cycliceventlist.md
+        - RandomEventList: library/guide/randomeventlist.md
+        - ShuffledEventList: library/guide/shuffledeventlist.md
+        - ExternalEventList: library/guide/externaleventlist.md
+        - SyncEventList: library/guide/synceventlist.md
+        - RandomFiringScript: library/guide/randomfiringscript.md
+      - "Actors & NPCs":
+        - "Overview - Actors & NPCs": library/guide/overview-actors+npcs.md
+        - Basic Actors: library/guide/basicactors.md
+        - Basic Actor Customization: library/guide/actorcustomization.md
+        - Actor Knowledge: library/guide/actorknowledge.md
+        - Moving Actors Around: library/guide/movingactorsaround.md
+        - Actor States:
+          - Overview - Actor States: library/guide/overview-actorstates.md
+          - HermitActorState: library/guide/hermitactorstate.md
+          - AccompanyingState: library/guide/accompanyingstate.md
+          - AccompanyingInTravelState: library/guide/accompanyingintravelstate.md
+          - GuidedTourState: library/guide/guidedtourstate.md
+          - GuidedInTravelState: library/guide/guidedintravelstate.md
+          - InConversationState: library/guide/inconversationstate.md
+          - ConversationReadyState: library/guide/conversationreadystate.md
+          - Greeting Protocols: library/guide/greetingprotocols.md
+        - Topic Entries:
+          - TopicEntry: library/guide/topicentry.md
+          - GiveTopic: library/guide/givetopic.md
+          - ShowTopic: library/guide/showtopic.md
+          - GiveShowTopic: library/guide/giveshowtopic.md
+          - AltTopic: library/guide/alttopic.md
+          - InitiateTopic: library/guide/initiatetopic.md
+          - AskTopic: library/guide/asktopic.md
+          - TellTopic: library/guide/telltopic.md
+          - AskTellTopic: library/guide/asktelltopic.md
+          - AskForTopic: library/guide/askfortopic.md
+          - AskAboutForTopic: library/guide/askaboutfortopic.md
+          - AskTellShowTopic: library/guide/asktellshowtopic.md
+          - AskTellGiveShowTopic: library/guide/asktellgiveshowtopic.md
+          - "Yes, No & SpecialTopics": library/guide/yesno+specialtopics.md
+          - HelloTopic: library/guide/hellotopic.md
+          - ImpHelloTopic: library/guide/imphellotopic.md
+          - ByeTopic: library/guide/byetopic.md
+          - ImpByeTopic: library/guide/impbyetopic.md
+          - LeaveByeTopic: library/guide/leavebyetopic.md
+          - BoredByeTopic: library/guide/boredbyetopic.md
+          - ActorByeTopic: library/guide/actorbyetopic.md
+          - HelloGoodbyeTopic: library/guide/hellogoodbyetopic.md
+          - MiscTopic: library/guide/misctopic.md
+          - TopicGroup: library/guide/topicgroup.md
+          - DefaultTopics:
+            - DefaultTopics - Overview: library/guide/defaulttopics-overview.md
+            - DefaultAskTopic: library/guide/defaultasktopic.md
+            - DefaultTellTopic: library/guide/defaulttelltopic.md
+            - DefaultAskTellTopic: library/guide/defaultasktelltopic.md
+            - DefaultGiveTopic: library/guide/defaultgivetopic.md
+            - DefaultShowTopic: library/guide/defaultshowtopic.md
+            - DefaultGiveShowTopic: library/guide/defaultgiveshowtopic.md
+            - DefaultAskForTopic: library/guide/defaultaskfortopic.md
+            - DefaultAnyTopic: library/guide/defaultanytopic.md
+          - SuggestedTopics:
+            - SuggestedTopic: library/guide/suggestedtopic.md
+            - SuggestedAskTopic: library/guide/suggestedasktopic.md
+            - SuggestedTellTopic: library/guide/suggestedtelltopic.md
+            - SuggestedGiveTopic: library/guide/suggestedgivetopic.md
+            - SuggestedShowTopic: library/guide/suggestedshowtopic.md
+            - SuggestedYesTopic: library/guide/suggestedyestopic.md
+            - SuggestedNoTopic: library/guide/suggestednotopic.md
+            - SuggestedTopicTree: library/guide/suggestedtopictree.md
+            - limitSuggestions: library/guide/limitsuggestions.md
+        - Conversation Nodes:
+          - Conversation Nodes - Overview: library/guide/conversationnodes-overview.md
+          - ConvNode: library/guide/convnode.md
+          - YesTopic: library/guide/yestopic.md
+          - NoTopic: library/guide/notopic.md
+          - SpecialTopic: library/guide/specialtopic.md
+          - initiateConversation: library/guide/initiateconversation.md
+        - AgendaItems:
+          - AgendaItem: library/guide/agendaitem.md
+          - ConvAgendaItem: library/guide/convagendaitem.md
+          - DelayedAgendaItem: library/guide/delayedagendaitem.md
+          - More AgendaItem Examples: library/guide/moreagendaitemexamples.md
+        - Commanding NPCs:
+          - Overview - Commanding NPCs: library/guide/overview-commandingnpcs.md
+          - CommandTopic: library/guide/commandtopic.md
+          - DefaultCommandTopic: library/guide/defaultcommandtopic.md
+          - Overriding obeyCommand: library/guide/overridingobeycommand.md
+          - TCommandTopic: library/guide/tcommandtopic.md
+          - A Modified DefaultCommandTopic: library/guide/amodifieddefaultcommandtopic.md
+      - Consultables:
+        - Consultable: library/guide/consultable.md
+        - ConsultTopic: library/guide/consulttopic.md
+        - DefaultConsultTopic: library/guide/defaultconsulttopic.md
+      - Scoring:
+        - Scoring - Overview: library/guide/scoring-overview.md
+        - addToScore: library/guide/addtoscore.md
+        - Achievement: library/guide/achievement.md
+        - SimpleAchievement: library/guide/simpleachievement.md
+        - awardPoints: library/guide/awardpoints.md
+        - awardPointsOnce: library/guide/awardpointsonce.md
+        - scoreRankTable: library/guide/scoreranktable.md
+        - maxScore: library/guide/maxscore.md
+      - Hints:
+        - Hints - Overview: library/guide/hints-overview.md
+        - TopHintMenu: library/guide/tophintmenu.md
+        - HintMenu: library/guide/hintmenu.md
+        - Goal: library/guide/goal.md
+        - Hint: library/guide/hint.md
+      - Further Information:
+        - Concluding Remarks: library/guide/concludingremarks.md
+        - Language Information: library/guide/languageinformation.md
+        - Defining Verbs: library/guide/definingverbs.md
+        - Message Substitution Parameters: library/guide/messagesubstitutionparameters.md
+        - Past Tense: library/guide/pasttense.md
+      - Templates:
+        - Achievement Template: library/guide/achievementtemplate.md
+        - Actor Template: library/guide/actortemplate.md
+        - AltTopic Template: library/guide/alttopictemplate.md
+        - ConvNode Template: library/guide/convnodetemplate.md
+        - DeadEndConnectorTemplate: library/guide/deadendconnectortemplate.md
+        - DefaultTopic Template: library/guide/defaulttopictemplate.md
+        - Enterable Template: library/guide/enterabletemplate.md
+        - Exitable Template: library/guide/exitabletemplate.md
+        - EventList Template: library/guide/eventlisttemplate.md
+        - Footnote Template: library/guide/footnotetemplate.md
+        - Goal Template: library/guide/goaltemplate.md
+        - Hint Template: library/guide/hinttemplate.md
+        - MenuItem Template: library/guide/menuitemtemplate.md
+        - MenuLongTopicItem Template: library/guide/menulongtopicitemtemplate.md
+        - MenuTopicItem Template: library/guide/menutopicitemtemplate.md
+        - MiscTopic Template: library/guide/misctopictemplate.md
+        - MultiLoc Template: library/guide/multiloctemplate.md
+        - NoTravelMessage Template: library/guide/notravelmessagetemplate.md
+        - OneWayRoomConnector Template: library/guide/onewayroomconnectortemplate.md
+        - Passage Template: library/guide/passagetemplate.md
+        - Room Template: library/guide/roomtemplate.md
+        - ShuffledEventList Template: library/guide/shuffledeventlisttemplate.md
+        - SpecialTopic Template: library/guide/specialtopictemplate.md
+        - StyleTag Template: library/guide/styletagtemplate.md
+        - SyncEventList Template: library/guide/synceventlisttemplate.md
+        - Thing Template: library/guide/thingtemplate.md
+        - ThingState Template: library/guide/thingstatetemplate.md
+        - TopicEntry Template: library/guide/topicentrytemplate.md
+        - TopicGroup Template: library/guide/topicgrouptemplate.md
+        - TravelMessage Template: library/guide/travelmessagetemplate.md
+        - Unthing Template: library/guide/unthingtemplate.md
+        - VocabObject Template: library/guide/vocabobjecttemplate.md
+      - Changes:
+        - Changes for v3.1.0: library/guide/changesforv3_1_0.md
+        - Changes for v3.0.19: library/guide/changesforv3_0_19.md
+        - Changes for v3.0.16: library/guide/changesforv3_0_17.md
+        - Changes for v3.0.12: library/guide/changesforv_3_0_12.md
+        - Changes for v3.0.10: library/guide/changes2.md
+        - Changes for v3.0.9: library/guide/changes.md
+        - Changes for v3.0.8: library/guide/changesforv3_0_8.md
+        - Changes for July-Sept 2004: library/guide/changesinjuly2004.md
+        - Changes for v3.0.7: library/guide/changesforv3_0_7.md
+        - Changes for v.3.0.6q: library/guide/changesforv_3_0_6q.md
+        - Changes for May 2004: library/guide/changesformay2004.md
+        - Changes for v3.0.6p: library/guide/changesforv3_0_6p.md
+        - March/April 2004: library/guide/marchapril2004.md
+      - Additional Reference:
+        - "initDesc & initExamineDesc": library/guide/initdesc+initexaminedesc.md
+        - InputManager: library/guide/inputmanager.md
+        - mainOutputStream: library/guide/mainoutputstream.md
+        - StringPreParser: library/guide/stringpreparser.md
+        - TellToAction: library/guide/telltoaction.md
+        - vocabWords_: library/guide/vocabwords_.md
+        - EndConv Codes: library/guide/endconvxxxcodes.md
+
+  - API Reference:
+    - api/index.md
+    - By Class:
+      - api/by-class/index.md
+    - By File:
+      - api/by-file/index.md
+
+  - VM Specification:
+    - vm-spec/index.md
+    - Introduction: vm-spec/intro.md
+    - Design Philosophy: vm-spec/philosophy.md
+    - Design Goals: vm-spec/goals.md
+    - Notation and Conventions: vm-spec/notation.md
+    - Machine Model: vm-spec/machine-model.md
+    - The Metaclasses: vm-spec/metaclasses.md
+    - Byte-Code Instruction Set: vm-spec/bytecode.md
+    - Image File Format: vm-spec/image-format.md
+    - Portable Binary Encoding: vm-spec/binary-encoding.md
+    - Character Mapping: vm-spec/character-mapping.md
+    - Debug Records: vm-spec/debug-records.md
+    - t3vm Function Set: vm-spec/function-set.md
+    - Metaclass Identifier List: vm-spec/metaclass-ids.md
+    - Saving and Restoring State: vm-spec/save-restore.md
+    - TADS Special Characters: vm-spec/special-characters.md
+
+  - Architecture:
+    - architecture/index.md
+    - Overview: architecture/overview.md
+    - Parser Pipeline: architecture/parser-pipeline.md
+    - Action Resolution: architecture/action-resolution.md
+    - Sense and Perception: architecture/sense-perception.md
+    - Containment Model: architecture/containment-model.md
+    - Design Patterns: architecture/design-patterns.md
+    - IF Development Guide: architecture/development-guide.md
+    - Quick Reference: architecture/quick-reference.md
+
+  - Tools:
+    - tools/index.md
+    - Compiling and Linking: tools/build.md
+    - Universal Paths: tools/univpath.md
+    - Stand-Alone Executables: tools/aloneexe.md
+    - The Interpreter: tools/terp.md
+    - Build Configurations: tools/build-configurations.md
+    - Separate Compilation: tools/separate-compilation.md
+    - GameInfo Metadata: tools/gameinfo.md
+    - Project Starter Templates: tools/project-starters.md
+    - AutoHotKey (Windows): tools/autohotkey.md
+    - Workbench:
+      - tools/workbench/index.md
+      - Overview: tools/workbench/overview.md
+      - Creating a New Game: tools/workbench/creating-game.md
+      - Text Editing Features: tools/workbench/editor.md
+      - Compiling: tools/workbench/compiling.md
+      - Debugging: tools/workbench/debugger.md
+      - Scripting: tools/workbench/scripting.md
+      - Command Line Tools: tools/workbench/commands.md
+      - Customizing Workbench: tools/workbench/customizing.md
+      - Extension Libraries: tools/workbench/extensions.md
+      - External Editor: tools/workbench/external-editor.md
+      - Docking Windows: tools/workbench/docking-windows.md
+
+  - HTML TADS:
+    - html-tads/index.md
+    - Introduction: html-tads/introduction.md
+    - Getting Started with HTML: html-tads/getting-started-with-html.md
+    - Using Banners: html-tads/banners.md
+    - Using Sound: html-tads/sound.md
+    - Using Resources: html-tads/resources.md
+    - Table Layout Rules: html-tads/tables.md
+    - Line Breaking: html-tads/line-breaking.md
+    - Deviations from Standard HTML: html-tads/deviations.md
+    - Character Mode Compatibility: html-tads/character-mode.md
+    - Latin-2 Character Set: html-tads/latin2.md
+    - Distributing Your Game: html-tads/distributing.md
+    - Converting TADS 2 Games: html-tads/converting-games.md
+    - Porting Notes: html-tads/porting.md
+
+  - Appendices:
+    - appendices/index.md
+    - Translating Error Messages: appendices/errtrans.md
+    - Creating Character-Mapping Files: appendices/cmap.md
+    - Internet Media Types: appendices/mediatypes.md
+    - System Compatibility Notes: appendices/compatibility.md

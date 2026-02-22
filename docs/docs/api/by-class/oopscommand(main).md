@@ -1,0 +1,29 @@
+# oopsCommand(main)
+
+*grammar* — defined in [en_us.t](../by-file/en_us.t.md) (line 7867)
+
+
+"OOPS" command syntax
+
+
+**Superclass chain:** [BasicProd](basicprod.md) > `object` > **oopsCommand(main)**
+
+
+## Inherited Properties
+
+
+*From [BasicProd](basicprod.md):* [`firstTokenIndex`](basicprod.md#firstTokenIndex), [`isSpecialResponseMatch`](basicprod.md#isSpecialResponseMatch), [`lastTokenIndex`](basicprod.md#lastTokenIndex)
+
+
+## Methods
+
+
+### `getNewTokens`
+
+Defined in en_us.t, line 7869
+
+
+## Inherited Methods
+
+
+*From [BasicProd](basicprod.md):* [`canResolveTo`](basicprod.md#canResolveTo), [`getOrigText`](basicprod.md#getOrigText), [`getOrigTokenList`](basicprod.md#getOrigTokenList), [`setOrigTokenList`](basicprod.md#setOrigTokenList)

@@ -1,0 +1,52 @@
+# NounWordProd
+
+*class* — defined in [en_us.t](../by-file/en_us.t.md) (line 6586)
+
+
+A noun word. This can be either a simple 'noun' vocabulary word, or it can be an abbreviated noun with a trailing abbreviation period.
+
+
+**Superclass chain:** [NounPhraseWithVocab](nounphrasewithvocab.md) > [NounPhraseProd](nounphraseprod.md) > [BasicProd](basicprod.md) > `object` > **NounWordProdSubclasses:** [nounWord(noun)](nounword%28noun%29.md), [nounWord(nounAbbr)](nounword%28nounabbr%29.md)
+
+
+## Inherited Properties
+
+
+*From [NounPhraseProd](nounphraseprod.md):* [`filterForCollectives`](nounphraseprod.md#filterForCollectives)
+
+
+*From [BasicProd](basicprod.md):* [`firstTokenIndex`](basicprod.md#firstTokenIndex), [`isSpecialResponseMatch`](basicprod.md#isSpecialResponseMatch), [`lastTokenIndex`](basicprod.md#lastTokenIndex)
+
+
+## Methods
+
+
+### `getAdjustedTokens` *(overridden)*
+
+Defined in en_us.t, line 6635
+
+return the match list
+
+
+### `getNounText`
+
+Defined in en_us.t, line 6642
+
+the actual text of the noun to match to the dictionary
+
+
+### `getVocabMatchList(resolver, results, extraFlags)` *(overridden)*
+
+Defined in en_us.t, line 6587
+
+
+## Inherited Methods
+
+
+*From [NounPhraseWithVocab](nounphrasewithvocab.md):* [`combineWordMatches`](nounphrasewithvocab.md#combineWordMatches), [`combineWordMatchItems`](nounphrasewithvocab.md#combineWordMatchItems), [`dictMatchIsExact`](nounphrasewithvocab.md#dictMatchIsExact), [`dictMatchIsStronger`](nounphrasewithvocab.md#dictMatchIsStronger), [`filterDictMatches`](nounphrasewithvocab.md#filterDictMatches), [`getWordMatches`](nounphrasewithvocab.md#getWordMatches), [`inScopeMatches`](nounphrasewithvocab.md#inScopeMatches), [`intersectWordMatches`](nounphrasewithvocab.md#intersectWordMatches), [`resolveNouns`](nounphrasewithvocab.md#resolveNouns), [`resolveNounsMatchName`](nounphrasewithvocab.md#resolveNounsMatchName)
+
+
+*From [NounPhraseProd](nounphraseprod.md):* [`filterTruncations`](nounphraseprod.md#filterTruncations), [`getVerifyKeepers`](nounphraseprod.md#getVerifyKeepers)
+
+
+*From [BasicProd](basicprod.md):* [`canResolveTo`](basicprod.md#canResolveTo), [`getOrigText`](basicprod.md#getOrigText), [`getOrigTokenList`](basicprod.md#getOrigTokenList), [`setOrigTokenList`](basicprod.md#setOrigTokenList)

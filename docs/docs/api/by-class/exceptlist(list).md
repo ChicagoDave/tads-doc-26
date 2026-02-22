@@ -1,0 +1,26 @@
+# exceptList(list)
+
+*grammar* — defined in [en_us.t](../by-file/en_us.t.md) (line 5368)
+
+
+**Superclass chain:** [ExceptListProd](exceptlistprod.md) > [BasicProd](basicprod.md) > `object` > **exceptList(list)**
+
+
+## Inherited Properties
+
+
+*From [BasicProd](basicprod.md):* [`firstTokenIndex`](basicprod.md#firstTokenIndex), [`isSpecialResponseMatch`](basicprod.md#isSpecialResponseMatch), [`lastTokenIndex`](basicprod.md#lastTokenIndex)
+
+
+## Methods
+
+
+### `resolveNouns(resolver, results)`
+
+Defined in en_us.t, line 5371
+
+
+## Inherited Methods
+
+
+*From [BasicProd](basicprod.md):* [`canResolveTo`](basicprod.md#canResolveTo), [`getOrigText`](basicprod.md#getOrigText), [`getOrigTokenList`](basicprod.md#getOrigTokenList), [`setOrigTokenList`](basicprod.md#setOrigTokenList)

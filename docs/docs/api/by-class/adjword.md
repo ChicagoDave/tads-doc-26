@@ -1,0 +1,3 @@
+# adjWord
+
+*GrammarProd*

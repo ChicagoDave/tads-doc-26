@@ -1,0 +1,3 @@
+# possessiveAdjPhrase
+
+*GrammarProd*

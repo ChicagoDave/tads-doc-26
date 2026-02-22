@@ -1,0 +1,3 @@
+# indetSingularNounPhrase
+
+*GrammarProd*

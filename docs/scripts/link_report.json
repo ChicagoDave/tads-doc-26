@@ -1,0 +1,16 @@
+{
+  "total_files": 2326,
+  "total_links": 203435,
+  "external_links": 118,
+  "fragment_links": 1206,
+  "internal_links": 202111,
+  "ok_links": 202111,
+  "broken_links": 0,
+  "broken_by_category": {
+    "parenthesized": [],
+    "old_path": [],
+    "malformed_url": [],
+    "unconverted_extension": [],
+    "missing_target": []
+  }
+}

@@ -1,0 +1,3 @@
+# qualifiedPluralNounPhrase
+
+*GrammarProd*

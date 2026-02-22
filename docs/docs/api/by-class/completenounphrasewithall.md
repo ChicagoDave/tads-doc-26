@@ -1,0 +1,3 @@
+# completeNounPhraseWithAll
+
+*GrammarProd*

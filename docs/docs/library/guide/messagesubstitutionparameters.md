@@ -1,0 +1,3 @@
+# Message Substitution Parameters
+
+Several times during the course of this Tour Guide we have used examples of message substitution parameters (in strings like '{You/he} open{s} {the dobj/him}'). The basic idea behind such strings is that the library replaces them with the appropriate actor and object names at run time. For example, according to context this example might be displayed as "You open the trunk" or "Sarah opens the door". It's accordingly a highly flexible mechanism for writing general-purpose messages that can be automatically customised to a wide variety of particular situations. For a more detailed explanation of how these work, see the article on '[Message Parameter Substitutions](../messages-substitutions.md)' in the *Technical Manual*.

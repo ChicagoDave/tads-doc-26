@@ -1,0 +1,3 @@
+# detPluralNounPhrase
+
+*GrammarProd*

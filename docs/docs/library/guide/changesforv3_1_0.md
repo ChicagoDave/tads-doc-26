@@ -1,0 +1,27 @@
+# Changes for v3.1.0
+
+- Small changes to [DefaultConsultTopic](defaultconsulttopic.md) to correct use of stringLister.
+- Corrected numerous typos reported by Bob Bates and Mike Sousa.
+- Changed the description of the rock object in the [Hiding With Words](wordgames.md) section so that there's still a description once the diamond is moved.
+- Removed the long obsolete reference to the showExitsInStatusLine property in the [gameMain](startupcodegamemain.md) object.
+- Corrected Solomon's [DefaultAskTellTopic](defaultasktelltopic.md) to make proper use of gTopicText.
+- Changes to the implementation of the dynamite object in connection with the [Fuse](fuse.md) class.
+- Corrected dobjFor(LieOn) on the monolith in the discussion of the [TravelPushable](travelpushable.md) class.
+- Slight change to the explanation of sightSize in connection with [DistanceConnector](distanceconnector.md).
+- Changed the stagingLocations method of the top bunk [HighNestedRoom](highnestedroom.md) so it's possible to get off the bunk as well as on.
+- Corrected the way [InitiateTopics](initiatetopic.md) work with the curatorWatching State.
+- Changed the definition of the templeWestWall in the [Lever](lever.md) section.
+- Corrected Sarah's [DefaultShowTopic](defaultshowtopic.md).
+- Corrected Sarah's InitiateTopic in the [initiateConversation](initiateconversation.md) section to produce the desired result.
+- Tweaked the isReady condition of the curatorSurprise [AgendaItem](agendaitem.md) and [ConvAgendaItem](convagendaitem.md).
+- Expanded the definition of the eastShore room in the [Vaporous](vaporous.md) section, and reversed the direction of the steps leading up and down to make them compatible with the direction of the steps from the landing above.
+- Amended discussion of [PathPassage](pathpassage.md) to reflect the fact that the library now uses getEnteredVerbPhrase to redirect TAKE PATH (but not GET PATH or PICK UP PATH) to FOLLOW PATH.
+- Amended discussion of [OutdoorRoom](outdoorroom.md) to illustrate the use of the new style <<one of>>..<<or>>..<<at random>> syntax.
+- Changed the desc property of the glassJar in the section on [RestrictedContainer](restrictedcontainer.md)  to illustrate the use of the new style <<if expr>>...<<else>>...<<end>> syntax.
+- Removed the now obsolete discussion of a bug in TADS prior to version 3.0.9 from the discussion of [Candle & Fire Source](candle.md).
+- Modified the atmosphereList of the streetCorner location defined in the section on [SenseFuse](sensefuse.md)  to take advantage of the abolity to embed expressions in single-quoted strings, and added an explanatory note.
+- Added examples of <<one of>>...<<at random>>, <<one of>>...<<shuffled>> and <<one of>>...<<cycling>> to the discussion of [DefaultGiveShowTopic](defaultgiveshowtopic.md).
+- Amended [DefaultAskForTopic](defaultaskfortopic.md) to take advantage of embedding expressions in single-quoted strings.
+- Modified the discussion of [TCommandTopic](tcommandtopic.md) to reflect the fact that the TCommand extension is now supplied with the standard TADS 3 distribution.
+- Added solomonBedroom to the list of possible Tardis destinations at the end of the discussion of [VehicleBarrier](vehiclebarrier.md), and changed the definition to illustrate an alternative syntax for initializing a LookupTable.
+- In various places rewrote certain string expressions to take advantage of the new ability to put << >> embedded expressions in single-quoted strings.

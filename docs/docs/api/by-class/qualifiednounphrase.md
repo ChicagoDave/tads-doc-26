@@ -1,0 +1,3 @@
+# qualifiedNounPhrase
+
+*GrammarProd*

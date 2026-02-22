@@ -1,0 +1,3 @@
+# literalAdjPhrase
+
+*GrammarProd*
