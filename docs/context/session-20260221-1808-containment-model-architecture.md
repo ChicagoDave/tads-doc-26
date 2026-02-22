@@ -98,6 +98,17 @@ Source files referenced: thing.t, objects.t, extras.t, travel.t, precond.t, acto
 
 **Architecture doc count**: 4 of 6 planned deep-dives complete (parser-pipeline, action-resolution, sense-perception, containment-model). 2 remaining (message-system, event-scheduling).
 
+## Repository
+
+After completing the containment model deep-dive, the project was initialized as a git repository and pushed to GitHub:
+
+- **Remote**: `https://github.com/ChicagoDave/tads-doc-26.git`
+- **Branch**: `main`
+- **Initial commit**: `f7b8996` — 2,396 files, 246,667 insertions
+- **`.gitignore`**: excludes `tads-sources/` (upstream clone), `docs/site/` (build output), `__pycache__/`, `*.pyc`, `.DS_Store`
+
+The `tads-sources/` directory (cloned from github.com/tajmone/tads-sources) is excluded from version control since it is an upstream dependency, not project output.
+
 ## Notes
 
 **Session duration**: approximately 28 minutes

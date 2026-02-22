@@ -117,6 +117,8 @@ The adv3 library is organized into 35 source modules, each responsible for a dis
 | `misc.t` | 2,489 | GameMainDef, global state, utility functions |
 | `score.t` | 520 | Achievement-based scoring |
 
+For the complete scheduling algorithm, actor priority tiers, and the full Fuse/Daemon/PromptDaemon class hierarchy, see [Event Scheduling](event-scheduling.md).
+
 ### Output and display
 
 | Module | Lines | Responsibility |
@@ -127,6 +129,8 @@ The adv3 library is organized into 35 source modules, each responsible for a dis
 | `status.t` | 568 | The status line |
 | `banner.t` | 1,225 | Banner windows for split-screen layouts |
 | `input.t` | 1,099 | The input manager |
+
+For the full architecture of message definition, `{...}` parameter substitution, pronoun and verb agreement, and the report/transcript pipeline, see [The Message System](message-system.md).
 
 ### Support systems
 
@@ -432,7 +436,7 @@ Here is the high-level flow of a single turn. Each step is a complex subsystem i
 12. **Fuses and daemons** — The scheduler runs any pending `Fuse` or `Daemon` events whose time has come.
 13. **Next actor** — The scheduler moves to the next `Schedulable` (typically an NPC) at the current game clock time, then advances the clock.
 
-For the complete, step-by-step specification of this cycle, see [The Command Execution Cycle](../library/advanced/command-execution-cycle.md). For the architecture of steps 1–5 (the parser pipeline), see [The Parser Pipeline](parser-pipeline.md). For the architecture of steps 6–9 (action resolution), see [Action Resolution](action-resolution.md). For the critical verify-vs-check distinction, see [Verify and Check](../library/actions/verify-check.md).
+For the complete, step-by-step specification of this cycle, see [The Command Execution Cycle](../library/advanced/command-execution-cycle.md). For the architecture of steps 1–5 (the parser pipeline), see [The Parser Pipeline](parser-pipeline.md). For the architecture of steps 6–9 (action resolution), see [Action Resolution](action-resolution.md). For the architecture of steps 12–13 (scheduling, fuses, and daemons), see [Event Scheduling](event-scheduling.md). For the critical verify-vs-check distinction, see [Verify and Check](../library/actions/verify-check.md).
 
 ---
 

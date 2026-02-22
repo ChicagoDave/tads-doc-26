@@ -22,6 +22,14 @@ How the four senses — sight, sound, smell, and touch — propagate through the
 
 How the physical world is structured as a containment tree. The location/contents hierarchy, container types and their boundaries, reachability and touch paths, bulk and weight capacity, nested rooms and staging locations, and multi-location objects.
 
+## [The Message System](message-system.md)
+
+How every library response is defined, parameterized, and displayed. The message definition objects, the `{...}` parameter substitution engine, pronoun and verb agreement, tense switching, message dispatch and override resolution, the report and transcript system, and practical customization patterns.
+
+## [Event Scheduling](event-scheduling.md)
+
+How TADS 3 decides who acts next. The `runScheduler()` loop, `Schedulable` priority ordering, actors as schedulable objects, the `Fuse`/`Daemon`/`SenseFuse`/`SenseDaemon` class hierarchy, `PromptDaemon`, real-time events, and the hooks for controlling turn order and timed behavior.
+
 ## [IF Development Guide](development-guide.md)
 
 A conceptual roadmap for building adv3 games. Covers the minimal game skeleton, rooms and travel, the Thing hierarchy, actors and conversations, output formatting, timed events, scoring, and source organization.

@@ -666,4 +666,4 @@ Good for: objects that span multiple locations — rivers, long walls, ropes, ro
 
 ---
 
-*Back to the [Architecture Overview](overview.md) for the big picture, or see [Sense and Perception](sense-perception.md) for how sense paths trace through the containment tree. For how scope connects to noun resolution, see [Action Resolution](action-resolution.md). For the event system that drives turn-by-turn changes, see the [IF Development Guide](development-guide.md).*
+*Back to the [Architecture Overview](overview.md) for the big picture, or see [Sense and Perception](sense-perception.md) for how sense paths trace through the containment tree. For how scope connects to noun resolution, see [Action Resolution](action-resolution.md). For how actions produce player-visible text, see the [Message System](message-system.md).*

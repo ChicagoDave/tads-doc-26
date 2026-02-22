@@ -414,7 +414,7 @@ Without the Unthing, the player typing LOOK AT WINDOW would get a generic "You d
 
 ## Daemon and Fuse Patterns
 
-Fuses and Daemons handle timed events. The [Development Guide](development-guide.md#timed-events) covers the basics; here we focus on the patterns for using them robustly.
+Fuses and Daemons handle timed events. The [Development Guide](development-guide.md#timed-events) covers the basics and the [Event Scheduling](event-scheduling.md) deep-dive explains the internal machinery; here we focus on the patterns for using them robustly.
 
 ### The store-and-cleanup pattern
 

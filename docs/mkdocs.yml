@@ -639,6 +639,8 @@ nav:
     - Action Resolution: architecture/action-resolution.md
     - Sense and Perception: architecture/sense-perception.md
     - Containment Model: architecture/containment-model.md
+    - Message System: architecture/message-system.md
+    - Event Scheduling: architecture/event-scheduling.md
     - Design Patterns: architecture/design-patterns.md
     - IF Development Guide: architecture/development-guide.md
     - Quick Reference: architecture/quick-reference.md
