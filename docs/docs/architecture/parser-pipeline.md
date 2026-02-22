@@ -2,7 +2,7 @@
 
 Every turn in a TADS 3 game begins with a string of text and ends with a fully resolved action applied to specific objects. The transformation from text to action is a multi-stage pipeline — tokenization, grammar matching, ranking, noun resolution, disambiguation, and execution — spread across four core source files. This document explains the architecture of that pipeline: the design choices, the class hierarchies, and the places where game authors can intervene.
 
-[Pipeline Overview](#pipeline-overview) | [Entry Points](#entry-points--exect) | [Grammar Matching](#grammar-matching--parsert) | [Command Ranking](#command-ranking) | [Noun Resolution](#noun-resolution--resolvert) | [Disambiguation](#disambiguation--disambigt) | [Intervention Points](#practical-intervention-points)
+[Pipeline Overview](#pipeline-overview) | [Entry Points](#entry-points-exect) | [Grammar Matching](#grammar-matching-parsert) | [Command Ranking](#command-ranking) | [Noun Resolution](#noun-resolution-resolvert) | [Disambiguation](#disambiguation-disambigt) | [Intervention Points](#practical-intervention-points)
 
 !!! tip "How this document relates to the Command Execution Cycle"
     Eric Eve's [Command Execution Cycle](../library/advanced/command-execution-cycle.md) walks through what happens step by step, from the player's perspective. This document explains the same system from an architectural perspective — why the classes are shaped the way they are, what design patterns they use, and where you can hook in. Read the Execution Cycle first if you want to follow the flow; read this document when you need to understand or extend the machinery.
