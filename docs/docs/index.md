@@ -18,7 +18,7 @@ as separate HTML manuals between 2006 and 2016.
 
     New to TADS 3? Start here with installation, your first project, and a step-by-step tutorial.
 
-    [:octicons-arrow-right-24: Getting Started](getting-started/index.md)
+    [Getting Started →](getting-started/index.md)
 
 -   **Language Reference**
 
@@ -27,7 +27,7 @@ as separate HTML manuals between 2006 and 2016.
     Complete reference for the TADS 3 programming language: datatypes, expressions, objects,
     inheritance, exceptions, and more.
 
-    [:octicons-arrow-right-24: Language Reference](language/index.md)
+    [Language Reference →](language/index.md)
 
 -   **Intrinsic Classes & Functions**
 
@@ -36,7 +36,7 @@ as separate HTML manuals between 2006 and 2016.
     Reference for built-in classes (String, List, Vector, File, etc.) and function sets
     (t3vm, tads-gen, tads-io, tads-net).
 
-    [:octicons-arrow-right-24: Intrinsics](intrinsics/index.md)
+    [Intrinsics →](intrinsics/index.md)
 
 -   **Library Guide**
 
@@ -45,7 +45,7 @@ as separate HTML manuals between 2006 and 2016.
     How to use the adv3 adventure library: rooms, things, actors, actions, conversations,
     and advanced topics.
 
-    [:octicons-arrow-right-24: Library Guide](library/index.md)
+    [Library Guide →](library/index.md)
 
 -   **API Reference**
 
@@ -54,7 +54,7 @@ as separate HTML manuals between 2006 and 2016.
     Comprehensive API reference for the adv3 library, extracted from source code.
     Every class, property, and method documented.
 
-    [:octicons-arrow-right-24: API Reference](api/index.md)
+    [API Reference →](api/index.md)
 
 -   **Architecture**
 
@@ -63,7 +63,7 @@ as separate HTML manuals between 2006 and 2016.
     Deep dives into TADS 3 internals: the parser pipeline, action resolution,
     the sense system, and more.
 
-    [:octicons-arrow-right-24: Architecture](architecture/index.md)
+    [Architecture →](architecture/index.md)
 
 </div>
 
