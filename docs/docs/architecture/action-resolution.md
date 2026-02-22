@@ -1,6 +1,6 @@
 # Action Resolution
 
-Once the parser has selected a winning parse tree, the game must transform it into a concrete change in the world. This is action resolution — the pipeline that takes an Action with unresolved noun phrases and produces a fully executed command applied to specific game objects. The pipeline spans four source files (`action.t`, `verify.t`, `precond.t`, `resolver.t`) and one header (`adv3.h`), and its architecture determines how every verb interaction in the game behaves.
+Once the parser has selected a winning parse tree, the game must transform it into a concrete change in the world. This is action resolution — the pipeline that takes an Action with unresolved noun phrases and produces a fully executed command applied to specific game objects. The pipeline spans five source files (`exec.t`, `action.t`, `verify.t`, `precond.t`, `resolver.t`) and one header (`adv3.h`), and its architecture determines how every verb interaction in the game behaves.
 
 [Overview](#action-resolution-overview) | [Action Hierarchy](#the-action-class-hierarchy--actiont) | [Scope](#scope--who-can-see-what) | [Execution Cycle](#the-execution-cycle--doactiononce) | [Verification](#verification--verifyt) | [Preconditions](#preconditions--precondt) | [Remapping](#remapping) | [Topics](#topic-resolution-and-resolvedtopic) | [Intervention Points](#practical-intervention-points)
 
@@ -41,16 +41,22 @@ Verify (pass 2, if needed)    re-verify after implicit actions
 Preconditions (pass 2)        re-check, no new implicit actions allowed
      │
      ▼
-Check                         runtime go/no-go (hidden state)
+Before Notifications (*)      beforeAction on actor and scope objects
      │
      ▼
-Before Notifications          beforeAction on actor and scope objects
+Actor Notification            gActor.actorAction()
+     │
+     ▼
+Check                         runtime go/no-go (hidden state)
      │
      ▼
 Action                        world state changes happen here
      │
      ▼
 After Notifications           afterAction on actor and scope objects
+
+(*) Default order — gameMain.beforeRunsBeforeCheck (default true)
+    controls whether Before runs before or after Check.
 ```
 
 The phases are orchestrated by these source files:
@@ -63,9 +69,10 @@ The phases are orchestrated by these source files:
 | Remapping check | `action.t` | `action.checkRemapping()` |
 | Verify | `action.t`, `verify.t` | `action.verifyAction()` → `callVerifyProp()` |
 | Preconditions | `action.t`, `precond.t` | `action.checkPreConditions()` |
+| Before notifications | `action.t`, `misc.t` | `action.runBeforeNotifiers()` (order controlled by `gameMain.beforeRunsBeforeCheck`) |
 | Check | `action.t` | `action.checkAction()` |
 | Action execution | `action.t` | `action.execAction()` |
-| Notifications | `action.t` | `action.runBeforeNotifiers()`, `action.afterAction()` |
+| After notifications | `action.t` | `notifyBeforeAfter(&afterAction)`, `action.afterAction()` |
 
 The single most important design principle: **verb behavior is defined on the objects involved in the command, not on the action class itself.** When the player types TAKE THE KEY, the key defines what "take" means for a key, via its `dobjFor(Take)` handler block. The action class orchestrates the pipeline; the objects supply the logic.
 
@@ -131,7 +138,7 @@ The default scope is the actor's sensory environment. When `Resolver.cacheScopeL
 
 ### Physical scope vs. global scope
 
-Most actions use physical scope — you can only TAKE what you can perceive. But topic-related actions use global scope, because conversation topics are not physical objects. `TopicResolver` overrides `isGlobalScope` to return `true`, and its `matchName()` matches against the entire game dictionary rather than just objects in the actor's immediate environment.
+Most actions use physical scope — you can only TAKE what you can perceive. But topic-related actions use global scope, because conversation topics are not physical objects. `TopicResolver` overrides `isGlobalScope` to return `true` and `objInScope()` to return `true` for every object, so the normal `matchName()` on Thing runs against every object in the game rather than just those in the actor's immediate environment.
 
 ### Overriding scope on actions
 
@@ -152,7 +159,7 @@ The scope system connects to the sense and perception model (material transparen
 
 The heart of action resolution is `doActionOnce()` (at `action.t:1326`), which runs the full execution sequence for one set of objects. Understanding its structure is the key to understanding how every command in the game executes.
 
-### The ten-step sequence
+### The execution sequence
 
 For each combination of resolved objects, `doActionOnce()` runs:
 
@@ -168,13 +175,18 @@ For each combination of resolved objects, `doActionOnce()` runs:
 
 6. **`checkPreConditions(pass 2)`** — Re-check preconditions, but with `allowImplicit = nil` — no new implicit actions are permitted on the second pass. This prevents infinite loops from conflicting preconditions.
 
-7. **`checkAction()`** — Run the `check()` handler on each involved object. Unlike verify, check failures do not influence disambiguation — they represent conditions the player cannot see.
+7. **`runBeforeNotifiers()`** *(by default)* — Fire `beforeAction` notifications: first the action's own `beforeAction()`, then `roomBeforeAction()` on the actor's containers, then `beforeAction()` on every object in the notify list. Any notifier can cancel the action with `exit`.
 
-8. **`runBeforeNotifiers()`** — Fire `beforeAction` notifications on the actor, the actor's location, and every object in scope. Any notifier can cancel the action with `exit`.
+8. **`gActor.actorAction()`** — Notify the actor that it is about to perform the action. The actor can cancel or redirect here.
 
-9. **`execAction()`** — Run the `action()` handler on the involved objects. This is where world state changes happen — moving objects, changing properties, printing descriptions.
+9. **`checkAction()`** — Run the `check()` handler on each involved object. Unlike verify, check failures do not influence disambiguation — they represent conditions the player cannot see.
 
-10. **`afterAction()`** — Fire after-action notifications. These cannot cancel the action (it has already happened) but can react to the change.
+10. **`execAction()`** — Run the `action()` handler on the involved objects. This is where world state changes happen — moving objects, changing properties, printing descriptions.
+
+11. **After-action notifications** — `notifyBeforeAfter(&afterAction)` fires `afterAction()` on every object in the notify list, then `roomAfterAction()` on the actor's containers, then the action's own `afterAction()`. These cannot cancel the action (it has already happened) but can react to the change.
+
+!!! note "Before/Check ordering is configurable"
+    The default order (shown above) runs Before notifications *before* `actorAction()` and `checkAction()`, because `gameMain.beforeRunsBeforeCheck` defaults to `true`. If you set it to `nil`, the order changes to: `actorAction()` first, then `checkAction()`, then `runBeforeNotifiers()`, then `execAction()`. Note that `actorAction()` always runs before `checkAction()` regardless of this setting. The alternative order lets Before handlers assume the action has passed its internal checks.
 
 ### The two-pass design
 
@@ -205,7 +217,7 @@ During execution, several global variables track the current state:
 | `gIobj` | The current indirect object (shorthand for `gAction.getIobj()`) |
 | `gVerifyResults` | The current `VerifyResultList` (only during verify phase) |
 
-These are set by `withParserGlobals()` and are safe across nested actions — each nested call saves and restores the previous values.
+`gActor`, `gIssuingActor`, and `gAction` are saved and restored by `withParserGlobals()`, making them safe across nested actions. `gDobj` and `gIobj` are macros that derive from `gAction` (e.g., `gAction.getDobj()`), so they update automatically. `gVerifyResults` is a separate global (`libGlobal.curVerifyResults`) set only during verification.
 
 ---
 
@@ -327,18 +339,25 @@ Remapping redirects a command to a different action or a different target object
 `GlobalRemapping` runs in `executeAction()` *before* nouns are fully resolved. It intercepts at the action level and can transform one action into a completely different one:
 
 ```tads3
-globalRemapGiveMe: GlobalRemapping
-    getRemapping(action, issuingActor, targetActor)
+giveMeToAskFor: GlobalRemapping
+    getRemapping(issuingActor, targetActor, action)
     {
-        // Turn GIVE ME X (where "me" is the issuing actor) into ASK FOR X
-        if (action.ofKind(GiveToAction) && action.getIobj() == issuingActor)
-            return [targetActor, AskForAction, action.getDobj()];
+        // Turn "BOB, GIVE ME X" (where "me" is the issuing actor) into
+        // "ME, ASK BOB FOR X" — note that the target actor changes
+        if (action.ofKind(GiveToAction)
+            && action.canIobjResolveTo(issuingActor))
+        {
+            local newAction = AskForAction.createActionInstance();
+            newAction.setOriginalAction(action);
+            // ... set up direct object and topic ...
+            return [issuingActor, newAction];
+        }
         return nil;
     }
 ;
 ```
 
-Because GlobalRemapping runs before resolution, it can change the entire structure of the command — even switching from a two-object action to a single-object action.
+The return value is `[targetActor, newAction]` — a two-element list giving the (possibly changed) target actor and a new Action object. Because GlobalRemapping runs before full noun resolution, it can change the entire structure of the command — even switching from a two-object action to a single-object action, or changing the target actor.
 
 ### remapTo — object level
 
@@ -381,8 +400,8 @@ Topic actions (`TopicAction`, `TopicTAction`) resolve their topic argument diffe
 ### How topic resolution differs
 
 1. **Global scope** — `TopicResolver` uses global scope, so every object in the game with matching vocabulary is a candidate.
-2. **Three-tier classification** — Matches are sorted into three lists, not filtered to a single winner.
-3. **No disambiguation** — The game never asks "Which treasure do you mean?" for topics. Instead, the three lists give the action handler enough information to decide what to do.
+2. **Three-tier classification** — For conversational actions (ASK, TELL, etc.), the `ConvTopicResolver` subclass sorts matches into three lists based on conversational scope, actor knowledge, and vocabulary matching. The base `TopicResolver` keeps everything in a single undifferentiated list; it is `ConvTopicResolver` that performs the three-way split.
+3. **No disambiguation** — The game never asks "Which treasure do you mean?" for topics. Instead, the lists give the action handler enough information to decide what to do.
 
 ### The ResolvedTopic structure
 
@@ -390,8 +409,8 @@ When a topic noun phrase resolves, it produces a `ResolvedTopic` object:
 
 | Property | Contents |
 |----------|----------|
-| `inScopeList` | Objects matching the topic that are in the actor's physical scope |
-| `likelyList` | Objects not in scope but that the actor considers likely topics (via `isLikelyTopic`) |
+| `inScopeList` | Objects matching the topic that are in "conversational scope" — physically in scope *or* known to the actor (via `ConvTopicResolver.objInConvScope`) |
+| `likelyList` | Objects not in conversational scope but that the actor considers likely topics (via `isLikelyTopic`) |
 | `otherList` | All remaining objects matching the topic vocabulary |
 | `topicProd` | The grammar production that matched the topic phrase |
 | `resInfoTab` | Lookup table from game object to its `ResolveInfo` (for vocabulary match details) |

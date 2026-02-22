@@ -50,10 +50,10 @@ The pipeline is not a single function call. It is orchestrated by two functions 
 |-------|--------|-----------------|
 | Pre-parsing and tokenization | `input.t` | `readMainCommandTokens()` |
 | Grammar matching | `parser.t` | `GrammarProd.parseTokens()` (VM intrinsic) |
-| Action filtering | `exec.t` | `resolveFirstAction()` |
+| Action filtering | `parser.t` (called from `exec.t`) | `resolveFirstAction()` |
 | Ranking | `parser.t` | `CommandRanking.sortByRanking()` |
 | Noun resolution | `resolver.t` | `Resolver.matchName()`, `objInScope()` |
-| Global remapping | `exec.t` | `GlobalRemapping.getRemapping()` |
+| Global remapping | `exec.t` | `GlobalRemapping.findGlobalRemapping()` |
 | Disambiguation | `disambig.t` | `Distinguisher.canDistinguish()` |
 | Action execution | `exec.t` | `executeAction()` → `action.doAction()` |
 
@@ -69,7 +69,7 @@ The pipeline has two entry points, and understanding why there are two is the ke
 
 `executeCommand(targetActor, issuingActor, toks, firstInSentence)` is the top-level entry point, called once per player command. It receives a token list (already pre-parsed and tokenized by `input.t`) and handles everything up to noun resolution:
 
-1. Calls `firstCommandPhrase.parseTokens(toks, cmdDict)` to match grammar rules
+1. Calls `parseTokens(toks, cmdDict)` on the appropriate command phrase production (`firstCommandPhrase` for the first command in a sentence, `commandPhrase` for subsequent ones) to match grammar rules
 2. Filters matches with `resolveFirstAction()` to discard structurally invalid interpretations
 3. Calls `CommandRanking.sortByRanking()` to pick the best interpretation
 4. Resolves actor prefixes ("BOB, GO NORTH") if present
@@ -96,9 +96,9 @@ The pipeline uses exception-based signaling for non-local control flow. These ar
 
 | Signal | Thrown from | Effect |
 |--------|------------|--------|
-| `ExitSignal` | Action handlers | Abort the entire turn, skip afterAction and daemons |
+| `ExitSignal` | Action handlers | Abort the current action's remaining execution; does not prevent processing of additional objects or commands on the same command line |
 | `ExitActionSignal` | Action handlers | Abort the current action, skip to afterAction |
-| `AbortImplicitSignal` | Verify handlers | Cancel an implicit action silently |
+| `AbortImplicitSignal` | Implicit action system (when verify shows danger) | Cancel an implicit action silently |
 | `RemapActionSignal` | Noun resolution | Restart resolution with a different action |
 | `TerminateCommandException` | Parsing | Abandon the current command entirely |
 | `RetryCommandTokensException` | Parsing | Re-parse with an edited token list |
@@ -118,9 +118,10 @@ Every grammar rule in TADS 3 is a class that extends `BasicProd`. The production
 
 ```
 BasicProd
-├── CommandProd / FirstCommandProd
-│   ├── CommandProdWithActor       "bob, take ball"
-│   └── CommandProdWithDefiniteConj "take ball and drop it"
+├── CommandProd
+│   ├── FirstCommandProd             first command in a sentence
+│   ├── CommandProdWithActor         "bob, take ball"
+│   └── CommandProdWithDefiniteConj  "take ball and drop it"
 │
 ├── NounPhraseProd                  base for all noun matching
 │   ├── SingleNounProd              "red ball"
@@ -133,10 +134,13 @@ BasicProd
 │
 └── Action                          base for all actions
     ├── IAction                    no objects (JUMP, SLEEP)
-    ├── TAction                    one object (TAKE X)
-    │   └── TIAction              two objects (PUT X IN Y)
-    ├── LiteralAction              literal text (SAY HELLO)
-    └── TopicAction                topic (THINK ABOUT X)
+    │   ├── LiteralAction: LiteralActionBase, IAction   (TYPE HELLO)
+    │   ├── TopicAction: TopicActionBase, IAction       (THINK ABOUT X)
+    │   └── ConvIAction            conversational (HELLO, YES)
+    └── TAction: Action, Resolver  one object (TAKE X)
+        ├── TIAction               two objects (PUT X IN Y)
+        ├── LiteralTAction: LiteralActionBase, TAction  (TYPE X ON Y)
+        └── TopicTAction: TopicActionBase, TAction      (ASK X ABOUT Y)
 ```
 
 The critical insight: when you write a VerbRule, you are creating a grammar production class that *extends* the Action class. The colon in `VerbRule(Take) ... : TakeAction` creates a new class that inherits from `TakeAction`, which inherits from `TAction`, which inherits from `Action`, which inherits from `BasicProd`. This means each VerbRule is both a grammar rule (it knows how to match tokens) and an action (it knows what to do with the matched objects).
@@ -268,10 +272,9 @@ Resolver                         base class
 └── (Action itself)              many Actions serve as their own dobj resolver
 
 ProxyResolver                    wraps another resolver, narrowing scope
-└── PossessiveResolver           "bob's key" — adds known objects to scope
-
-InteractiveResolver              base for interactive disambiguation
-└── DisambigResolver             "which one?" response resolution
+├── PossessiveResolver           "bob's key" — adds known objects to scope
+└── InteractiveResolver          base for interactive disambiguation
+    └── DisambigResolver         "which one?" response resolution
 ```
 
 The base `Resolver` class provides the interface that noun phrase productions call during resolution:
@@ -284,7 +287,7 @@ The base `Resolver` class provides the interface that noun phrase productions ca
 | `matchName(obj, origTokens, adjustedTokens)` | Test whether an object matches the given tokens |
 | `getAll(np)` | Return the object list for ALL |
 | `filterAmbiguousNounPhrase(lst, requiredNum, np)` | Narrow ambiguous matches using verify results |
-| `getDefaultObject(np, resolver)` | Supply a default when a noun phrase is omitted |
+| `getDefaultObject(np)` | Supply a default when a noun phrase is omitted |
 | `resolvePronounAntecedent(typ, np, results, poss)` | Resolve IT, HIM, HER, THEM |
 | `getReflexiveBinding(typ)` | Resolve HIMSELF, HERSELF, ITSELF |
 
@@ -330,18 +333,18 @@ When noun resolution produces multiple candidates that survive all filtering, an
 
 ### The Distinguisher hierarchy
 
-Each game object has a `distinguishers` list — a sequence of `Distinguisher` objects that describe how to tell it apart from other objects. The parser walks through the distinguishers to find one that can differentiate the ambiguous candidates:
+Each game object has a `distinguishers` list — a sequence of `Distinguisher` singleton instances that describe how to tell it apart from other objects. The parser walks through the distinguishers to find one that can differentiate the ambiguous candidates:
 
 ```
-Distinguisher                    base class
-├── nullDistinguisher            different display names
-├── basicDistinguisher           different equivalence classes
-├── ownershipDistinguisher       different getNominalOwner() or location
-├── locationDistinguisher        different immediate location
-└── litUnlitDistinguisher        different isLit state
+Distinguisher                    base class (defined in disambig.t)
+    nullDistinguisher            different display names
+    basicDistinguisher           different equivalence classes
+    ownershipDistinguisher       different getNominalOwner() or location
+    locationDistinguisher        different immediate location
+    litUnlitDistinguisher        different isLit state
 ```
 
-Each distinguisher implements three methods:
+These are singleton instances (note the lowercase names), not subclasses. Each instance implements three methods:
 
 - `canDistinguish(a, b)` — Can this distinguisher tell objects `a` and `b` apart?
 - `matchName(obj, origTokens, adjustedTokens, matchList, fullMatchList)` — Can the player's disambiguation response be matched using this distinguisher's knowledge?
@@ -415,7 +418,7 @@ See [Grammar and Custom Verbs](quick-reference.md#grammar-and-custom-verbs) in t
 | `filterResolveList()` | Override on Thing | Remove, substitute, or add objects during resolution |
 | `vocabLikelihood` | Property on Thing | Bias disambiguation without changing verify logic |
 | `isEquivalent` | Property on Thing | Treat interchangeable objects as one (five gold coins) |
-| `objInScope()` | Override on Action | Expand or restrict what the parser considers reachable |
+| `objInScope()` | Override on Resolver (TAction serves as its own dobj Resolver) | Expand or restrict what the parser considers reachable |
 
 ### During and after action selection
 

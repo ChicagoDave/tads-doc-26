@@ -43,10 +43,10 @@ The key design principle is **cache-and-query**. The expensive work — tracing 
 | Source | Role |
 |--------|------|
 | `sense.t` | Material class, Sense class, transparency math, SenseConnector, DistanceConnector, Occluder |
-| `thing.t` | SenseInfo, senseInfoTable(), connectionTable(), path calculation, brightness propagation, scratch-pads |
-| `objects.t` | Container transparency overrides, FillMedium, Intangible, SensoryEmanation, Noise, Odor |
+| `thing.t` | SenseInfo, senseInfoTable(), sensePresenceList(), connectionTable(), path calculation, brightness propagation, scratch-pads |
+| `objects.t` | BasicContainer material/transparency overrides, FillMedium, Intangible, SensoryEmanation, Noise, Odor |
 | `adv3.h` | Transparency enums (`transparent`, `distant`, `attenuated`, `obscured`, `opaque`), size enums (`large`, `medium`, `small`) |
-| `actor.t` | `scopeSenses`, `scopeList()`, `sensePresenceList()` |
+| `actor.t` | `scopeSenses`, `scopeList()` |
 
 ---
 
@@ -54,7 +54,7 @@ The key design principle is **cache-and-query**. The expensive work — tracing 
 
 ### The Material class
 
-Every container in the game has a `material` property — an instance of the `Material` class that determines what senses pass through it. The Material class uses a property-pointer dispatch pattern:
+Every `BasicContainer` (and its subclasses, such as `Container`) has a `material` property — an instance of the `Material` class that determines what senses pass through it when closed. The Material class uses a property-pointer dispatch pattern:
 
 ```tads3
 class Material: object
@@ -73,13 +73,13 @@ When code calls `material.senseThru(sight)`, the method reads `sight.thruProp` (
 
 | Material | seeThru | hearThru | smellThru | touchThru | Typical use |
 |----------|---------|----------|-----------|-----------|-------------|
-| `adventium` | opaque | opaque | opaque | opaque | Default for all objects |
+| `adventium` | opaque | opaque | opaque | opaque | Default for BasicContainer subclasses |
 | `paper` | opaque | transparent | transparent | opaque | Cardboard boxes, envelopes |
 | `glass` | transparent | opaque | opaque | opaque | Windows, display cases |
 | `fineMesh` | transparent | transparent | transparent | opaque | Screen doors, wire fences |
 | `coarseMesh` | transparent | transparent | transparent | transparent | Chain-link fences, grates |
 
-`adventium` is the default material for every object. This is **safe-by-default** design: an object is opaque to everything unless the author explicitly says otherwise.
+`adventium` is the default material for `BasicContainer` and its subclasses (including `Container`, `OpenableContainer`, etc.). Thing itself does not define a `material` property — only containers that enclose their contents use materials. This is **safe-by-default** design: a closed container is opaque to everything unless the author explicitly sets a different material.
 
 ### Transparency arithmetic
 
@@ -217,9 +217,9 @@ pov.senseInfoTable(sense)
 
 `connectionTable()` (at `thing.t:5726`) is a pre-filter that finds every object connected by containment to the point of view — walking up to parent containers, down to child contents, and across `SenseConnector` links. The result is the universe of objects that *could* be sensed; the actual sensibility is determined in steps 2 and 3.
 
-The table is cached in `libGlobal.connectionCache` because it is called frequently — the source notes that the sample game invokes it ~500 times per turn.
+The table is cached in `libGlobal.connectionCache` because it is expensive to build — the recursive helper `addDirectConnections()` is invoked ~500 times per turn in the library sample game, as the source notes, due to traversing every object's contents and containers.
 
-### Step 2: cacheAmbientInfo() — brightness propagation
+### Step 2a: cacheAmbientInfo() — brightness propagation
 
 For senses without `ambienceProp` (sound, smell, touch), this step just calls `clearSenseInfo()` on each object to reset the scratch-pads.
 
@@ -233,7 +233,7 @@ For sight, the algorithm is a greedy flood-fill:
 
 Each object tracks the highest ambient level received so far. If a new path offers a higher level, it replaces the old one and propagation continues. If not, propagation stops at that branch. This is how the system finds the best path without exhaustive search.
 
-### Step 3: cacheSensePath() — transparency propagation
+### Step 2b: cacheSensePath() — transparency propagation
 
 The transparency calculation has a parallel structure to brightness propagation: same four directional methods, same best-path-wins logic, but tracking transparency instead of brightness.
 
@@ -283,17 +283,17 @@ These transient properties on every Thing store intermediate results during calc
 
 ### FillMedium
 
-A `FillMedium` (in `objects.t`) is a Thing subclass representing a medium that permeates a container's interior — fog, smoke, murky water. It has a `material` property and a `senseThru()` method that returns the material's transparency.
+A `FillMedium` (in `objects.t`) is a Thing subclass representing a medium that permeates a container's interior — fog, smoke, murky water. It has a `material` property (defaulting to `nil`) and a `senseThru()` method that returns the material's transparency, or `transparent` if no material is set.
 
 The critical rule: **consecutive traversals of the same fill medium count as one**. When sense energy enters a foggy room through one wall and crosses to the other side, the fog is applied once, not twice. The `tmpAmbientFill_` / last-fill parameter in the path methods tracks this.
 
-The `fillMedium()` method on Thing walks up the containment tree by default, so a fill medium in a room also affects open containers within it. The `Container` class overrides this: when closed, it returns `nil`, isolating its interior from the parent's medium.
+The `fillMedium()` method on Thing walks up the containment tree by default, so a fill medium in a room also affects open containers within it. The `BasicContainer` class overrides this: when open, it inherits the parent's medium; when closed, it returns `nil`, isolating its interior from the parent's medium.
 
 ### transSensingIn() vs. transSensingOut()
 
 By default, `transSensingOut(sense)` returns `transSensingIn(sense)` — containers are symmetric. Override `transSensingOut()` to create asymmetric containers like one-way mirrors (visible from one side only).
 
-`Container` overrides `transSensingIn()`: if open, returns `transparent`; if closed, returns `material.senseThru(sense)`. This is the mechanism that makes closing a glass jar change its sensory behavior — the jar becomes transparent to sight but opaque to the other senses.
+`BasicContainer` overrides `transSensingIn()`: if open, returns `transparent`; if closed, returns `material.senseThru(sense)`. Since `Container` extends `BasicContainer`, this is the mechanism that makes closing a glass jar change its sensory behavior — the jar becomes transparent to sight but opaque to the other senses.
 
 ---
 
@@ -318,7 +318,7 @@ SenseConnector also provides `checkTouchThrough()`, `checkMoveThrough()`, and `c
 
 `DistanceConnector` is a `SenseConnector + Intangible` whose `transSensingThru()` always returns `distant`. Use it for divided rooms or locations that are open to one another but physically separated — a balcony overlooking a courtyard, or the north and south ends of a large cave.
 
-At `distant` transparency: small objects are not sensible, touch does not work at all, and large/medium objects can be perceived but without fine detail.
+At `distant` transparency: small objects are not sensible, touch does not work at all, medium objects can be perceived but without fine detail, and large objects can still be perceived in full detail.
 
 ### Occluder
 
@@ -383,7 +383,7 @@ This is why the sense system matters for the parser, not just for descriptions. 
 
 | Hook | Mechanism | Use case |
 |------|-----------|----------|
-| `material` | Property on container | Set a container's material to control what senses pass through its walls |
+| `material` | Property on BasicContainer | Set a container's material to control what senses pass through its walls when closed |
 | `transSensingIn(sense)` | Override on Thing | Custom or conditional transparency (e.g., open vs. closed) |
 | `transSensingOut(sense)` | Override on Thing | Asymmetric transparency (one-way mirrors) |
 | `canBeSensed(sense, trans, ambient)` | Override on Thing | Custom sensibility rules (invisible objects, smell-only objects) |
@@ -422,7 +422,7 @@ This is why the sense system matters for the parser, not just for descriptions. 
 | `brightness = 0` | Default on Thing | Object emits no light |
 | `brightness = 1` | Property on Thing | Self-illuminating (visible in dark but doesn't light surroundings) |
 | `brightness = 2..4` | Property on Thing | Light source that illuminates surroundings |
-| `brightness = 4` | On Room | A lit room (default for most rooms; set to 0 for dark rooms) |
+| `brightness = 3` | On Room | A lit room (the Room default; set to 0 for dark rooms) |
 
 ### Debugging sense paths
 

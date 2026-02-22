@@ -1,6 +1,6 @@
 # The Message System
 
-Every response a TADS 3 game produces — from "Taken." to "You can't put the sword in the teacup." — flows through a three-layer message system. A **definition layer** provides roughly 600 library messages as parameterized strings. A **substitution layer** expands `{...}` parameters into the correct pronouns, verb forms, and object names for the current actor and narrative tense. A **dispatch layer** determines which message to use by checking the objects involved in the command before falling back to a default. This document explains all three layers and the places where game authors can intervene.
+Every response a TADS 3 game produces — from "Taken." to "You can't put the sword in the teacup." — flows through a three-layer message system. A **definition layer** provides several hundred library messages as parameterized strings. A **substitution layer** expands `{...}` parameters into the correct pronouns, verb forms, and object names for the current actor and narrative tense. A **dispatch layer** determines which message to use by checking the objects involved in the command before falling back to a default. This document explains all three layers and the places where game authors can intervene.
 
 [Overview](#message-system-overview) | [Lifecycle](#the-message-lifecycle) | [Message Objects](#message-definition-objects) | [Substitution Engine](#the-parameter-substitution-engine) | [English Layer](#the-english-language-layer) | [Dispatch](#message-dispatch-and-override-resolution) | [Reports](#the-report-and-transcript-system) | [Customization](#author-customization-patterns) | [Intervention Points](#practical-intervention-points)
 
@@ -17,7 +17,7 @@ The message system is organized in three layers:
 Layer 1: Message Definition                What to say (msg_neu.t, en_us.t)
      │   MessageHelper, libMessages,
      │   playerActionMessages, npcActionMessages
-     │   ~600 message properties as parameterized strings
+     │   hundreds of message properties as parameterized strings
      │
      ▼
 Layer 2: Parameter Substitution            How to say it (output.t, en_us.t)
@@ -27,7 +27,7 @@ Layer 2: Parameter Substitution            How to say it (output.t, en_us.t)
      │
      ▼
 Layer 3: Dispatch and Reporting            When and whether to show it (exec.t, report.t)
-         resolveMessageText(), CommandTranscript,
+         MessageResult.resolveMessageText(), CommandTranscript,
          defaultReport, mainReport, reportFailure,
          deferred display, suppression rules
 ```
@@ -40,8 +40,8 @@ Layer 3: Dispatch and Reporting            When and whether to show it (exec.t, 
 | `output.t` | `MessageBuilder` base class — the generic `{...}` parameter substitution engine, output stream management |
 | `en_us/en_us.t` | `MessageHelper` base class, `langMessageBuilder` — English-specific parameter table, pronoun/verb/tense logic |
 | `report.t` | `CommandReport` class hierarchy, `CommandTranscript` — deferred report collection and display |
-| `exec.t` | `resolveMessageText()` — the override resolution algorithm that checks objects before falling back to the default message object |
-| `action.t` | `getMessageParam()`, `setMessageParam()`, `synthMessageParam()` — parameter binding on the current action |
+| `exec.t` | `MessageResult` class and its `resolveMessageText()` method — the override resolution algorithm that checks objects before falling back to the default message object |
+| `action.t` | `getMessageParam()`, `setMessageParam()`, `synthMessageParam()` — parameter binding on the current Action |
 | `adv3.h` | Report macros (`defaultReport`, `mainReport`, `reportFailure`, etc.), `gMessageParams`, `dobjMsg`/`iobjMsg` |
 
 ---
@@ -56,12 +56,13 @@ Before diving into each layer, here is a complete trace of what happens when a m
 2. Report macro expands to: gTranscript.addReport(
                                 new DefaultCommandReport(&okayTakeMsg, ...))
 
-3. DefaultCommandReport constructor calls resolveMessageText():
+3. DefaultCommandReport inherits from MessageResult; the MessageResult
+   constructor calls MessageResult.resolveMessageText():
    a. sources = [key]  (the direct object)
    b. key.propDefined(&okayTakeMsg)?  → no (not overridden)
    c. Fall back to gActor.getActionMessageObj()
       → returns playerActionMessages (player is acting)
-   d. playerActionMessages.okayTakeMsg → 'Taken. '
+   d. playerActionMessages.okayTakeMsg → 'Taken. '  (via shortTMsg)
 
 4. The string 'Taken. ' has no {parameters} → stored as-is in the report
 
@@ -92,6 +93,7 @@ Now suppose an NPC named Bob is performing the action instead. Step 3c returns `
 MessageHelper                          Base class (en_us.t)
  ├── libMessages                       Parser and general library messages
  │     └── playerMessages              Parser messages for the player character
+ │           └── npcMessages           Parser messages for NPCs
  └── playerActionMessages              Action responses for the player character
        └── npcActionMessages           Action responses overridden for NPCs
 ```
@@ -100,9 +102,9 @@ MessageHelper                          Base class (en_us.t)
 
 **libMessages** (msg_neu.t) contains messages for the parser and general library situations — disambiguation prompts, error messages, OOPS responses, score notifications, and other non-action messages. Its design philosophy is the "neutral narrator": the parser refers to itself in the third person ("this story") or avoids self-reference entirely, minimizing the computer's visible presence as mediator.
 
-**playerActionMessages** (msg_neu.t) contains roughly 600 message properties covering every standard action response: verification failures (`cannotDoThatMsg`, `mustBeHoldingMsg`), action success (`okayTakeMsg`, `okayDropMsg`, `okayOpenMsg`), reach and scope errors (`cannotReachObjectMsg`, `cannotSeeMsg`), sensory reports, clothing, locking, containment capacity, and more.
+**playerActionMessages** (msg_neu.t) contains several hundred message properties covering every standard action response: verification failures (`cannotDoThatMsg`, `mustBeHoldingMsg`), action success (`okayTakeMsg`, `okayDropMsg`, `okayOpenMsg`), reach and scope errors (`cannotReachObjectMsg`, `cannotSeeMsg`), sensory reports, clothing, locking, containment capacity, and more.
 
-**npcActionMessages** (msg_neu.t) inherits from `playerActionMessages` and overrides messages that need different phrasing for NPCs. The player's `okayTakeMsg` is simply `'Taken. '` — terse and direct. The NPC version is `'{You/he} {take[s]|took} {the dobj/him}. '` — a full sentence with the actor's name and the object.
+**npcActionMessages** (msg_neu.t) inherits from `playerActionMessages` and overrides messages that need different phrasing for NPCs. The player's `okayTakeMsg` uses `shortTMsg('Taken. ', '{You/he} {take[s]|took} {the dobj/him}. ')`, which normally returns the terse `'Taken. '` but selects the long form when clear disambiguation occurred. The NPC version overrides this to always use the full-sentence form `'{You/he} {take[s]|took} {the dobj/him}. '`.
 
 ### How messages are defined
 
@@ -132,7 +134,7 @@ When the library needs an action message, it calls `gActor.getActionMessageObj()
 
 ### MessageBuilder (output.t)
 
-`MessageBuilder` is the generic substitution engine. It is both an `OutputFilter` (installed in the output stream) and a `PreinitObject` (builds its lookup tables at compile time). Its core method is `generateMessage()`, which processes a message string and expands every `{...}` parameter into text.
+`MessageBuilder` is the generic substitution engine. It is both an `OutputFilter` (installed in the output stream) and a `PreinitObject` (builds its lookup tables at pre-initialization). Its core method is `generateMessage()`, which processes a message string and expands every `{...}` parameter into text.
 
 ### The paramList_ structure
 
@@ -216,7 +218,7 @@ The engine checks the first two characters of the parameter text:
 
 ## The English Language Layer
 
-The `langMessageBuilder` subclass adds English-specific processing: pronouns and articles, verb conjugation, reflexive pronoun tracking, and tense switching.
+The `langMessageBuilder` object (an instance of `MessageBuilder` defined in en_us.t) adds English-specific processing: pronouns and articles, verb conjugation, reflexive pronoun tracking, and tense switching.
 
 ### Pronouns and articles
 
@@ -236,7 +238,7 @@ The `langMessageBuilder` subclass adds English-specific processing: pronouns and
 | Contraction | `{It's/he's}`, `{You're/he's}` | `&itIsContraction` | "it's" or "he's" |
 | Possessive pronoun | `{Its/her}`, `{Its/hers}` | `&itPossAdj`/`&itPossNoun` | "its" or "her"/"hers" |
 
-The slash notation encodes two alternatives: the first form is used when the target is the player character (second person), the second when the target is a third-person NPC. The actual text comes from invoking the `&property` on the target object — `theName` on a Thing returns its name with article, while `theName` on the player character returns "you."
+The slash notation encodes two alternatives: the first form is used when the target is the player character (second person), the second when the target is a third-person NPC. The actual text comes from invoking the `&property` on the target object — `theName` on a Thing returns its name with the definite article ("the brass key"), while on an Actor it adapts to the actor's person and number ("you" for the player character, "Bob" for a named NPC).
 
 ### Verb conjugation
 
@@ -255,20 +257,21 @@ The slash notation encodes two alternatives: the first form is used when the tar
 | `{cannot}` / `{can't}` | `&verbCannot`/`&verbCant` | "cannot"/"can't" | — | "could not"/"couldn't" |
 | `{must}` | `&verbMust` | "must" | "must" | "had to" |
 | `{will}` / `{won't}` | `&verbWill`/`&verbWont` | "will"/"won't" | — | "would"/"wouldn't" |
+| `{was}` / `{were}` | `&verbWas` | "was"/"were" | — | "had been" |
 
-Specialized verbs: `{goes}`, `{comes}`, `{leaves}`, `{sees}`, `{says}` — each maps to a dedicated property that handles irregular conjugation.
+Specialized verbs: `{goes}`/`{go}`, `{comes}`/`{come}`, `{leaves}`/`{leave}`, `{sees}`/`{see}`, `{says}`/`{say}` — each pair maps to a dedicated property (e.g., `&verbToGo`) that handles irregular conjugation. Both the third-person and base forms are valid parameters.
 
-Verb parameters have `isNominative = true`, which means they track the same subject as the preceding pronoun parameter. This is how `{You/he} {take[s]|took}` knows whether to use "takes" (singular NPC) or "take" (plural or player).
+Verb parameters have `isNominative = true`, which means they set `lastSubject_` to the current target object, just as pronoun parameters do. This is how `{You/he} {take[s]|took}` knows whether to use "takes" (singular NPC) or "take" (plural or player).
 
 ### Spatial prepositions
 
 | Parameter | Property | Example output |
 |-----------|----------|----------------|
-| `{on}` / `{in}` | `&actorInName` | "on" or "in" (context-dependent) |
-| `{onto}` / `{into}` | `&actorIntoName` | "onto" or "into" |
-| `{outof}` / `{offof}` | `&actorOutOfName` | "out of" or "off of" |
+| `{on}` / `{in}` | `&actorInName` | "on the chair" or "in the box" |
+| `{onto}` / `{into}` | `&actorIntoName` | "onto the chair" or "into the box" |
+| `{outof}` / `{offof}` | `&actorOutOfName` | "out of the box" or "off of the chair" |
 
-These resolve based on the target object's posture semantics — a chair produces "on," a box produces "in."
+These properties return the full prepositional phrase (preposition + object name). The preposition is determined by the target object's `actorInPrep` property — a chair produces "on the chair," a box produces "in the box."
 
 ### Reflexive pronoun tracking
 
@@ -285,7 +288,7 @@ When a later parameter targets the *same object* but with a different parameter 
 → "You can't open yourself."    (not "You can't open you.")
 ```
 
-Reflexive state resets on sentence-ending punctuation (`.`, `!`, `?`, `;`, `:`), detected by the `processResult()` method. This prevents reflexive bleeding across sentences.
+Reflexive state resets on sentence-ending punctuation (`.`, `!`, `?`, `;`, `:` followed by a non-alphanumeric character), detected by the `processResult()` method. The non-alphanumeric requirement prevents false triggers in strings like "3:00" or "7.5". This prevents reflexive bleeding across sentences.
 
 ### Tense switching
 
@@ -311,10 +314,10 @@ Additional tense tools:
 
 | Tool | Usage |
 |------|-------|
-| `tSel(present, past)` | Function that returns the appropriate form for the current tense |
+| `tSel(present, past)` | Macro that returns the appropriate form for the current tense |
 | `{parameter!}` | The `!` suffix forces present-tense evaluation regardless of narrative tense |
-| `withPresent(func)` | Execute a function with present tense temporarily active |
-| `withPast(func)` | Execute a function with past tense temporarily active |
+| `withPresent(func)` | Macro that executes a callback with present tense temporarily active |
+| `withPast(func)` | Macro that executes a callback with past tense temporarily active |
 
 ### The invisible {subj} marker
 
@@ -328,12 +331,12 @@ Most English sentences follow subject-verb-object order, so the message builder 
 
 ## Message Dispatch and Override Resolution
 
-When a report macro like `defaultReport(&okayTakeMsg)` fires, it creates a `CommandReport` object. The report's constructor calls `resolveMessageText()`, which determines where to get the actual message string.
+When a report macro like `defaultReport(&okayTakeMsg)` fires, it creates a `CommandReport` object. The report inherits from `MessageResult`, whose constructor calls `MessageResult.resolveMessageText()` — a static method that determines where to get the actual message string.
 
 ### The override resolution algorithm
 
 ```
-resolveMessageText(sources, &msgProp, params)
+MessageResult.resolveMessageText(sources, &msgProp, params)
 │
 ├── sources = [dobj, iobj, ...]  (objects involved in the action)
 │   Reorder so the calling object is first (via stack trace inspection)
@@ -371,7 +374,7 @@ notAContainerMsg = iobjMsg('The vase\'s opening is too small. ')
 cannotTakeMsg = dobjMsg('The sword is embedded in the stone. ')
 ```
 
-These macros evaluate to the message string when the object is in the specified role, and `nil` otherwise. Since `resolveMessageText()` skips `nil` results from code properties, the override is silently ignored when the object is in the wrong role.
+These macros evaluate to the message string when the object is in the specified role, and `nil` otherwise. Since `MessageResult.resolveMessageText()` skips `nil` results from code properties, the override is silently ignored when the object is in the wrong role.
 
 ### Custom named parameters
 
@@ -415,6 +418,7 @@ CommandReport                              Base class
  │    └── FullCommandReport                Always-shown reports
  │         ├── BeforeCommandReport         Before main report (seqNum = 1)
  │         ├── MainCommandReport           Main narrative report (seqNum = 2)
+ │         │    └── QuestionCommandReport  Interactive input prompt (isQuestion = true)
  │         ├── FailCommandReport           Failure report (seqNum = 2, isFailure = true)
  │         └── AfterCommandReport          After main report (seqNum = 3)
  └── CommandAnnouncement                   Object announcements ("(the red book)")
@@ -512,7 +516,7 @@ pirate: Actor 'pirate' 'pirate' @quarterdeck
     getActionMessageObj() { return pirateMessages; }
 ;
 
-pirateMessages: playerActionMessages
+pirateMessages: npcActionMessages
     okayTakeMsg = '{You/he} grab{s/d} {the dobj/him}. Arr! '
     cannotDoThatMsg = '{You/he} {won\'t} be doin\' that. '
 ;
@@ -536,7 +540,7 @@ Use a method to vary the message based on game state:
 ;
 ```
 
-Returning `nil` from a method override tells `resolveMessageText()` to skip this object and continue searching — useful for conditional overrides.
+Returning `nil` from a method override tells `MessageResult.resolveMessageText()` to skip this object and continue searching — useful for conditional overrides.
 
 ### Past tense narration
 
@@ -564,7 +568,7 @@ All parameterized messages automatically adapt: `{You/he} {take[s]|took}` produc
 | `modify playerActionMessages` | Change the default message object | Global message change for all players |
 | `modify npcActionMessages` | Change the NPC message object | Global message change for all NPCs |
 | `getActionMessageObj()` | Override on Actor | Per-actor custom message set |
-| `nil` return from method override | Conditional skip | Fall through to default when override doesn't apply |
+| `nil` return from method override | Conditional skip | Fall through to default when override does not apply |
 
 ### Parameter substitution
 
@@ -594,8 +598,8 @@ All parameterized messages automatically adapt: `{You/he} {take[s]|took}` produc
 |------|-----------|----------|
 | `gameMain.usePastTense` | Property | Switch entire game to past tense |
 | `{present\|past}` syntax | In message strings | Tense-dependent text within a single message |
-| `tSel(present, past)` | Function | Choose between forms in code |
-| `withPresent(func)` / `withPast(func)` | Functions | Temporarily override tense in a callback |
+| `tSel(present, past)` | Macro | Choose between forms in code |
+| `withPresent(func)` / `withPast(func)` | Macros | Temporarily override tense in a callback |
 | `{parameter!}` (exclamation suffix) | In message strings | Force present-tense evaluation |
 | `{subj obj}` | In message strings | Explicit subject marker for reflexive tracking |
 
@@ -607,7 +611,7 @@ All parameterized messages automatically adapt: `{You/he} {take[s]|took}` produc
 | `npcActionMessages` | Singleton object | Default messages for NPC actions |
 | `libMessages` | Singleton object | Parser and general library messages |
 | `MessageHelper` | Base class | Inherit for custom message collections |
-| `shortTMsg(msg, shortMsg)` | Method on MessageHelper | Select short/long form based on disambiguation context |
+| `shortTMsg(short, long)` | Method on MessageHelper | Select short/long form based on disambiguation context |
 
 ---
 

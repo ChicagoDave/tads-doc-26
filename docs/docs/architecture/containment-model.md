@@ -161,19 +161,21 @@ There is also a verify-phase variant: `verifyMoveTo(newLoc)` sends `verifyRemove
 The system can compute all possible containment paths between any two objects in the tree. A path is a list of alternating objects and operations:
 
 ```
-[actor, PathOut, room, PathIn, table, PathIn, vase, PathTo, rose]
+[actor, PathOut, chair, PathPeer, table, PathIn, vase, PathIn, rose]
 ```
+
+Note that `PathFrom` and `PathTo` are not stored in the path list itself — they are synthesized by `traversePath()` when it calls the callback on the first and last elements, respectively.
 
 The path operations:
 
 | Enum | Meaning |
 |------|---------|
-| `PathFrom` | Starting point of the path |
+| `PathFrom` | Starting point of the path (synthesized during traversal) |
 | `PathIn` | Traverse into a container's contents |
 | `PathOut` | Traverse out to a container's parent |
 | `PathPeer` | Traverse between siblings in the same container |
 | `PathThrough` | Traverse through a SenseConnector between unrelated locations |
-| `PathTo` | Ending point of the path |
+| `PathTo` | Ending point of the path (synthesized during traversal) |
 
 `getAllPathsTo(obj)` finds every path via recursive DFS through the containment tree. `selectPathTo(obj, traverseProp)` picks the best path by testing each with a traverse function and returning the shortest one that passes. If no path passes, it returns the shortest failing path — useful for error messages that identify the specific obstructor.
 
@@ -246,14 +248,15 @@ The critical design distinction: **Container inherits from BasicContainer** and 
 - `initiallyOpen` — starting state (default: `nil`, i.e., closed)
 - `makeOpen(stat)` — changes state, with support for linked objects (both sides of a door)
 - Open/Close action handlers with smart content listing — when you open a container, newly visible contents are listed
-- `tryImplicitRemoveObstructor()` — when a closed container blocks a touch path, the reachability system calls this to attempt an implicit OPEN
+- `tryImplicitRemoveObstructor()` — inherited from `BasicOpenable`; when a closed container blocks a touch path, the reachability system calls this to attempt an implicit OPEN
 
 `LockableContainer` adds `Lockable`, which provides:
 
 - `initiallyLocked` — starting state (default: `true`)
 - `makeLocked(stat)` — changes state
 - Lock/Unlock action handlers
-- `objClosed` precondition on Lock — you must close something before locking it
+
+Note that the `objClosed` precondition on Lock (requiring you to close something before locking it) is defined in `Openable`, not in `Lockable` — it is the open/close mixin that knows about the `isOpen` state needed for this check.
 
 ### Restricted and Single containers
 
@@ -280,7 +283,7 @@ Override `canPutIn(obj)` for class-based or attribute-based tests instead of a f
 
 ```tads3
 + bookcase: Heavy 'bookcase' 'bookcase' "A tall oak bookcase. " ;
-++ RearContainer, Component { contentsReachable = nil }
+++ RearContainer, Component { }
 +++ secretNote: Thing 'note' 'note' "A folded note. " ;
 ```
 
@@ -335,7 +338,7 @@ Reachability answers the question: "Can the actor physically touch this object?"
 
 ### The touch path algorithm
 
-When the `touchObj` precondition fires (at `precond.t:419`), it runs:
+When the `touchObj` precondition fires (class `TouchObjCondition` at `precond.t:419`, singleton instance at line 690), it runs:
 
 ```
 1. sourceObj.canTouch(obj)?
@@ -387,7 +390,9 @@ During the verify phase, `touchObj` adjusts disambiguation rankings:
 | Object visible but at `distant` transparency | Marked inaccessible (too far to reach) |
 | Object visible but not reachable | Likelihood reduced to 80 (might be fixable) |
 | Object audible but not visible | "You can hear it but can't see it" |
+| Object smellable but not visible | "You can smell it but can't see it" |
 | Too dark to see | Reports darkness |
+| Otherwise not visible | Marked inaccessible |
 
 ### OutOfReach — custom reachability
 
@@ -482,7 +487,7 @@ Room
 | `BasicPlatform` | standing | **Self** | Dropped items stay on the platform |
 | `Platform` | standing | **Self** | BasicPlatform + Surface |
 | `Booth` | standing | **Self** | BasicPlatform + Container (enclosed) |
-| `Vehicle` | varies | varies | NestedRoom + Traveler; moves with the actor |
+| `Vehicle` | standing (default) | varies | NestedRoom + Traveler; moves with the actor; typically combined with Chair/Platform |
 
 The `getDropDestination()` distinction matters: dropping an item from a chair puts it on the floor (the chair's enclosing room), but dropping an item on a platform leaves it on the platform. This models the physical difference — things fall off chairs but stay on elevated surfaces.
 
