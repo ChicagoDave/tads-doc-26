@@ -53,9 +53,11 @@ insideShop : Room 'Inside Shop'
 backRoom: Room
   north = insideShop
 ;
+```
 
-Only a few things need any explanation here. The definition of backRoom is minimal because the Player Character will never visit it - the location exists solely as somewhere for the shopkeeper to be when she's not in the shop. We thus define the OneWayRoomConnector south from the shop interior so that the Player Character can't pass but the shopkeeper can. Although two doors are mentioned (or at least implied) by the room description, we supply a Decoration object to represent them; a fuller implementation isn't necessary. The essential items are the counter and the bell on the counter that the customer must ring to attract attention. This introduces a new class, the Component class, which, as its name suggests, treats objects of that class as components of the object that contains them. The sign is also of class Readable, which makes it a more likely target for a read command; it would also allow read sign to produce a different description if we had overridden the readDesc property on the object, but that would be rather fussy here. We allow the player to ring the bell either with ring bell or push knob, the latter command remapping to the former. Since ring is not a verb defined in the library, we need to define it, which we can do by copying the definition of Row and making the few necessary changes:
+Only a few things need any explanation here. The definition of `backRoom` is minimal because the Player Character will never visit it - the location exists solely as somewhere for the shopkeeper to be when she's not in the shop. We thus define the `OneWayRoomConnector` south from the shop interior so that the Player Character can't pass but the shopkeeper can. Although two doors are mentioned (or at least implied) by the room description, we supply a `Decoration` object to represent them; a fuller implementation isn't necessary. The essential items are the counter and the bell on the counter that the customer must ring to attract attention. This introduces a new class, the `Component` class, which, as its name suggests, treats objects of that class as components of the object that contains them. The sign is also of class `Readable`, which makes it a more likely target for a **read** command; it would also allow **read sign** to produce a different description if we had overridden the `readDesc` property on the object, but that would be rather fussy here. We allow the player to ring the bell either with **ring bell** or **push knob**, the latter command remapping to the former. Since **ring** is not a verb defined in the library, we need to define it, which we can do by copying the definition of Row and making the few necessary changes:
 
+```tads3
 DefineTAction(Ring);
 VerbRule(Ring)
   'ring' singleDobj
@@ -69,11 +71,15 @@ modify Thing
     verify() { illogical('{You/he} can\'t ring {that dobj/him}'); }
   }
 ;
+```
 
 If we were designing this game for real, we'd probably want to populate the shop with a few more decoration objects, e.g. for the shelves, the items on the shelves, and a cash register on the counter; we'll be adding some of these later, the rest can be left, yet again, as an exercise for the reader. Right now we need to attend to what happens when the bell is rung; obviously more than just displaying the string 'TING' is required; we need to summon the shopkeeper.
-There are several ways this could be done; the way we shall use here probably isn't the simplest or the most elegant, it's simply one that lets us try out some features of the library we haven't met yet. In brief, we'll cause the ringing of the bell to trigger a SoundEvent. We'll then add a SenseConnector between the inside of the shop and the back room so that the SoundEvent can be detected by the shopkeeper even when she's in the back room, but we also need to make the shopkeeper a SoundObserver so she'll be receptive to the sound. We'll then have the sound trigger a daemon on the shopkeeper to make her walk into the shop one turn later (a fuse would have done just as well, so it doesn't much matter which we use here.)
-This probably sounds rather complicated, if not downright incomprehensible, so let's take it one step at a time. First, we need to define the SoundEvent:
 
+There are several ways this could be done; the way we shall use here probably isn't the simplest or the most elegant, it's simply one that lets us try out some features of the library we haven't met yet. In brief, we'll cause the ringing of the bell to trigger a `SoundEvent`. We'll then add a `SenseConnector` between the inside of the shop and the back room so that the `SoundEvent` can be detected by the shopkeeper even when she's in the back room, but we also need to make the shopkeeper a `SoundObserver` so she'll be receptive to the sound. We'll then have the sound trigger a daemon on the shopkeeper to make her walk into the shop one turn later (a fuse would have done just as well, so it doesn't much matter which we use here.)
+
+This probably sounds rather complicated, if not downright incomprehensible, so let's take it one step at a time. First, we need to define the `SoundEvent`:
+
+```tads3
 bellRing : SoundEvent
   triggerEvent(source)
   {
@@ -81,22 +87,27 @@ bellRing : SoundEvent
     inherited(source);
   }
 ;
+```
 
-We have made the SoundEvent responsible for producing the "TING!" so we've had to override its triggerEvent(source) method, otherwise the definition of bellRing would have been even simpler. The call to inherited(source) within triggerEvent(source) is absolutely vital here, since it's the inherited method (i.e. the behaviour defined on the class) that does all the work of notifying interested parties that the sound event has just happened. The source parameter is the object from which the sound is supposed to emanate. This is the bell, whose dobjFor(Ring) now needs to its action method redefined thus:
+We have made the `SoundEvent` responsible for producing the "TING!" so we've had to override its `triggerEvent(source)` method, otherwise the definition of `bellRing` would have been even simpler. The call to `inherited(source)` within `triggerEvent(source)`is absolutely vital here, since it's the inherited method (i.e. the behaviour defined on the class) that does all the work of notifying interested parties that the sound event has just happened. The `source` parameter is the object from which the sound is supposed to emanate. This is the bell, whose `dobjFor(Ring)` now needs to its action method redefined thus:
 
+```tads3
 action()       {      bellRing.triggerEvent(self);     }
+```
+Where `self`, of course, refers to the bell object. The next task is to make sure that the bell ring can be heard in the back room as well as the shop. To do that we need to define a `SenseConnector` between the two:
 
-
-Where self, of course, refers to the bell object. The next task is to make sure that the bell ring can be heard in the back room as well as the shop. To do that we need to define a SenseConnector between the two:
-
+```tads3
 SenseConnector, Intangible 'wall' 'wall'
   connectorMaterial = paper
   locationList = [backRoom, insideShop]
 ;
+```
 
-If everything works as it should, giving the SenseConnector the name 'wall' should be unnecessary, but if something works unexpectedly and the parser wants to refer to this object, it's as well that it should have a recognizable name so we can see what's happening. Since the sound does notionally travel through the wall, that's a sensible name to give it. On the other hand, the player does not need to interact with this object in any way, so we make it of class Intangible (as well as SenseConnector), so that it does not have any physical presence. The connectorMaterial defines the senses this SenseConnector will pass: paper is predefined to be transparent to sound and smell but opaque to sight and touch; in this case we don't care one way or the other about smell, and since it does what we want with the other three senses, this will do fine.
+If everything works as it should, giving the `SenseConnector` the name 'wall' should be unnecessary, but if something works unexpectedly and the parser wants to refer to this object, it's as well that it should have a recognizable name so we can see what's happening. Since the sound does notionally travel through the wall, that's a sensible name to give it. On the other hand, the player does not need to interact with this object in any way, so we make it of class `Intangible`(as well as `SenseConnector`), so that it does not have any physical presence. The `connectorMaterial` defines the senses this `SenseConnector` will pass: `paper` is predefined to be transparent to sound and smell but opaque to sight and touch; in this case we don't care one way or the other about smell, and since it does what we want with the other three senses, this will do fine.
+
 Now all we have to do is to define the shopkeeper. At this point we shan't program all her behaviour, just what's needed to get her to respond to the bell ring:
 
+```tads3
 shopkeeper : SoundObserver, Person 'young shopkeeper/woman' 'young shopkeeper'
    @backRoom
 "The shopkeeper is a jolly woman with rosy cheeks and fluffy blonde curls. "

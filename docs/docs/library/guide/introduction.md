@@ -29,20 +29,30 @@ TravelConnector
       DeadEndConnector
       NoTravelMessage
          FakeConnector
+```
 
-
-
+```tads3
  AskConnector
+```
 
 Note that Passage also descends from Fixture, so that Passage and all its subclasses represent physical game objects as well as connectors. This is not the case with RoomConnector and its descendants or TravelMessage and its.
-Note that TravelMessage also descends from TravelWithMessage.
-There is also a ShipBoardRoom class that can be used as a mix-in class for other kinds of room.
+
+Note that TravelMessage also descends from [TravelWithMessage](travelwithmessage.md).
+
+There is also a [ShipBoardRoom](shipboardroom.md) class that can be used as a mix-in class for other kinds of room.
+
 Room and its subclasses have a number of methods and properties that it is sometimes useful to override, these include:
-atmosphereList
-brightness
-destName
-enteringRoom
-roomAfterAction
-roomBeforeAction
-roomParts
-```
+
+[atmosphereList](outdoorroom.md)
+
+[brightness](secretdoor.md)
+
+[destName](outdoorroom.md)
+
+[enteringRoom](travelerarriving.md)
+
+[roomAfterAction](roomxxxxaction.md)
+
+[roomBeforeAction](roomxxxxaction.md)
+
+[roomParts](roomparts.md)

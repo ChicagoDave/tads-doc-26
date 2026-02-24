@@ -45,20 +45,23 @@ modify Goal
 
   closeWhen = (inherited || (closeWhenMoved != nil && closeWhenMoved.moved))
 ;
+```
 
 Next we should list the other properties of Goal:
 
-·title - The topic question associated with the goal. The hint system shows a list of the topics for the goals that are currently open, so that the player can decide what area they want help on.
+- **title** - The topic question associated with the goal. The hint system shows a list of the topics for the goals that are currently open, so that the player can decide what area they want help on.
 
-·goalState - This goal's current state. We'll start off undiscovered. When a goal should be open from the very start of the game, this should be overridden and set to OpenGoal.
+- **goalState** - This goal's current state. We'll start off undiscovered. When a goal should be open from the very start of the game, this should be overridden and set to OpenGoal.
 
-·isActiveInMenu - we're active in our parent menu if our goal state is Open
+- **isActiveInMenu**- we're active in our parent menu if our goal state is Open
 
-·location - The goal's parent menu - this is usually a HintMenu object. In very simple hint systems, this could simply be a top-level hint menu container; more typically, the hint system will be structured into a menu tree that organizes the hint topics into several different submenus, for easier navigation.
+- **location** - The goal's parent menu - this is usually a HintMenu object. In very simple hint systems, this could simply be a top-level hint menu container; more typically, the hint system will be structured into a menu tree that organizes the hint topics into several different submenus, for easier navigation.
 
-·menuContents - The list of hints for this topic. This should be ordered from most general to most specific; we offer the hints in the order they appear in this list, so the earlier hints should give away as little as possible, while the later hints should get progressively closer to just outright giving away the answer. Each entry in the list can be a simple (single-quoted) string, or it can be a Hint object. In most cases, a string will do. A Hint object is only needed when displaying the hint has some side effect, such as opening a new Goal.
+- **menuContents**- The list of hints for this topic. This should be ordered from most general to most specific; we offer the hints in the order they appear in this list, so the earlier hints should give away as little as possible, while the later hints should get progressively closer to just outright giving away the answer. Each entry in the list can be a simple (single-quoted) string, or it can be a Hint object. In most cases, a string will do. A Hint object is only needed when displaying the hint has some side effect, such as opening a new Goal.
 
-Normally the only properties you will need to worry about when constructing your hints are title, menuContents and the various OpenWhenXXX and CloseWhenXXX conditions. Since the first two are common to all Goal objects, they are defined on the Goal template, so that:
+Normally the only properties you will need to worry about when constructing your hints are *title*,*menuContents* and the various *OpenWhenXXX* and *CloseWhenXXX* conditions. Since the first two are common to all Goal objects, they are defined on the Goal template, so that:
+
+```tads3
 + Goal
     title = 'How do I open the door?'
     menuContents =
@@ -68,7 +71,11 @@ Normally the only properties you will need to worry about when constructing your
        'Now open the door. '
     ]
 ;
+```
+
 Can be written simply as:
+
+```tads3
 + Goal 'How do I open the door?'
     [
        'First find the key. ',
@@ -76,10 +83,17 @@ Can be written simply as:
        'Now open the door. '
     ]
 ;
-(The Goal template has a couple of extra optional elements, but we'll try to keep things simple here).
+```
+
+(The [Goal template](goaltemplate.md) has a couple of extra optional elements, but we'll try to keep things simple here).
+
 After all these preliminaries, we can at last proceed to give a few examples. The first even faintly puzzling obstacle the player is likely to encounter is the large boulder preventing egress west from the main cave. It may be a good idea to provide two sets of hints for this, one pointing the player towards finding the dynamite, and the second prompting the player how to make good use of the dynamite once it's found. The boulder problem will become apparent as soon as the boulder is seen. We want to close one Goal and move on to the next once the dynamite is found, but this won't necessarily work with open/closedWhenSeen since the dynamite isn't necessarily marked as seen when the player discovers it. Instead we'll use our custom open/closedWhenMoved to do the job. CloseWhenMoved will also work nicely to close the second goal, since once the boulder's blown up it's moved into nil, but it cannot be moved by any other means:
+
 + HintMenu 'In the First Set of Caves'
+
 ;
+
+```tads3
 ++ Goal 'How do I get past the boulder in the main cave?'
   [
     'Well, you won\'t be able to push it. ',
@@ -107,8 +121,12 @@ After all these preliminaries, we can at last proceed to give a few examples. Th
  openWhenMoved = dynamite
  closeWhenMoved = boulder
 ;
+```
+
 A slightly trickier Goal to deal with is that for opening the trunk. On the one hand, at what point does the player become aware that unlocking the trunk might be a problem? It's hardly necessary to provide a hint telling the player to go and find the key as soon as s/he sees the trunk . On the other hand, once the key's been found and tried and it fails to open the trunk, the player will recognize that the problem is more complicated than it seemed. This might be a good point at which to open the Goal. But how can the Goal tell that this point has been reached? The neatest way might might be to stick a <.reveal> tag in the message that reports that the key fits the lock but won't turn and test for that in the openWhenRevealed property.
-On the other hand, when should this goal be closed? The tempting thing would be to test for the trunk being open or unlocked, but this might not work, since the player could close and lock the trunk again, and if the next time the library checked (i.e. the next time the player asked for hints) the trunk was re-closed or re-locked, the Goal would not be closed. But once the player has opened the trunk s/he will see its contents, so we can test for one of the items inside the trunk being seen:
+
+On the other hand, when should this goal be closed? The tempting thing would be to test for the trunk being open or unlocked, but this *might* not work, since the player *could* close and lock the trunk again, and if the next time the library checked (i.e. the next time the player asked for hints) the trunk was re-closed or re-locked, the Goal would not be closed. But once the player has opened the trunk s/he will see its contents, so we can test for one of the items inside the trunk being seen:
+```tads3
 ++ Goal 'How do I unlock the trunk? '
   [
     'Well, you\'ve already found the right key. ',
@@ -119,7 +137,11 @@ On the other hand, when should this goal be closed? The tempting thing would be 
   openWhenRevealed = 'trunk-lock'
   closeWhenSeen = glassJar
 ;
+```
+
 The list of hints here is only partial, and would ideally need to be expanded, but instead we'll conclude with a more urgent task, namely ensuring that the appropriate <.reveal> tag actually gets revealed when it's meant to:
+
+```tads3
 trunk : KeyedContainer, Heavy 'large black trunk' 'large black trunk' @mainCave
   initSpecialDesc = "A large black trunk rests in the middle of the cave. "
   initiallyLocked = true

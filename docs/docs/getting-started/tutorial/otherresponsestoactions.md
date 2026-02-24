@@ -21,7 +21,9 @@ wickedWitch: Person 'wicked ugly witch' 'wicked witch'
      }
   }
 ;
+```
 
+```tads3
 bob: Person ' fine young man /bob'  'Bob'
    "He looks a fine young man. "
    isHim = true

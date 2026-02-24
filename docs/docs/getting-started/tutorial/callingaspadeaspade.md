@@ -18,9 +18,11 @@ This is how we do it here:
       spade.moveInto(gActor);
    }
 ;
+```
 
 If you compile the game (yet again) and try all this out, you'll find that there's still a problem: even after Joe hands the spade over he's described as still leaning on it (while he's talking) or still using it (when he goes back to work). But this problem turns out to be an opportunity to show how to give Joe a slightly wider range of behaviour. The approach we'll take is to give him another pair of ActorStates which define what he does when he's without his spade. We'll assume that once he's handed over his spade he's particularly anxious to get it back, and won't discuss anything until it's been returned. The implementation relies on switching ActorStates as Joe gives the spade to Heidi and as Heidi gives it back again. The two new ActorStates may be defined as follows:
 
+```tads3
 + burnerFretting : InConversationState
   specialDesc = "{The burner/he} is standing talking to you with his
    hands on his hips. "
@@ -69,16 +71,20 @@ If you compile the game (yet again) and try all this out, you'll find that there
   "<q>We can talk about that when I've got my spade back,</q>
       he tells you. "
 ;
+```
 
-There's only a couple of points to note here. The first is that we include an AskForTopic to handle the case where the player asks for the spade again when Joe's already handed it over; since Joe will always be in the burnerFretting state when he doesn't have his spade, we simply include this AskForTopic as one of the TopicEntries in that state. In this case, instead of having Joe respond we simply display a message indicating that Joe is spadeless (we add an appropriate AskTellTopic and AltTopic to handle the case in which Heidi talks about the spade while Joe is in this state). We then add isConversational = nil to the definition of the topic to show that this is not a conversational interchange, so no greeting protocols will be initiated by the player character asking Joe for the spade while he's in this in state.
+There's only a couple of points to note here. The first is that we include an `AskForTopic`to handle the case where the player asks for the spade again when Joe's already handed it over; since Joe will always be in the `burnerFretting` state when he doesn't have his spade, we simply include this `AskForTopic` as one of the TopicEntries in that state. In this case, instead of having Joe respond we simply display a message indicating that Joe is spadeless (we add an appropriate `AskTellTopic` and `AltTopic` to handle the case in which Heidi talks about the spade while Joe is in this state). We then add `isConversational = nil`to the definition of the topic to show that this is not a conversational interchange, so no greeting protocols will be initiated by the player character asking Joe for the spade while he's in this in state.
+
 The second is that for all this to work as expected it is, of course, necessary to relocate the spade from the cave to the burner in your code.
-The third is the explicit definition of nextState = burnerWaiting in the burnerFretting state; this is necessary because we change from one InConversationState to another in mid-conversation, and without the explicit definition of nextState (which defines which ActorState the Actor is to switch to when the conversation is terminated from that InConversationState) the program becomes a bit confused by the mid-conversation switch of states. For the same reason we now need to add nextState = burnerWorking to the definition of burnerTalking. The other point worth noting is the use of setCurState(state) to change the actor's current actor state (don't simply write something like burner.curState = burnerTalking;). We need to use the same method in our handling of AskFor to get Joe to switch into his burnerFretting state. Add the following line immediately after spade.moveInto(gActor); in the topicResponse method of the first AskForTopic @spade:
 
+The third is the explicit definition of `nextState = burnerWaiting` in the `burnerFretting` state; this is necessary because we change from one `InConversationState` to another in mid-conversation, and without the explicit definition of `nextState` (which defines which `ActorState` the `Actor` is to switch to when the conversation is terminated from that `InConversationState`) the program becomes a bit confused by the mid-conversation switch of states. For the same reason we now need to add `nextState = burnerWorking` to the definition of `burnerTalking`. The other point worth noting is the use of `setCurState(state)` to change the actor's current actor state (don't simply write something like `burner.curState = burnerTalking;`). We need to use the same method in our handling of AskFor to get Joe to switch into his `burnerFretting` state. Add the following line immediately after `spade.moveInto(gActor);` in the `topicResponse` method of the first `AskForTopic @spade`:
+
+```tads3
 getActor().setCurState(burnerFretting);
+```
+Everything should now work fine, but there is one more refinement we can add, not because the game really needs it, but because it allows us to try out an aspect of TADS 3 NPC programming we haven't seen yet. So far, the player has taken all the initiative in starting a conversation; in TADS 3 it's possible to make an NPC initiate a conversation. In this game, we'll make Joe so anxious to get his spade back that every time Heidi walks into his clearing he'll ask for it (until he gets it back), without waiting for her to address him first. We do this using his `initiateConversation(state, 'name')` method, where state is the name of the `ActorState` (normally an `InConversationState`) we want him to switch into, and 'name' is the name of a Conversation Node we want activated (as the NPC's way of initiating the conversation). Within the Conversation Node we define an `npcGreetingMsg` (we could use an `npcGreetingList` instead) to display what Joe does and says to start the conversation. We can also use an `npcContinueMsg`  (or `npcContinueList`) to contain Joe's further prompting if the player fails to respond with a conversational command (to create the impression that Joe does really want a reply). In this case, we'll have Joe pose a question that requires a simple yes or no answer, which we can deal with using a `YesTopic` and a `NoTopic` (rather than having to define any `SpecialTopics` or whatever). The new `ConvNode` and its associated topics then look like this:
 
-
-Everything should now work fine, but there is one more refinement we can add, not because the game really needs it, but because it allows us to try out an aspect of TADS 3 NPC programming we haven't seen yet. So far, the player has taken all the initiative in starting a conversation; in TADS 3 it's possible to make an NPC initiate a conversation. In this game, we'll make Joe so anxious to get his spade back that every time Heidi walks into his clearing he'll ask for it (until he gets it back), without waiting for her to address him first. We do this using his initiateConversation(state, 'name') method, where state is the name of the ActorState (normally an InConversationState) we want him to switch into, and 'name' is the name of a Conversation Node we want activated (as the NPC's way of initiating the conversation). Within the Conversation Node we define an npcGreetingMsg (we could use an npcGreetingList instead) to display what Joe does and says to start the conversation. We can also use an npcContinueMsg  (or npcContinueList) to contain Joe's further prompting if the player fails to respond with a conversational command (to create the impression that Joe does really want a reply). In this case, we'll have Joe pose a question that requires a simple yes or no answer, which we can deal with using a YesTopic and a NoTopic (rather than having to define any SpecialTopics or whatever). The new ConvNode and its associated topics then look like this:
-
+```tads3
 + ConvNode 'burner-spade'
   npcGreetingMsg = "<.p>He looks up at your approach, and walks
    away from the fire to meet you. <q>Have you finished with my spade
@@ -95,15 +101,19 @@ Everything should now work fine, but there is one more refinement we can add, no
    <q>Very well, then.</q> he conceded grudgingly, <q>But I need it
    to get on with my job, so please be quick about it.</q>"
 ;
+```
 
-The reason we start the npcGreetingMsg with the pronoun 'he' rather than {The burner/he} is that in the only context in which this message will ever be displayed, the player will just have read "Joe Black/The charcoal burner is walking round the fire, frowning as he keeps instinctively reaching for the spade that isn't there", so the  burner's name doesn't need repeating immediately afterwards.
-All that remains is to decide where to insert the call to initiateConversation. The obvious candidate would be in the afterTravel(traveler, connector) method of  burnerWaiting, since this will be called after the Player Character travels to Joe's location:
+The reason we start the `npcGreetingMsg` with the pronoun 'he' rather than `{The burner/he}` is that in the only context in which this message will ever be displayed, the player will just have read "Joe Black/The charcoal burner is walking round the fire, frowning as he keeps instinctively reaching for the spade that isn't there", so the  burner's name doesn't need repeating immediately afterwards.
 
+All that remains is to decide where to insert the call to `initiateConversation`. The obvious candidate would be in the `afterTravel(traveler, connector)` method of  `burnerWaiting`, since this will be called after the Player Character travels to Joe's location:
+
+```tads3
 afterTravel(traveler, connector)
 {
     getActor().initiateConversation(burnerFretting, 'burner-spade');
 }
-
-Note the use of getActor() to get the Actor the current state belongs to. We could just as well have used burner.initiateConversation here, but there may be cases where getActor would be preferable (for example if one were defining a custom TopicEntry class for use in a number of different actors).
-At this point it might be worth playing the game through to check that everything works properly and the game is still winnable. In the next chapter we'll add some more complications.
 ```
+
+Note the use of `getActor()`to get the Actor the current state belongs to. We could just as well have used `burner.initiateConversation` here, but there may be cases where `getActor` would be preferable (for example if one were defining a custom `TopicEntry` class for use in a number of different actors).
+
+At this point it might be worth playing the game through to check that everything works properly and the game is still winnable. In the next chapter we'll add some more complications.

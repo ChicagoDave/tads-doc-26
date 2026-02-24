@@ -16,11 +16,14 @@ dobjFor(Doff)
        exit;
    }
 }
+```
 
-Note that here we have used the reportFailure macro; it's not strictly necessary to do so here: we could have used a double-quoted string to display the text, and it would have worked just as well. However, using reportFailure is a good habit to get into, since in other contexts (outside a check() routine) it can be used to signal that an action failed, which can sometimes produce better implicit action reports (e.g. '(first trying to open the door)' rather than '(first opening the door)' when the attempt to open the
+Note that here we have used the `reportFailure` macro; it's not strictly necessary to do so here: we could have used a double-quoted string to display the text, and it would have worked just as well. However, using `reportFailure` is a good habit to get into, since in other contexts (outside a `check()` routine) it can be used to signal that an action failed, which can sometimes produce better implicit action reports (e.g. '(first trying to open the door)' rather than '(first opening the door)' when the attempt to open the
 door fails).
-The use of reportFailure followed by exit is so common in check() routines that Thing defines a failCheck() method that combines them both into one statement. The foregoing example could then be written:
 
+The use of `reportFailure`followed by `exit`is so common in `check()`routines that Thing defines a `failCheck()` method that combines them both into one statement. The foregoing example could then be written:
+
+```tads3
 dobjFor(Doff)
 {
    check()
@@ -28,9 +31,11 @@ dobjFor(Doff)
        failCheck('You can\'t wander around half naked! ');
    }
 }
+```
 
 And our dress object (located immediately after the me object in the code) could then be defined as:
 
+```tads3
 + Wearable 'plain pretty blue dress' 'blue dress'
   "It's quite plain, but you think it pretty enough. "
   wornBy = me
@@ -42,29 +47,38 @@ And our dress object (located immediately after the me object in the code) could
      }
   }
 ;
+```
 
-Of course, there's no reason why an action should not fail in the action() routine as well in check() - the failCheck() method would work perfectly well
-in action(), so you may wonder what real purpose check() actually performs, beyond making the code look a bit neater if failure is conditional. There are in fact three main reasons for separating check() from action():
-As we have seen, a good deal of TADS 3 programming consists in overriding the library's standard verb handling. It is often convenient to override check() separately from action() if we want to change only the conditions under which the action isn't allowed to happen, or only what happens when the action does happen.
-In a two-object command (such as put
-bag on table) the action() routines are called on both the indirect object and the direct object. Ruling out the action in check() ensures that the action is stopped before either action() routine is called (otherwise we might find, for example, that the indirect object's action() method carried out the action before the direct object's action() method could stop it).
-From version 3.0.15.1 onwards the check() routines can be made to run before action notifications such as beforeAction(). For this to work you need to set gameMain.beforeRunsBeforeCheck to nil. We'll explore this a bit further below.
+Of course, there's no reason why an action should not fail in the `action()` routine as well in `check()`- the `failCheck()` method would work perfectly well
+in `action()`, so you may wonder what real purpose `check()` actually performs, beyond making the code look a bit neater if failure is conditional. There are in fact three main reasons for separating check() from action():
+
+- As we have seen, a good deal of TADS 3 programming consists in overriding the library's standard verb handling. It is often convenient to override `check()` separately from `action()` if we want to change only the conditions under which the action isn't allowed to happen, or only what happens when the action does happen.
+- In a two-object command (such as **put
+bag on table**) the `action()` routines are called on both the indirect object and the direct object. Ruling out the action in `check()` ensures that the action is stopped before either `action()` routine is called (otherwise we might find, for example, that the indirect object's `action()` method carried out the action before the direct object's `action()` method could stop it).
+- From version 3.0.15.1 onwards the `check()` routines can be made to run before action notifications such as `beforeAction()`. For this to work you need to set `gameMain.beforeRunsBeforeCheck` to `nil`. We'll explore this a bit further below.
+
 If an action is vetoed (either by check, verify or preCond) before it reaches the action stage, no action notifications will be sent, and so nothing that might have reacted to the action in a
-beforeAction() or afterAction() method will in fact do so. But note, check() only runs before beforeAction() if you have set gameMain.beforeRunsBeforeCheck to nil. In some future release of TADS 3 (perhaps 3.1) this may become the default, but for now you have to set this option if you want it (this ensures compatibility with games written prior to version 3.0.15.1). This is what we did when we first defined the gameMain object, and we suggest you always do too.
+`beforeAction()` or `afterAction()` method will in fact do so. But note, *`check()` only runs before `beforeAction()` if you have set `gameMain.beforeRunsBeforeCheck` to `nil`*. In some future release of TADS 3 (perhaps 3.1) this may become the default, but for now you have to set this option if you want it (this ensures compatibility with games written prior to version 3.0.15.1). This is what we did when we first defined the [gameMain](startinganewgame.md#gameMain) object, and we suggest you always do too.
+
 For example, suppose we went on to define an NPC who reacted to Heidi undressing herself in front of him, with something like:
 
+```tads3
 afterAction()
 {
   if(gActionIs(Doff) && gActor==gPlayerChar && gDobj==dress)
      "<q>Hey! What do you think you're doing, young lady!</q> cries
      the charcoal burner. ";
 }
+```
+
 If we had simply displayed the message about not
 wandering around half-naked in the action() routine, we might end up with a transcript like this:
 
->remove dress
+>**remove dress**
+
 You can't wander around half naked!
+
 "Hey, what do you think you're doing, young lady!" cries the charcoal burner.
-By vetoing the doff action in the check() routine, we ensure that the charcoal burner never gets a chance to react, and so we won't get his
+
+By vetoing the **doff** action in the check() routine, we ensure that the charcoal burner never gets a chance to react, and so we won't get his
 inappropriate response to an action that is not, in fact, carried out.
-```

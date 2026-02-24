@@ -270,6 +270,118 @@ def has_line_breaks(elem):
     return len(elem.find_all("br")) > 0
 
 
+def _is_code_indentation_table(elem):
+    """Check if a table is used purely for code indentation (Help & Manual pattern).
+
+    These tables have 2-3 tds with empty spacing columns and a code column.
+    Patterns:
+    - 2 tds: [empty spacing] [code text]
+    - 3 tds: [empty spacing] [code text] [empty spacing]
+    """
+    if not isinstance(elem, Tag) or elem.name != "table":
+        return False
+    tds = elem.find_all("td")
+    if len(tds) == 2:
+        # Pattern: [empty] [code]
+        if tds[0].get_text().strip():
+            return False
+        return bool(tds[1].get_text().strip())
+    elif len(tds) == 3:
+        # Pattern: [empty] [code] [empty]
+        if tds[0].get_text().strip() or tds[2].get_text().strip():
+            return False
+        return bool(tds[1].get_text().strip())
+    return False
+
+
+def _is_code_child(child):
+    """Check if a child node is part of a code block (text, <br>, or formatting tags)."""
+    if isinstance(child, NavigableString):
+        return True
+    if isinstance(child, Tag):
+        if child.name == "br":
+            return True
+        # Inner Courier fonts WITH <br> = multi-line code block part
+        # Inner Courier fonts WITHOUT <br> = inline code reference (not code block)
+        if child.name == "font" and "courier" in child.get("face", "").lower():
+            return has_line_breaks(child)
+        if child.name in ("b", "strong", "i", "em", "a"):
+            return True
+        # Code-indentation tables (2 tds: empty + code)
+        if _is_code_indentation_table(child):
+            return True
+    return False
+
+
+def _flush_code_block(code_parts):
+    """Convert accumulated code parts into a fenced code block string."""
+    from bs4 import Tag as _Tag
+    lines = []
+    for part in code_parts:
+        if isinstance(part, str):
+            lines.append(part.replace("\xa0", " ").replace("&nbsp;", " "))
+        elif isinstance(part, _Tag) and part.name == "br":
+            lines.append("\n")
+        elif isinstance(part, _Tag) and part.name == "table":
+            # Code-indentation table: extract code from the second td
+            tds = part.find_all("td")
+            if len(tds) >= 2:
+                code_text = tds[1].get_text().replace("\xa0", " ")
+                lines.append(code_text)
+                lines.append("\n")
+        elif isinstance(part, _Tag):
+            lines.append(extract_code_text(part))
+
+    code = "".join(lines)
+    # Collapse double newlines
+    while "\n\n" in code:
+        code = code.replace("\n\n", "\n")
+    # Strip leading/trailing blank lines
+    code_lines = code.split("\n")
+    while code_lines and not code_lines[0].strip():
+        code_lines.pop(0)
+    while code_lines and not code_lines[-1].strip():
+        code_lines.pop()
+    code = "\n".join(code_lines)
+    if code.strip():
+        return f"\n```tads3\n{code}\n```\n\n"
+    return ""
+
+
+def _convert_mixed_courier_element(element):
+    """
+    Convert a Courier font element that contains both code and prose.
+
+    Help & Manual sometimes wraps an entire page section in a single
+    <font face="Courier New"> element. Inside, code lines are separated
+    by <br> tags and text nodes, while prose sections are wrapped in
+    <font face="Verdana"> elements.
+
+    This function walks children sequentially, grouping text+br sequences
+    as code blocks and processing non-Courier font children as prose.
+    """
+    parts = []
+    code_buf = []  # Accumulates code children
+
+    for child in element.children:
+        if _is_code_child(child):
+            code_buf.append(child)
+        else:
+            # Non-code child (Verdana font = prose, table, etc.)
+            # Flush any accumulated code
+            if code_buf:
+                parts.append(_flush_code_block(code_buf))
+                code_buf = []
+            # Convert the non-code child normally
+            parts.append(convert_hm_element(child))
+
+    # Flush remaining code
+    if code_buf:
+        parts.append(_flush_code_block(code_buf))
+
+    return "".join(parts)
+
+
 def convert_hm_element(element, in_code=False):
     """
     Recursively convert a Help & Manual HTML element to Markdown.
@@ -341,7 +453,19 @@ def convert_hm_element(element, in_code=False):
         # Courier New = code
         if "courier" in face.lower():
             if has_line_breaks(element):
-                # Block-level code
+                # Check for "mixed" element: Courier font wrapping both
+                # code and prose (contains Verdana/non-Courier font children).
+                # Help & Manual sometimes nests an entire page section inside
+                # one Courier font tag.
+                has_prose_children = any(
+                    isinstance(c, Tag) and c.name == "font"
+                    and c.get("face", "") and "courier" not in c.get("face", "").lower()
+                    for c in element.children
+                )
+                if has_prose_children:
+                    return _convert_mixed_courier_element(element)
+
+                # Pure block-level code
                 code = extract_code_text(element)
                 # Collapse double newlines from HTML source newline + <br>
                 while "\n\n" in code:

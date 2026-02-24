@@ -19,9 +19,11 @@ sweetBag : Dispenser 'bag of candy/sweets' 'bag of sweets'
   canReturnItem = true
   myItemClass = Sweet
 ;
+```
 
-We define the bag of sweets as a Dispenser since we expect it to contain individual items (i.e. sweets) which can be taken from the bag (and returned to it, since we have defined canReturnItem = true). We set myItemClass = Sweet to define the type of object we expect the bag to hold. We must next define the Sweet class; the following code is more or less lifted straight from the TADS 3 sample game (sample.t) changing 'coin' to 'sweet' throughout and adding a few more customisations relevant to sweets, most notably making Sweet inherit from Food as well as Dispensable. While we're at it we'll adapt code from the sample game to make the sweets list neatly (e.g. "there are 9 sweets (3 red, 3 yellow and 3 green)" rather than "there is a red sweet, a red sweet, a red sweet, a yellow sweet etc.").  For this we need a ListGroupParen and an ItemizingCollectiveGroup along with definitions of a Sweet class and subclasses to define collections of basically similar objects. Since this is something of a decorative distraction from our main objective here (Heidi doesn't need the sweets for the player to win the game), I shall simply present the adaptation from the sample.t code as an example, without pausing to discuss it in any depth; if you like, you can just skip it all for now.
+We define the bag of sweets as a `Dispenser` since we expect it to contain individual items (i.e. sweets) which can be taken from the bag (and returned to it, since we have defined `canReturnItem = true)`. We set `myItemClass = Sweet` to define the type of object we expect the bag to hold. We must next define the `Sweet` class; the following code is more or less lifted straight from the TADS 3 sample game (sample.t) changing 'coin' to 'sweet' throughout and adding a few more customisations relevant to sweets, most notably making `Sweet` inherit from `Food` as well as `Dispensable`. While we're at it we'll adapt code from the sample game to make the sweets list neatly (e.g. "there are 9 sweets (3 red, 3 yellow and 3 green)" rather than "there is a red sweet, a red sweet, a red sweet, a yellow sweet etc.").  For this we need a `ListGroupParen` and an `ItemizingCollectiveGroup`along with definitions of a `Sweet` class and subclasses to define collections of basically similar objects. Since this is something of a decorative distraction from our main objective here (Heidi doesn't need the sweets for the player to win the game), I shall simply present the adaptation from the sample.t code as an example, without pausing to discuss it in any depth; if you like, you can just skip it all for now.
 
+```tads3
 class Sweet : Dispensable, Food
   desc = "It's a small, round, clear, <<sweetGroupBaseName>> boiled sweet. "
   vocabWords = 'sweet/candy*sweets'
@@ -68,10 +70,13 @@ sweetGroup: ListGroupParen
 ;
 sweetCollective: ItemizingCollectiveGroup 'candy*sweets' 'sweets'
 ;
+```
 
+```tads3
 Finally, we put some sweets in the bag simply by defining a number of anonymous objects of the appropriate type; note that the class definitions already locate the sweets in the bag so the code required to create the sweets is minimal:
+```
 
-
+```tads3
 RedSweet;
 RedSweet;
 RedSweet;

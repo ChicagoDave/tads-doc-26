@@ -7,67 +7,93 @@ So far the game allows the player to walk from the cottage to the clearing and t
 ```tads3
 up : NoTravelMessage {"The lowest bough is just too high for
    you to reach. "}
+```
 
-Now recompile the game and try both going up from the clearing and climbing the tree. Both attempts should be foiled in exactlty the same way. If we had remapped climb tree to TravelVia, topOfTree instead of Up this would not have worked; the player could have bypassed our puzzle by typing climb tree instead of up.
+Now recompile the game and try both going up from the clearing and climbing the tree. Both attempts should be foiled in exactlty the same way. If we had remapped **climb tree** to `TravelVia, topOfTree` instead of `Up` this would not have worked; the player could have bypassed our puzzle by typing **climb tree** instead of **up**.
+
 That was the easy part. The tricky part is creating a chair object that will enable Heidi to climb the tree. The first thing we need is somewhere to put it; the most likely place you'd find a chair is probably inside the cottage. For the moment we'll define the inside of the cottage as:
 
+```tads3
 insideCottage : Room 'Inside Cottage'
   "You are in the front parlour of the little cottage. The door out
     is to the east. "
    out = outsideCottage
    east asExit(out)
 ;
+```
 
-The only new element here is the asExit macro. The cottage lies to the west of the starting postion, so to get from inside the cottage back outside the player might type either out or east. The asExit() macro make going east the same as going out, but without having east listed as a separate exit (either in the status line or in response to an exits command). This allows us to make two directions lead to the same destination without misleading the player into supposing that they are two separate exits, instead of two synonyms for the same exit.
-Note too that since insideCottage is an indoor room, we have defined it to be of class Room rather than class OutsideRoom. To make this room accessible at all we should add the following to the definition of outsideCottage:
+The only new element here is the `asExit`macro. The cottage lies to the west of the starting postion, so to get from inside the cottage back outside the player might type either **out**or **east**. The `asExit`() macro make going **east**the same as going **out**, but without having **east**listed as a separate exit (either in the status line or in response to an exits command). This allows us to make two directions lead to the same destination without misleading the player into supposing that they are two separate exits, instead of two synonyms for the same exit.
 
+Note too that since `insideCottage` is an indoor room, we have defined it to be of class `Room` rather than class `OutsideRoom`. To make this room accessible at all we should add the following to the definition of `outsideCottage`:
+
+```tads3
 in = insideCottage
+```
 
+```tads3
 west asExit(in)
+```
+Now recompile the game and you should be able to get inside the cottage by typing either **enter** or **in** or **west** (or **w**). But one thing the player might equally well try, namely **enter cottage** won't work.
 
+The obvious way to fix this on the basis of what we've done before is to add the following to the definition of `cottage`:
 
-Now recompile the game and you should be able to get inside the cottage by typing either enter or in or west (or w). But one thing the player might equally well try, namely enter cottage won't work.
-The obvious way to fix this on the basis of what we've done before is to add the following to the definition of cottage:
-
+```tads3
 dobjFor(Enter) remapTo(In)
+```
+And this will certainly act just as expected. However, it's more work than we need, since the TADS 3 library provides an `Enterable` class to handle just this kind of situation. All we need do, in fact, is to change the definition of cottage to:
 
-
-And this will certainly act just as expected. However, it's more work than we need, since the TADS 3 library provides an Enterable class to handle just this kind of situation. All we need do, in fact, is to change the definition of cottage to:
-
+```tads3
 + Enterable ->insideCottage 'pretty little
    cottage/house/building' 'pretty little cottage'
    "It's just the sort of pretty little cottage that townspeople dream of living in,
      with roses round the door and a neat little window frame freshly painted in green. "
 ;
+```
 
-This introduces a new template element: ->insideCottage. In this instance the -> points to the TravelConnector that is traversed when the Enterable is entered. Remember that a room is a kind of TravelConnector, and that travelling via a room is the same as travelling to a room, so for now the command enter cottage will take Heidi to the inside of the cottage (we'll be changing that later when we give the cottage a locked front door). An alternative to using the ->connector syntax would have been to define the connector property explicitly with:
+This introduces a new template element: `->insideCottage`. In this instance the `->` points to the `TravelConnector`that is traversed when the Enterable is entered. Remember that a room is a kind of `TravelConnector`, and that travelling via a room is the same as travelling to a room, so for now the command enter cottage will take Heidi to the inside of the cottage (we'll be changing that later when we give the cottage a locked front door). An alternative to using the `->connector` syntax would have been to define the connector property explicitly with:
 
+```tads3
 connector = insideCottage
-
-
+```
 Whether you prefer this as being more readable is up to you.
-Now that we have somewhere to put the chair, we can start defining it. What we need is something that we can carry around and stand on (but not both at the same time!). So it must be something that can contain an actor while appearing as an object inside a room. In TADS 3 this kind of object is called a NestedRoom. The TADS 3 library includes a subclass of NestedRoom called Chair that does just the job (a Chair is something you can sit on or stand on but not lie on):
 
+Now that we have somewhere to put the chair, we can start defining it. What we need is something that we can carry around and stand on (but not both at the same time!). So it must be something that can contain an actor while appearing as an object inside a room. In TADS 3 this kind of object is called a `NestedRoom`. The TADS 3 library includes a subclass of `NestedRoom`called `Chair`that does just the job (a `Chair`is something you can sit on or stand on but not lie on):
+
+```tads3
 + chair : Chair 'wooden chair' 'wooden chair'
   "It's a plain wooden chair. "
 ;
+```
 
 There's one way we can improve the behaviour of this chair before we even think about using it to climb the tree. When Heidi is sent into the cottage, the game displays the plain vanilla default message "You see a wooden chair here." We can improve on this by adding the following property definition to the chair object:
 
+```tads3
 initSpecialDesc = "A plain wooden chair sits in the corner. "
+```
 
-The initSpecialDesc property defines how the object will be described in a room description before the object has been moved (if we wanted to, we could override the conditions under which initSpecialDesc was displayed, but that's a complication we won't tangle with for now).
+The `initSpecialDesc` property defines how the object will be described in a room description before the object has been moved (if we wanted to, we could override the conditions under which `initSpecialDesc` was displayed, but that's a complication we won't tangle with for now).
+
 Now try compiling and rerunning the game. You should find that the chair now behaves just as one would expect: you can sit or stand on it (but not lie on it), you can also take it, but you can't take it while you're sitting or standing on it, and you can't sit or stand on it while you're carrying it.
-But, as you will discover, the chair still doesn't help Heidi climb the tree. The problem is that we defined the connector on clearing.up as a NoTravelMessage, which blocks travel under all circumstances. What we need is a connector that allows Heidi to pass only when the chair is at the foot of the tree, i.e. in the clearing. One type of connector appropriate to this task is a OneWayRoomConnector, since this possesses methods to control the conditions under which travel is permitted. We could define it thus:
 
+But, as you will discover, the chair still doesn't help Heidi climb the tree. The problem is that we defined the connector on `clearing.up` as a `NoTravelMessage,` which blocks travel under all circumstances. What we need is a connector that allows Heidi to pass only when the chair is at the foot of the tree, i.e. in the clearing. One type of connector appropriate to this task is a `OneWayRoomConnector`, since this possesses methods to control the conditions under which travel is permitted. We could define it thus:
+
+```tads3
 up : OneWayRoomConnector
+```
 
+```tads3
   {
+```
 
+```tads3
     destination = topOfTree
+```
 
+```tads3
     canTravelerPass(traveler) { return chair.isIn(clearing); }
+```
 
+```tads3
            explainTravelBarrier(traveler)
             { "The lowest bough is just too high for
    you to reach. "; }
