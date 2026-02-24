@@ -240,14 +240,14 @@ Here's the object definition:
  *   have to write it in the ASK FOR handler.
  */
 giveMeToAskFor: GlobalRemapping
-    /   Remap a command, if applicable.  We look for commands of the form
+    /*   Remap a command, if applicable.  We look for commands of the form
      *   "X, GIVE ME Y": we look for a GiveTo action whose indirect object
      *   is the same as the issuing actor.  When we find this form of
      *   command, we rewrite it to "ME, ASK X FOR Y".
      */
     getRemapping(issuingActor, targetActor, action)
     {
-        /   if it's of the form "X, GIVE Y TO Z", where Z is the issuing
+        /*   if it's of the form "X, GIVE Y TO Z", where Z is the issuing
          *   actor (generally ME, but it could conceivably be someone
          *   else), transform it into "Z, ASK X FOR Y".
          */
@@ -260,7 +260,7 @@ giveMeToAskFor: GlobalRemapping
             /* remember the original version of the action */
             newAction.setOriginalAction(action);
 
-            /   Changing the phrasing from "X, GIVE Y TO Z" to "Z, ASK X
+            /*   Changing the phrasing from "X, GIVE Y TO Z" to "Z, ASK X
              *   FOR Y" will change the target actor from X in the old
              *   version to Z in the new version.  In the original format,
              *   the pronouns "you", "your", and "yours" implicitly refers
@@ -274,14 +274,14 @@ giveMeToAskFor: GlobalRemapping
              */
             newAction.setPronounOverride(PronounYou, targetActor);
 
-            /   The direct object - the person we're asking - is the
+            /*   The direct object - the person we're asking - is the
              *   original target actor ("bob" in "bob, give me x").  Since
              *   this is a specific object, we need to wrap it in a
              *   PreResolvedProd.
              */
             local dobj = new PreResolvedProd(targetActor);
 
-            /   The thing we're asking for is the original direct object.
+            /*   The thing we're asking for is the original direct object.
              *   ASK FOR takes a topic phrase for its indirect object,
              *   whereas GIVE TO takes a regular noun phrase.  The two
              *   aren't quite identical syntactically, so we'll do better
@@ -294,7 +294,7 @@ giveMeToAskFor: GlobalRemapping
             /* set the object match trees */
             newAction.setObjectMatches(dobj, iobj);
 
-            /   Return the new command, addressing the *issuing* actor
+            /*   Return the new command, addressing the *issuing* actor
              *   this time around.
              */
             return [issuingActor, newAction];

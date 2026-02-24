@@ -87,7 +87,7 @@ class SheetHeldPreCondition : PreCondition
          /* the actor isn't holding the sheet, try a "take sheet" command */
          if (allowImplicit && tryImplicitAction(Take, sheet))
          {
-             /   make sure that leaves the actor holding the sheet - if not,
+             /*   make sure that leaves the actor holding the sheet - if not,
               *   exit silently, since the reason for failure will have
               *   been reported by the "take sheet" action
               */

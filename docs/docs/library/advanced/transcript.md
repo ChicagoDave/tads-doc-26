@@ -785,7 +785,7 @@ putReportManager: object
             { vec: '<.p>{You/he} put{s} ' + spellInt(vec.length) + ' ' +
             vec[1].dobj_.pluralName + ' {in iobj}. '} );
 
-        /   Define this function separately as we'll use it more than once;
+        /*   Define this function separately as we'll use it more than once;
          *   the function identifies implicit action reports relating to
          *   taking gold coins.
          */
@@ -795,7 +795,7 @@ putReportManager: object
                 && x.dobj_.ofKind(GoldCoin) };
 
 
-        /   Count how many implicit action reports there are relating to
+        /*   Count how many implicit action reports there are relating to
          *   taking gold coins.
          */
         local impActions = gTranscript.reports_.countWhich(impFunc);
@@ -809,23 +809,23 @@ putReportManager: object
             /* Store a copy of this report */
             local rep = gTranscript.reports_[firstImp];
 
-            /   Change the text of this implicit action report to account
+            /*   Change the text of this implicit action report to account
              *   for all the gold coins implicitly taken
              */
             rep.messageText_ = '<./p0>\n<.assume>first taking ' +
                 spellInt(impActions) + ' gold coins<./assume>\n';
 
-            /   Remove all the individual gold coin taking implicit action
+            /*   Remove all the individual gold coin taking implicit action
              *   reports from the transcript.
              */
             gTranscript.reports_ = gTranscript.reports_.subset({x: !impFunc(x) });
 
-            /   Add back our summary implicit action report at the location
+            /*   Add back our summary implicit action report at the location
              *   of the first individual report we removed.
              */
             gTranscript.reports_.insertAt(firstImp, rep);
 
-            /   Remove all the DefaultCommandReports relating to taking gold
+            /*   Remove all the DefaultCommandReports relating to taking gold
              *   coins, since they would otherwise show up now we've removed
              *   most of the implicit action reports.
              */
@@ -998,7 +998,7 @@ takeReportManager: object
             local str = '{You/he} take{s} ' + objectLister.makeSimpleList(
                 successVec.applyAll({x: x.dobj_})) + '. ';
 
-            /   Then append a report explaining the failure of all those we
+            /*   Then append a report explaining the failure of all those we
              *   didn't
              */
             foreach(local cur in failVec)
@@ -1117,13 +1117,13 @@ takeReportManager: object
             /* And then the reports of successes */
             local successVec = vec.subset({x: !x.isFailure});
 
-            /   Construct a string reporting the objects we did take,
+            /*   Construct a string reporting the objects we did take,
              *   ensuring that each one is counted only once.
              */
             local str = '{You/he} take{s} ' + objectLister.makeSimpleList(
                 successVec.applyAll({x: x.dobj_}).getUnique()) + '. ';
 
-            /   Then append a report explaining the failure of all those we
+            /*   Then append a report explaining the failure of all those we
              *   didn't
              */
             foreach(local cur in failVec)
@@ -1216,7 +1216,7 @@ modify AccompanyingInTravelState
     {
         local msg = mainOutputStream.captureOutput( {: inherited(conn) });;
 
-        /  strip off any leading \^ so that we can be sure of matching the NPC's name
+        /*  strip off any leading \^ so that we can be sure of matching the NPC's name
          *  at the start of the report string.
          */
         if(msg.startsWith('\^'))
@@ -1307,14 +1307,14 @@ The remaining step is to define the afterActionMain() method. What we're trying 
     afterActionMain()
     {
 
-        /   Check whether there is a <.roomname> tag somewhere in the
+        /*   Check whether there is a <.roomname> tag somewhere in the
          *   transcript.
          */
 
         local idx = gTranscript.reports_.indexWhich({ x: x.messageText_ ==
                                               '<.roomname>' });
 
-        /   If there is no <.roomname> tag, travel failed for some reason,
+        /*   If there is no <.roomname> tag, travel failed for some reason,
          *   in which case we don't want to change the transcript at all.
          */
 
@@ -1326,7 +1326,7 @@ The remaining step is to define the afterActionMain() method. What we're trying 
         local vec = new Vector(4);
         local pat = new RexPattern('<NoCase>^' + actor.theName + '<Space>+');
 
-        /   Look through all the reports in the transcript for those whose
+        /*   Look through all the reports in the transcript for those whose
          *   message text begins with the name of our actor, followed by at
          *   least one space (so that if the actor's name is Rob we don't
          *   pick up any messages relating to Roberta, for example),
@@ -1355,7 +1355,7 @@ The remaining step is to define the afterActionMain() method. What we're trying 
 
         local len = actor.theName.length() + 1;
 
-        /   Now go through each of the strings in vec in turn, stripping
+        /*   Now go through each of the strings in vec in turn, stripping
          *   off the actor's name at the start and the period/full-stop at
          *   the end (so that, for example 'Bob stands up. ' becomes 'stands
          *   up'. In searching for the position of the terminating full
@@ -1365,7 +1365,7 @@ The remaining step is to define the afterActionMain() method. What we're trying 
 
         vec.applyAll( { cur: cur.substr(len, cur.find('.', len) - len)});
 
-        /   Concatanate these truncated action reports into a single string
+        /*   Concatanate these truncated action reports into a single string
          *   listing the actor's actions (e.g. 'stands up and comes with
          *   you'), separating the final pair of actions with 'and' and any
          *   previous actions with a comma. We can use stringLister (defined
@@ -1374,19 +1374,19 @@ The remaining step is to define the afterActionMain() method. What we're trying 
 
         str = stringLister.makeSimpleList(vec.toList);
 
-        /   Put the actor's name back at the start of the string, and
+        /*   Put the actor's name back at the start of the string, and
          *   conclude the string with a full-stop and a paragraph break.
          */
         str = '\^' + actor.theName + ' ' + str + '.<.p>';
 
-        /   Find the insertion point, which is just before the description
+        /*   Find the insertion point, which is just before the description
          *   of the new room.
          */
 
         idx = gTranscript.reports_.indexWhich({ x: x.messageText_ ==
                                               '<.roomname>' });
 
-        /   Insert the message we just created as a new report at the
+        /*   Insert the message we just created as a new report at the
          *   appropriate place, i.e. just before the new room description.
          */
         gTranscript.reports_.insertAt(idx, new MessageResult(str));

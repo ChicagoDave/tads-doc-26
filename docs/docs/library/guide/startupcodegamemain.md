@@ -78,7 +78,7 @@ versionInfo: GameID
     {
         /* show our credits */
         "TADS 3 language and library by Michael J. Roberts ";
-        /   The game credits are displayed first, but the library will
+        /*   The game credits are displayed first, but the library will
          *   display additional credits for library modules.  It's a good
          *   idea to show a blank line after the game credits to separate
          *   them visually from the (usually one-liner) library credits

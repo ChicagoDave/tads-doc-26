@@ -506,7 +506,7 @@ see it defines:
 
 ```tads3
 
-    /   Get a string to announce an implicit action.  This announces the
+    /*   Get a string to announce an implicit action.  This announces the
      *   current global action.  'ctx' is an ImplicitAnnouncementContext
      *   object describing the context in which the message is being
      *   displayed.
@@ -517,7 +517,7 @@ see it defines:
         return ctx.buildImplicitAnnouncement(action.getImplicitPhrase(ctx));
     }
 
-    /   Announce a silent implied action.  This allows an implied action
+    /*   Announce a silent implied action.  This allows an implied action
      *   to work exactly as normal (including the suppression of a default
      *   response message), but without any announcement of the implied
      *   action.

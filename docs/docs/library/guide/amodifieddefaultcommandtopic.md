@@ -8,7 +8,7 @@ handleTopic(fromActor, action)
   {
     actionPhrase = action.getInfPhrase;
 
-    / if the player types a command like X ME, getInfPhrase will
+    /* if the player types a command like X ME, getInfPhrase will
      * return 'examine you'. In such a case we want to replace 'you'
      * with 'me'.
      */

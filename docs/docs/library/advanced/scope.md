@@ -312,7 +312,7 @@ DefineTopicAction(Locate)
         local obj;
         local loc;
 
-        /   First try to find an objects the player has cannnot currently see
+        /*   First try to find an objects the player has cannnot currently see
          *   but has previously seen.
          */
         obj = gTopic.inScopeList.valWhich({ x: gActor.hasSeen(x) &&

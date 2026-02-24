@@ -8,17 +8,17 @@ What we mainly want TCommandTopic  to do is to match a direct object (or a list 
 
 ```tads3
 TCommandTopic : CommandTopic
-  / The direct object, or a list of direct objects, that will be matched
+  /* The direct object, or a list of direct objects, that will be matched
    * by this topic.
    */
   matchDobj = nil
 
-  / The first direct object of the command that this CommandTopic matches.
+  /* The first direct object of the command that this CommandTopic matches.
    * We cache it here so that it can easily be picked up in topicResponse.
    */
   currentDobj = nil
 
-  / Cache the action that has been matched so that it is readily accessible
+  /* Cache the action that has been matched so that it is readily accessible
    * from topicResponse
    */
   currentAction = nil
@@ -57,7 +57,7 @@ TCommandTopic : CommandTopic
     actionPhrase = action.getInfPhrase;
     currentAction = action;
 
-    / if the player types a command like X ME, getInfPhrase will
+    /* if the player types a command like X ME, getInfPhrase will
      * return 'examine you'. In such a case we want to replace 'you'
      * with 'me'.
      */

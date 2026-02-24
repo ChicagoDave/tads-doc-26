@@ -254,7 +254,7 @@ picWindow: BannerWindow
       showBanner(nil, BannerAfter, statuslineBanner, BannerTypeText,
               BannerAlignTop, 10, BannerSizeAbsolute, BannerStyleBorder);
 
-      / inherited() here simply sets inited_ to true, to show that we have
+      /* inherited() here simply sets inited_ to true, to show that we have
        * now initialized this banner.
        */
 
@@ -656,7 +656,7 @@ class Picture
   caption = ''
   showPic()
   {
-    /  We can't be sure that the banners will be active when we want to
+    /*  We can't be sure that the banners will be active when we want to
      *  display in them, so we need to check and, if necessary, activate
      *  them.
      */
@@ -921,7 +921,7 @@ class Picture: object
   {
     if(!picWindow.isActive)
     {
-      / We must be careful to activate the parent window before all
+      /* We must be careful to activate the parent window before all
        * its children, and the older sibling windows before the younger
        * siblings that are placed in relation to them.
         We also call activate with the optional (true) argument on
@@ -960,7 +960,7 @@ modify Room
     {
       if(roomPic == nil)
       {
-        /  The windows need to be deactivated in reverse order of
+        /*  The windows need to be deactivated in reverse order of
          *  activation, so that we deactivate all the child windows
          *  before deactivating the parent.
          */

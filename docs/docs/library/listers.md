@@ -427,7 +427,7 @@ Note that we made our writingMaterials list group a *ListGroupSorted* and not ju
 ```tads3
 
 writingMaterials: ListGroupSorted
-    / Return an integer > 0 if the first item sorts after the second item;
+    /* Return an integer > 0 if the first item sorts after the second item;
      * Return an integer < 0 if the second item sorts after the first item;
      * Return zero if the two items are at the same sorting order.
      */
@@ -1106,7 +1106,7 @@ me: Actor
             "<<buildParam('The/he', nm)>> {is} holding <<carrying>>.
             <<buildParam('It\'s', nm)>> sporting <<wearing>>. ";
         }
-        /   For 'tall' listings, we'll use the standard listing style, so we
+        /*   For 'tall' listings, we'll use the standard listing style, so we
          *   need to provide the framing messages for the tall-mode
          *   listing.
          */

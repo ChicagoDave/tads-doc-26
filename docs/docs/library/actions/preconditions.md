@@ -214,7 +214,7 @@ objHeld: PreCondition
         /* the object isn't being held - try an implicit 'take' command */
         if (allowImplicit && obj.tryHolding())
         {
-            /   we successfully executed the command; check to make sure
+            /*   we successfully executed the command; check to make sure
              *   it worked, and if not, abort the command without further
              *   comment (if the command failed, presumably the command
              *   showed an explanation as to why)
@@ -320,7 +320,7 @@ actions are allowed at this stage of the proceedings:
       /* the object isn't being held - try an implicit 'take' command */
         if (allowImplicit && obj.tryHolding())
         {
-            /   we successfully executed the command; check to make sure
+            /*   we successfully executed the command; check to make sure
              *   it worked, and if not, abort the command without further
              *   comment (if the command failed, presumably the command
              *   showed an explanation as to why)
@@ -374,7 +374,7 @@ that it ends up held. The revised code becomes:
        /* the object is being held - try an implicit 'drop' command */
         if (allowImplicit && tryImplicitAction(Drop, obj))
         {
-            /   we successfully executed the command; check to make sure
+            /*   we successfully executed the command; check to make sure
              *   it worked, and if not, abort the command without further
              *   comment (if the command failed, presumably the command
              *   showed an explanation as to why)
@@ -499,7 +499,7 @@ objNotHeld: PreCondition
         /* the object is being held - try an implicit 'drop' command */
         if (allowImplicit && tryImplicitAction(Drop, obj))
         {
-            /   we successfully executed the command; check to make sure
+            /*   we successfully executed the command; check to make sure
              *   it worked, and if not, abort the command without further
              *   comment (if the command failed, presumably the command
              *   showed an explanation as to why)

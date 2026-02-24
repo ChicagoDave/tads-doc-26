@@ -279,7 +279,7 @@ DefineIAction(LookDir)
      local rPart;
 
 
-     / If the player simply types LOOK IN treat it as an incomplete
+     /* If the player simply types LOOK IN treat it as an incomplete
       * form of the library's LookInAction, and redirect the command
       * accordingly.
       */
@@ -288,7 +288,7 @@ DefineIAction(LookDir)
         askForDobj(LookIn);
 
 
-     /  If it's too dark to see, diplay a failure message to that effect.  But allow
+     /*  If it's too dark to see, diplay a failure message to that effect.  But allow
       *  this to be overridden for special cases (e.g. the player char may be able to see
       *  a distant light in the dark).
         There are three ways you can go about this. The easiest, and generally
@@ -313,12 +313,12 @@ DefineIAction(LookDir)
          return;
       }
 
-     / Otherwise, if the current location defines the appropriate
+     /* Otherwise, if the current location defines the appropriate
       * dirLook property (or method), let that handle the action.
       */
      if(prop != nil && loc.propDefined(prop) && loc.propType(prop) != TypeNil)
      {
-       /  Even if prop is defined and is non-nil, it may fail to display anything,
+       /*  Even if prop is defined and is non-nil, it may fail to display anything,
         *  so we test to ensure it does. Failure to display may occur because prop
         *  is a method or expression that evaluates to nil, or because it evaluates
         *  to a single-quoted string.
@@ -327,7 +327,7 @@ DefineIAction(LookDir)
        local val;
        hasDisplayed = mainOutputStream.watchForOutput( {: val = loc.(prop) } );
 
-       /  If we displayed something, we're done, unless we returned showRoomPart
+       /*  If we displayed something, we're done, unless we returned showRoomPart
         *  The test for returning showRoomPart is a special case to allow us to display
         *  a custom message followed by a description of the appropriate room part.
         *  e.g.:
@@ -340,7 +340,7 @@ DefineIAction(LookDir)
        if(hasDisplayed && val != showRoomPart)
          return;
 
-       /  If we didn't display something, perhaps loc.(prop) evaluated to a
+       /*  If we didn't display something, perhaps loc.(prop) evaluated to a
         *  single-quoted string; in which case display the string and return.
         */
        if(dataType(val) == TypeSString)
@@ -350,13 +350,13 @@ DefineIAction(LookDir)
        }
      }
 
-     / If no outLook was defined, treat LOOK OUT as an incomplete LOOK THROUGH
+     /* If no outLook was defined, treat LOOK OUT as an incomplete LOOK THROUGH
       * command.
       */
      if(dirn == outDirection)
        askForDobj(LookThrough);
 
-     / Otherwise, if the player specified a shipboard direction (e.g. LOOK PORT) and
+     /* Otherwise, if the player specified a shipboard direction (e.g. LOOK PORT) and
       * we're not in a shipboard room, display the standard 'not aboard ship' message.
        Note that putting this check *after* the previous ones allows an author to
       * define a portLook, starboardLook, aftLook or foreLook even on a non-shipboard
@@ -367,7 +367,7 @@ DefineIAction(LookDir)
          libMessages.notOnboardShip();
 
 
-     / Otherwise see if we can find a room part matching the compass direction name, and, if
+     /* Otherwise see if we can find a room part matching the compass direction name, and, if
       * so, examine it, provided this location allows it.
       */
 
@@ -379,14 +379,14 @@ DefineIAction(LookDir)
 
      }
 
-        /  Otherwise print the default message "You see nothing remarkable by looking <<dir>>. ",
+        /*  Otherwise print the default message "You see nothing remarkable by looking <<dir>>. ",
          *  unless we previously displayed something else.
          */
      else if(!hasDisplayed)
         loc.defaultLook(dirn);
   }
 
-  /  This is made a separate method in case it needs to be customised for
+  /*  This is made a separate method in case it needs to be customised for
    *  languages other than English.
    */
   findRoomPart(dirn)

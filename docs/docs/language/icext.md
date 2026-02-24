@@ -40,7 +40,7 @@ BigNumber intrinsic class.
 modify BigNumber
   log2()
   {
-    /   cache ln(2) — use slightly greater precision than we
+    /*   cache ln(2) — use slightly greater precision than we
      *   actually need, to avoid rounding error
      */
     if (BigNumber.cacheLn2_ == nil
@@ -50,7 +50,7 @@ modify BigNumber
         new BigNumber(2, getPrecision() + 3).logE();
     }
 
-    /   Calculate ln(self), then divide by ln(2) to get the
+    /*   Calculate ln(self), then divide by ln(2) to get the
      *   result (note that ln-base-B of x for any B is equal to
      *   ln(x)/ln(B)).  Reduce the precision of the result back
      *   to our own precision before returning.

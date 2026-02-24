@@ -1627,7 +1627,7 @@ versionInfo: GameID
         /* show our credits */
         "Put credits for the game here. ";
 
-        /   The game credits are displayed first, but the library will
+        /*   The game credits are displayed first, but the library will
          *   display additional credits for library modules.  It's a good
          *   idea to show a blank line after the game credits to separate
          *   them visually from the (usually one-liner) library credits
@@ -1650,7 +1650,7 @@ gameMain: GameMainDef
     /* the initial player character is 'me' */
     initialPlayerChar = me
 
-    /   Show our introductory message.  This is displayed just before the
+    /*   Show our introductory message.  This is displayed just before the
      *   game starts.  Most games will want to show a prologue here,
      *   setting up the situation for the player, and show the title of the
      *   game.
@@ -1660,7 +1660,7 @@ gameMain: GameMainDef
         "Welcome to the TADS 3 Starter Game!\b";
     }
 
-    /   Show the "goodbye" message.  This is displayed on our way out,
+    /*   Show the "goodbye" message.  This is displayed on our way out,
      *   after the user quits the game.  You don't have to display anything
      *   here, but many games display something here to acknowledge that
      *   the player is ending the session.

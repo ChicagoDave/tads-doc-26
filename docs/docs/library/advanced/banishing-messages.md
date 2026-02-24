@@ -470,7 +470,7 @@ That may be fair enough in this instance, but it may not always be what we want.
         /* Check whether our contents includes an object of the Person class */
         local obj = contents.valWhich({x: x.ofKind(Person)});
 
-        / If we've found a Person in us, and that Person is sitting, go on to
+        /* If we've found a Person in us, and that Person is sitting, go on to
          * display some appropriate text.
          */
         if(obj && obj.posture==sitting)

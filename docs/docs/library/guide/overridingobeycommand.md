@@ -5,7 +5,7 @@ The library version of ActorState.obeyCommand is defined as follows:
 ```tads3
 obeyCommand(issuingActor, action)
 {
-   / By default, we ignore all orders. We do need to generate a
+   /* By default, we ignore all orders. We do need to generate a
     * response, though, so for this purpose, treat the order as a
     * conversational action, with the 'action' object as the topic.
     */
@@ -25,11 +25,11 @@ The code for such an obeyCommand routine is as follows:
 modify ActorState
   obeyCommand(issuingActor, action)
      {
-         /   By default, we ignore all orders.  We do need to generate a
+         /*   By default, we ignore all orders.  We do need to generate a
           *   response, though, so for this purpose, treat the order as a
           *   conversational action, with the 'action' object as the topic.
           */
-         /  If the action takes a direct object (and so could have a list
+         /*  If the action takes a direct object (and so could have a list
           *  of direct objects), split it into a series of actions
           *  with a single direct object
           */
