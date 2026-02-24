@@ -309,7 +309,7 @@ run-time to the local OS syntax.
 
 Returns a new FileName object giving the absolute path to this file.
 If the 'self' object's path is a relative path (see
-<a name="#isAbsolute"></a>), this combines the relative path
+<a name="#isAbsolute"></a>isAbsolute), this combines the relative path
 with the current working directory to form a fully-qualfied absolute
 path.  The method uses the correct local syntax to form the combined
 path.  If the 'self' object's path is already in absolute format, the

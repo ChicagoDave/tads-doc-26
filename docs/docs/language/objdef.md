@@ -63,7 +63,7 @@ abstract programming entities.
 The most general way to define an object is like this:
 
 
-```tads3
+```
 objectName : class1 [ , class2 ... ]
    propName = value
    methodName ( arg1 [ , arg2 ... ]  ) { methodBody }
@@ -389,7 +389,7 @@ You can place any expression after the "static" keyword.
 
 
 The compiler evaluates all of the static initializer expressions
-just before running [pre-initialization](init.md).  The
+just before running [pre-initialization](../libpre.md).  The
 compiler evaluates each static initializer just once, and stores the
 result value in the property.  When the property is evaluated at
 run-time, the expression is not re-evaluated - the whole point is that
@@ -593,7 +593,7 @@ You can define a class instead of an object by adding the keyword
 "class" before the object name:
 
 
-```tads3
+```
 class className : superclass1 [ , superclass2 ... ]
     propertiesAndMethods
 ;
@@ -822,7 +822,7 @@ meaningful to compare this property for objects defined in different
 modules.
 
 
-## <a name="sourceTextGroup"></a>
+## <a name="sourceTextGroup"></a>sourceTextGroup
 
 
 The compiler can optionally add another property to each object

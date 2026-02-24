@@ -129,4 +129,88 @@ waiting for the garbage collector to get around to it.
 This method has no arguments and no return value.
 
 
-<a name="getFilename"></a>
+<a name="getFilename"></a>`getFilename()`
+
+
+Returns a string giving the name of the file in the local file system.
+This is a fully-qualified path on most systems.
+
+
+This method is mostly for debugging purposes or for displaying to
+the user.  **Don't** use the returned filename to try to open the
+file with one of the File "open" methods - in most cases, the file
+safety settings will prohibit access to this file by name, since it's
+usually in a system directory outside of the program's home folder.
+
+
+## Automatic deletion
+
+
+TADS automatically deletes any file you create in the local file
+system using a TemporaryFile object when your program exits, or when
+the TemporaryFile object itself is deleted by the garbage collector.
+
+
+When the TemporaryFile object is deleted by the garbage collector,
+it means that your program no longer has any references to it.
+Without the TemporaryFile object, it's not possible for your program
+to open the file again, since opening it requires a reference to the
+TemporaryFile object.  So the system knows that you won't be able to
+access the underlying file any longer, and automatically deletes it.
+If the TemporaryFile object is never deleted during routine garbage
+collection, the system will automatically delete the file when the
+program exits.
+
+
+(Note that if you open the temporary file for access via a File
+object, the File object creates its own reference to the
+TemporaryFile.  This means that as long as a temporary file is open,
+it won't be deleted: since the File object has a reference to the
+TemporaryFile object, the garbage collector won't delete the
+TemporaryFile object as long as the File object exists.)
+
+
+You can also explicitly delete the temporary file.  You're not
+required to do this, since the system will eventually delete the file
+automatically.  However, you might occasionally have a reason to
+delete a temporary file immediately when you're done with it, rather
+than waiting for the system to clean it up automatically.  For
+example, if you're writing a server program that might run for a long
+time continuously, and you make heavy use of temporary files, cleaning
+up temp files as soon as you're done with them might help avoid spikes
+in disk usage.  To delete a temporary file manually, use the [deleteFile()](#deleteFile) method.
+
+
+## File safety level bypass
+
+
+Temporary files bypass the file safety settings.  You can create,
+read, and write temporary files even if the safety level prohibits
+access to other local files.
+
+
+This exception to the file safety restrictions is allowed because
+TemporaryFile objects are inherently protected against the sorts of
+misuse that the file safety mechanism protects against for ordinary
+files.  The purpose of the file safety settings is to let the user set
+limits on the program's access to the local file system, to protect
+against errant or malicious software.  In particular, file safety
+prevents programs from reading the user's private data, altering or
+deleting private data, or planting viruses or other malware in
+privileged directories.  Temporary files are designed to be secure
+against these misuses separately from the file safety settings.  It's
+not possible to access or alter existing data via a TemporaryFile
+object, since the underlying filename is assigned by the system and is
+always a new, unused name (i.e., never the name of an existing file).
+It's not possible to create files in system or program directories,
+since temporary files are always placed in the designated temporary
+file folder.  Finally, it's not possible to leave any data on the
+system at all with a temporary file, since a temporary file is deleted
+automatically when the program exits (if not sooner).
+
+
+This safety level override feature is the reason that you shouldn't
+attempt to use the string version of the filename (as returned by
+`getFilename`) to open or delete the file.  The File class grants
+the special exception only to the TemporaryFile object itself, not to
+the underlying filename.

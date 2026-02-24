@@ -600,7 +600,7 @@ course.
 (These functions are part of the [t3vm](../intrinsics/functions/t3vm.md) set.)
 
 
-## <a name="benefits"></a>
+## <a name="benefits"></a>Motivation and benefits
 
 
 Named argument features exist in many other programming languages,

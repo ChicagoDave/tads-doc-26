@@ -213,7 +213,13 @@ def convert_element(element, depth=0):
         if name and not href:
             # mkdocs generates anchors from headings; for standalone anchors
             # we'll use an HTML anchor
-            return f'<a name="{name}"></a>'
+            anchor = f'<a name="{name}"></a>'
+            # Preserve children: lxml auto-closes malformed <a name="...">
+            # tags by nesting subsequent content as children, which we must
+            # not discard
+            if text:
+                return anchor + text
+            return anchor
 
         if not text:
             return ""

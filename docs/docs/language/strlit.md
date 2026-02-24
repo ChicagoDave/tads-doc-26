@@ -132,7 +132,7 @@ assign it to a variable - it has no value to manipulate.";
 ```
 
 
-## <a name="tripleQuotes"></a>
+## <a name="tripleQuotes"></a>Triple quotes
 
 
 Single quotes, double quotes... and now triple quotes?
@@ -406,7 +406,7 @@ right.  They're *usually* the quotes you get when you press this
 key (on a standard US QWERTY keyboard, at least):
 
 
-![](quotekey.jpg)
+![](../quotekey.jpg)
 
 
 The thing that's confusing is that most computer fonts include
@@ -416,7 +416,7 @@ or tilt in opposite directions.  The visual difference is subtle,
 but it helps to see the two kinds side by side:
 
 
-![](quotemarks.jpg)
+![](../quotemarks.jpg)
 
 
 Be sure that you always enclose strings in straight quotes.  As we
@@ -600,7 +600,7 @@ it on the display.  (Note that this is just a program fragment -
 it's not a complete working program.)
 
 
-![](stringexample1.jpg)
+![](../stringexample1.jpg)
 
 
 It's worth taking a few minutes to make sure you understand the
@@ -904,7 +904,7 @@ screen *at the time the string is evaluated*, which will
 probably be out of context.
 
 
-### <a name="embed_sprintf"></a>
+### <a name="embed_sprintf"></a>sprintf-style formatting
 
 
 Starting in 3.1.1, you can specify a
@@ -933,7 +933,7 @@ Since it's really just a call to sprintf(), you can use any format
 code that sprintf() accepts.
 
 
-### <a name="strtpl"></a>
+### <a name="strtpl"></a>Custom embedding syntax with string templates
 
 
 The basic embedded expression syntax is powerful, since it lets you
@@ -1071,7 +1071,7 @@ your program is to put them all in a central ".h" header file
 that you #include in each source file.
 
 
-### <a name="embeddedIf"></a>
+### <a name="embeddedIf"></a>Embedded conditions with `<<if>>`
 
 
 We've seen how we can embed conditional tests in strings using the
@@ -1281,7 +1281,7 @@ normally included automatically in the build.  ("Normally" means
 as long as you don't use the compiler's `-nodef` option to exclude _main.t.)
 
 
-### <a name="firstTimeOnly"></a>
+### <a name="firstTimeOnly"></a>One-time only messages with `<<first time>>`
 
 
 Some passages are only meant to be seen once, the first time

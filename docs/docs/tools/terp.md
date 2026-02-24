@@ -82,7 +82,7 @@ The interpreter options are:
   By default, the interpreter uses a suitable default that depends on
   local conventions.  This option lets you override the default to
   choose a specific character set for log file output.
-- <a name="-d-option"></a> - use *path* as the
+- <a name="-d-option"></a>-d *path* - use *path* as the
   default working directory.  The default if this option isn't specified
   is the directory containing the .t3 file.  The File object uses this
   directory as the default when the program opens files specified with
@@ -128,7 +128,8 @@ The interpreter options are:
   `rand()` results *appear* any less random - rather, it makes
   the sequence repeatable, so that you get the same apparently random
   sequence of numbers on each run.
-- <a name="network-safety"></a> - set the network safety levels for *Client*
+- <a name="network-safety"></a>-ns*level*or**
+  -ns*C**S* - set the network safety levels for *Client*
   and *Server* network features.
   This lets you limit the ability of the game program to access network
   functions.  You can specify the *Client* and *Server* levels
@@ -224,7 +225,7 @@ The interpreter options are:
   image file that created it).  However, if the image file name is
   specified, the image filename information stored in the saved state
   file is ignored and the specified image file is used instead.
-- <a name="-R-option"></a> - set the root folder for
+- <a name="-R-option"></a>-R *folder* - set the root folder for
   individual resources.  When a resource (such as a JPEG image or a
   sound file) is needed, and the resource can't be found in the compiled
   game file or in any resource bundle file, the interpreter will look
@@ -292,7 +293,7 @@ The interpreter options are:
     - [Resource files](build.md#resources), since
          these are restricted to read access and are limited to the
          program's own data.
-    - <a name="filename.htm"></a> objects representing names
+    - <a name="filename.htm"></a>FileName objects representing names
          manually chosen by the user via the
          [inputFile()](../intrinsics/functions/tadsio.md#inputFile) function.  These
          FileName objects are marked with an internal attribute that allows
@@ -306,7 +307,7 @@ The interpreter options are:
          may access, so this extension of permissions for a manual
          selection is a straightforward way of giving the user that final
          say on a file-by-file basis.
-- <a name="-sd-option"></a> - set the sandbox
+- <a name="-sd-option"></a>-sd *dir* - set the sandbox
   directory for the [file safety](#file-safety) feature.  The
   default sandbox directory is the same as the working directory set
   with [-d](#-d-option), or simply the folder containing the

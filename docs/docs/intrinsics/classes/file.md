@@ -73,8 +73,8 @@ format is useful in different situations.  The basic formats are:
   images or word processing documents.  The easiest way to work with
   a raw file is via the [byte packing](../functions/pack.md) methods,
   [packBytes](#packBytes) and [unpackBytes](#unpackBytes).
-  You can also use the [readBytes](#readBytes) and
-  [writeBytes](#writeBytes) methods to
+  You can also use the [readBytes](../../readBytes) and
+  [writeBytes](../../writeBytes) methods to
   work directly at the byte level, via [ByteArray](bytearr.md)
   objects.
 
@@ -398,7 +398,7 @@ possible to use them to access or change any existing local file
 system data.
 
 
-## <a name="filespec"></a>
+## <a name="filespec"></a>File Spec objects
 
 
 Traditionally, the way to specify a file's identity in TADS was

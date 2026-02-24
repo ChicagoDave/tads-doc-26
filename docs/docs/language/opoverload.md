@@ -182,8 +182,8 @@ The following operators are overloadable:
 | `~` | unary | `~a` | `operator ~()` |
 | `|` | binary | `a | b` | `operator |(b)` |
 | `&` | binary | `a & b` | `operator &(b)` |
-| `[]` | binary | `a[b]` | `operator []` `(b)` |
-| `[]=` | ternary | `a[b] = c` | `operator []=` `(b, c)` |
+| `[]` | binary | `a[b]` | `operator [](../b)` |
+| `[]=` | ternary | `a[b] = c` | `operator []=(b, c)` |
 
 
 You can only overload the operators listed above.  Notably,
@@ -260,7 +260,7 @@ if (obj.propDefined(&operator -))
 ```
 
 
-## <a name="listlike"></a>
+## <a name="listlike"></a>List-like objects
 
 
 One of the consequences of being able to overload operators is that
@@ -370,7 +370,7 @@ reason, you can't inherit from or delegate to a built-in operator
 of an intrinsic class.
 
 
-## <a name="uses"></a>
+## <a name="uses"></a>Typical uses
 
 
 Operator overloading has been a feature of mainstream programming

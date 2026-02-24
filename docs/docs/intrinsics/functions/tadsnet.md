@@ -428,7 +428,7 @@ defined in the library file `tadsnet.t`.  You can determine the
 type of the event by looking at the `evType` property of the object:
 
 
-- <a name="NetEvRequest"></a>
+- <a name="NetEvRequest"></a>`NetEvRequest`
      - this represents an incoming network request
      from a client.  When the event type is `NetEvRequest`, the event
      object is of class **NetRequestEvent**, a subclass of NetEvent.
@@ -439,7 +439,7 @@ type of the event by looking at the `evType` property of the object:
 
     - For an HTTP request, the `evRequest` value is an object
             of intrinsic class [HTTPRequest](../classes/httpreq.md).
-- <a name="NetEvReply"></a>
+- <a name="NetEvReply"></a>`NetEvReply`
      - this represents a reply to a network request
      made with [`sendNetRequest()`](#sendNetRequest).  The
      event object for this event type is of class `NetReplyEvent`.
@@ -467,18 +467,18 @@ type of the event by looking at the `evType` property of the object:
             and the corresponding values are the header values, in string
             format.  For example, `replyHeaders['content-type']` contains
             the Content-Type header value.
-- <a name="NetEvTimeout"></a>
+- <a name="NetEvTimeout"></a>`NetEvTimeout`
      - the timeout that you specified in the call to
      `getNetEvent()` expired before any network event occurred.  When
      the event type is `NetEvTimeout`, the event object is of class
      **NetTimeoutEvent**.
-- <a name="NetEvDebugBreak"></a>
+- <a name="NetEvDebugBreak"></a>`NetEvDebugBreak`
      - the user manually broke into the debugger
      before any network event (or timeout) occurred.  This event is possible
      only when the program is being run under the interactive debugger.
      The event interrupts the event wait to allow the debugger to pause
      the program at a byte-code instruction.
-- <a name="NetEvUIClose"></a>
+- <a name="NetEvUIClose"></a>`NetEvUIClose`
      - the user manually closed the Web UI window.
      This event is possible only when the program is running in a TADS
      interpreter where the Web UI is integrated with the interpreter,
@@ -517,7 +517,7 @@ type of the event by looking at the `evType` property of the object:
      If the user actually has closed the browser with the intention of
      quitting, though, there will be no more network activity, so the server
      will give up waiting and shut itself down after the time limit expires.
-- <a name="NetEvReplyDone"></a>
+- <a name="NetEvReplyDone"></a>`NetEvReplyDone`
      - an asynchronous reply to a request
      (see [HTTPRequest.sendReplyAsync()](../classes/httpreq.md#sendReplyAsync))
      has completed.  This event occurs when an asynchronous reply has been

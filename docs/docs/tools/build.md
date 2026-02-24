@@ -596,7 +596,7 @@ avoid this problem, the compiler requires that each source file's name
 is unique.
 
 
-### <a name="resources"></a>
+### <a name="resources"></a>Multi-media resources
 
 
 Following the list of source and library files, you can specify a

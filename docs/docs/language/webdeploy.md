@@ -117,7 +117,7 @@ always find something you saved earlier, even if you've switched
 to another browser device.
 
 
-### <a name="storageServer"></a>
+### <a name="storageServer"></a>IFDB storage server
 
 
 The solution we've come up with is to set up a separate network

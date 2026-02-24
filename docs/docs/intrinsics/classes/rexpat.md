@@ -29,7 +29,7 @@ can improve the program's efficiency by avoiding repeated compilation
 of the same pattern string.
 
 
-## <a name="rexlit"></a>
+## <a name="rexlit"></a>Regular expression literals
 
 
 You can define a static RexPattern object using the regular

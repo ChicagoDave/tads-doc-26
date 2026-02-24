@@ -659,7 +659,62 @@ safety](../../tools/terp.md#file-safety) settings must allow read access to the 
 always accessible.
 
 
-<a name="rexGroup"></a><a name="rexReplace"></a>
+<a name="rexGroup"></a>`rexGroup(groupNum)`
+
+
+Returns information on the text that matched a parenthesized group for
+the last regular expression search or match.  *groupNum* is the
+number of the parenthesized group for which to retrieve the
+information.  Groups are numbered according to the order of appearance
+of the *left* parenthesis of each group, starting from group
+number 1.  The special group number 0 contains the entire match.
+
+
+Only ordinary "capturing" groups are counted in the numbering
+scheme.  Assertions and non-capturing groups aren't counted.
+
+
+The return value is `nil` if *groupNum* is higher than the
+number of groups in the regular expression, or if there was no match
+for the group.  If there's a match for the group, the return value is
+a three-element list: the first element (at index `[1]`) is the
+character index of the group match within the original source string;
+the second element is the length in characters of the group match; and
+third element is a string giving the matching text.
+
+
+`rexMatch(pat, str, index?)`
+
+
+<a name="rexmatch"></a>
+Tests *str* to see if the substring starting at character index
+*index* matches the given regular expression *pat*.
+*pat* can be given as a string containing a valid regular
+expression, or as a `RexPattern object`.
+
+
+If the leading substring of *str* matches the regular
+expression, the function returns the number of characters of the
+matching substring; if there's no match, the function returns
+`nil`.  This does not search for a match, but merely determines if
+*str* matches the expression in its leading substring.  Note that
+a regular expression can successfully match zero characters, so a
+return value of zero is distinct from a return value of `nil`: zero
+indicates a successful match that's zero characters long, and `nil`
+indicates no match.
+
+
+If *index* is given, it indicates the starting index for the
+match; index 1 indicates the first character in the string, and is the
+default if index is omitted.  If *index* is negative, it's an
+index from the end of the string (-1 for the last character, -2 for
+the second to last, etc).  This can be used to match a substring of
+str to the pattern without actually creating a separate substring
+value.
+
+
+Refer to the [regular expressions](regex.md) section
+for details on how to construct a pattern string.<a name="rexReplace"></a>
 
 `rexReplace(pat, str, replacement, flags?, index?, limit?)`
 
@@ -1315,7 +1370,7 @@ The interpretation of *val* depends on its type:
   type for built-in").
 
 
-See also the [toNumber](#toNumber) function, which can
+See also the [toNumber](../../toNumber) function, which can
 parse strings containing floating point values and whole numbers too
 large for the ordinary integer type.
 
@@ -1375,7 +1430,7 @@ The interpretation of *val* depends on its type:
   type for built-in").
 
 
-See also the [toInteger](#toInteger) function, which
+See also the [toInteger](../../toInteger) function, which
 explicitly converts values to integers.  The main difference between
 toInteger and toNumber is that toNumber can parse strings that have to
 be represented as BigNumber values (such as floating point values and

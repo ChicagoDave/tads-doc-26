@@ -77,12 +77,12 @@ Character Map) that TADS will use.
 ## Download Locations for Common Mappings
 
 
-| ISO 8859 (ISO Latin-n) code pages | [ftp://ftp.unicode.org/Public/MAPPINGS/ISO8859/](ftp://ftp.unicode.org/Public/MAPPINGS/ISO8859) |
+| ISO 8859 (ISO Latin-n) code pages | [ftp://ftp.unicode.org/Public/MAPPINGS/ISO8859/](../ftp:/ftp.unicode.org/Public/MAPPINGS/ISO8859) |
 |---|---|
-| MS-DOS code pages | [ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/PC/](ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/PC) |
-| Microsoft Windows code pages | [ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/](ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS) |
-| Apple Macintosh character sets | [ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/APPLE/](ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/APPLE) |
-| NeXT character sets | [ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/NEXT/](ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/NEXT) |
+| MS-DOS code pages | [ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/PC/](../ftp:/ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/PC) |
+| Microsoft Windows code pages | [ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/](../ftp:/ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS) |
+| Apple Macintosh character sets | [ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/APPLE/](../ftp:/ftp.unicode.org/Public/MAPPINGS/VENDORS/APPLE) |
+| NeXT character sets | [ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/NEXT/](../ftp:/ftp.unicode.org/Public/MAPPINGS/VENDORS/NEXT) |
 
 
 ## Approximation Mappings

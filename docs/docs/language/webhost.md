@@ -567,4 +567,4 @@ TADS Interpreter process doesn't exist initially - it doesn't exist
 until step 4, where Apache launches it.
 
 
-![](web-connect-diagram.png)
+![](../web-connect-diagram.png)

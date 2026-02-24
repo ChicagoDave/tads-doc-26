@@ -134,7 +134,7 @@ Iain Merrick, Andrew Pontious, and Chris Nebel for HyperTADS.
 
 I owe an enormous debt of gratitude to Eric Eve for his tireless
 efforts to document TADS 3.  Eric's *Getting Started Guide*,
-*Tour Guide*, and [*Learning TADS 3*](../assets/pdf/learning-tads3.pdf) books comprise a better
+*Tour Guide*, and *Learning TADS 3* books comprise a better
 TADS 3 manual than I could have written.  I'm especially grateful that
 Eric has so graciously allowed me to include his books in the official
 doc set, and for his enthusiastic help integrating it all.

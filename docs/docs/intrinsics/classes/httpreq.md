@@ -166,7 +166,311 @@ You can find more information on how cookies work in general in
 many HTTP reference materials on the Web.
 
 
-<a name="getFormFields"></a><a name="sendReply"></a>
+<a name="getFormFields"></a>`getFormFields()`
+
+
+Retrieves the values of the data-entry fields for an HTML form submitted
+through the POST verb.  This returns a LookupTable containing the field
+values sent with the request: each key is a field name (this is the
+NAME attribute of an <INPUT> tag on the form), and the corresponding
+value is the value of the field.  All field values are represented as
+strings.
+
+
+If there's no message body, the method returns `nil`.  If there's
+a message body, but it exceeds the maximum upload size for the [HTTPServer](httpsrv.md) object, the method returns the
+string `'overflow'`.
+
+
+If the form includes uploaded files, via <INPUT TYPE=FILE>
+fields, the lookup table value for each TYPE=FILE field is a FileUpload
+object instead of a string, or `nil` if the user didn't select a
+file for the field.  The FileUpload object has the following properties:
+
+
+- `file`: a File object representing the uploaded data.  This
+     is open with read-only access.
+
+
+  If the content type parameter in
+     the upload is a text type ("text/html", "text/plain", etc.), and
+     the content type specifies a valid character set mapping, the file
+     is opened in text mode; otherwise it's open in raw binary mode.
+     You can change the mode and/or the character set, if desired,
+     using the `setFileMode()` method on the File object.
+- `txtfile`: a second File object representing the data, also
+     with read-only access, but open in "text" mode.  This object is
+     included *only* if the Content-Type specified in the POST
+     is a text type ("text/plain" or "text/html", for example), and
+     the interpreter recognizes the character set parameter in the
+     Content-Type.  Otherwise, this property is `nil`.
+
+
+  Note that the `file` property is *always* set to a raw
+     File object, even when there's also a `txtfile` object.  This
+     is because you might still want access to the raw bytes of the
+     file even if the client indicated that the upload is textual,
+     such as if you want to save an exact copy on disk.  The
+     text-mode File reader doesn't give you access to the exact bytes
+     in the file because of the translations it applies for character
+     sets and newline conventions.
+- `filename`: a string giving the name of the file on the
+     client side (that is, on the machine that originated the upload).
+     This name isn't meaningful within the local file system on the
+     server side, for obvious reasons.  It's not even necessarily
+     the real filename of the source data on the client side, since
+     the browser is free to specify whatever name it wants here.  Some
+     browsers might intentionally obscure the real name as a security
+     measure.  The indicated filename is really only
+     useful for reference purposes, such as displaying to the user.
+     You could also use the suffix ("extension") to make a guess about
+     the content type, although again, you can't count on the name
+     being accurate, so at best you can use it as guidance that you'll
+     need to verify by inspecting the actual data.
+- `contentType`: a string giving the Content-Type specified
+     by the client for the uploaded file.  Note that you can't rely
+     on this to be accurate.  Most browsers just guess at the content
+     type based on the filename suffix (e.g., they assume a file
+     ending in ".jpg" is a JPEG image), which doesn't prove anything
+     about the contents.  Malicious clients might intentionally lie
+     about the content type in an attempt to exploit bugs in unwary
+     server.  The only way to be sure that the content is of a particular
+     type is to validate the actual data.  For example, if you require
+     the upload to be a valid JPEG image, you can't count on the client-side
+     filename having a ".jpg" suffix or the Content-Type being set to
+     "image/jpeg"; you should instead parse the uploaded data to confirm
+     that it has a valid JPEG file structure.
+
+
+Note that the information that this method parses is actually just
+the message body, which you can retrieve in unparsed format via
+`getBody()`.  Parsing form data is moderately complex, though, so
+this method is convenient when you don't have any special needs
+outside of the standard formats.  This method can handle the two most
+common formats used by Web browsers to submit forms, which are
+"application/x-www-form-urlencoded" and "multipart/form-data".  The
+latter is typically used only when there are uploaded files.  This
+method works the same way regardless of which format is used, so you
+don't have to check before calling it.
+
+
+`getHeaders()`
+
+
+Returns a LookupTable with the request headers sent by the client.
+Headers are a standard part of HTTP that contain additional
+information about the request.
+
+
+Each element of the returned LookupTable has the header name as the
+key, and the corresponding header string as the value.  For example,
+most requests from Web browsers contain a User-Agent header
+identifying the browser; this would appear in the lookup table under
+the 'User-Agent' key, with the corresponding value giving the
+User-Agent string the browser sent.  All of the header values are
+entered into the table as strings, even if they contain numeric data.
+
+
+The special key 1 (as an integer value) gives the "request line".
+This is the first line of the request, and isn't technically a header,
+but rather gives the overall details of the request.  This line always
+contains the verb, the raw query string, and (except for very old browsers
+that predate the first HTTP standard) the protocol version identifier.
+
+
+`getQuery()`
+
+
+Returns a string containing the raw, unparsed query string as sent by
+the client.  This is simply the URL (the address that appears in the
+address bar in the Web browser), minus the "http://server" portion.
+This string usually starts with a "/" character.
+
+
+By "raw", we mean that this method doesn't do any of the standard
+parsing on the string.  If there are query parameters following "?",
+for example, they're left in as part of the returned string.  "%"
+sequences are also left as-is.
+
+
+`getQueryParam(name)`
+
+
+Parses the query string (the URL, minus the "http://server" portion)
+and searches for the given parameter name.  If the specified parameter
+is present, the method returns a string giving the value of the
+parameter (with any "%" sequences decoded, and with any improperly
+formed UTF-8 characters replaced with "?").  If not, it returns
+`nil`.
+
+
+Note that *name* is case-sensitive: the specified name must
+exactly match the name in the URL string.
+
+
+This method does the same parsing work as `parseQuery()`, but
+rather than constructing a LookupTable with all of the parameter
+values, it simply returns the value of the single specified parameter.
+This is more efficient (and slightly simpler to code) when you only
+need to look up one or two parameters in a given query string, since
+it skips creating the lookup table.  `parseQuery()` is more
+efficient if you reuse the table to look up several parameters, since
+`getQueryParam()` repeats the parsing work each time it's called.
+
+
+`getServer()`
+
+
+Returns the [HTTPServer](httpsrv.md) object for the HTTP
+server that received the network request that this HTTPRequest object
+represents.
+
+
+Note that it's *possible*, although unlikely, for the return
+value to be `nil`.  This can only happen if the HTTPServer becomes
+unreachable and the garbage collector deletes it while the request is
+pending.  The server automatically shuts down if the HTTPServer object
+is deleted by the garbage collector, so no new requests can occur
+after that point; however, any requests previously received but not
+yet processed will remain in the [`getNetEvent()`](../functions/tadsnet.md#getNetEvent) queue.  When you read
+one of these pending messages in this situation, its `getServer()`
+return value will be `nil`.  You can ensure this never happens
+simply by making sure that the HTTPServer object remains referenced
+until you explicitly shut it down.
+
+
+`getVerb()`
+
+
+Returns a string giving the "verb" the client sent with the request.
+The standard verbs ar GET, POST, OPTIONS, HEAD, PUT, DELETE, TRACE,
+CONNECT, and PATCH, but the HTTPServer object doesn't enforce this:
+if the client sends a non-standard verb, the server will simply pass
+it through, and you'll see the exact verb text the user sent here.
+
+
+Ordinary Web browsers use the verb GET whenever the user navigates
+to a page by typing in an address manually, by clicking on a
+hyperlink, or when following a redirection link.  Web browsers usually
+use POST when submitting an HTML form.  The other verbs are not common
+for Web browsers, but can be used by other types of client
+applications, such as WebDAV clients.
+
+
+`parseQuery()`
+
+
+This method parses the query string (the string returned by
+`getQuery()`) and returns the result.  First, it looks for query
+parameters, and parses them into name/value pairs.  Second, it
+replaces any "%" sequences in the main resource name or in the query
+parameters with the corresponding characters.  Finally, it validates
+that the result is well-formed UTF-8; any invalid UTF-8 sequences are
+converted to "?" characters.
+
+
+(The standard HTTP query string has the form
+*path*?*name*=*value*&*name*=*value*.
+Each *name*=*value* pair is a query parameter.)
+
+
+The return value is a LookupTable containing the parsed results.
+The special key value 1 (as an integer value) contains the base
+"resource" string: this is the part of the query string up to the "?"
+that introduces the parameters, or simply the whole query string if
+there are no parameters.  The rest of the table contains the
+parameters: each parameter name is a key, and the corresponding value
+is the value of that parameter, as a string.
+
+
+For example, if we parse this query string:
+
+
+```tads3
+http://www.tads.org:1234/path/resource?a=one&b=two&c=three&d
+```
+
+
+we'll get this LookupTable:
+
+
+```tads3
+table[1] = '/path/resource'
+table['a'] = 'one'
+table['b'] = 'two'
+table['c'] = 'three'
+table['d'] = ''
+```
+
+
+`setCookie(name, val)`
+
+
+Sets a cookie to be sent with the reply.  *name* is a string giving
+the name of the cookie, and *val* is the text of the cookie.
+
+
+Cookies must be set before sending the reply, or starting a chunked
+reply.  This is a requirement of HTTP itself, since the cookies must
+be sent with the header information at the start of the reply.  Calling
+this method doesn't actually send any data to the client immediately;
+instead, it simply stores the cookie information internally with the
+pending request, to be sent when you call `sendReply()` or
+`startChunkedReply()`.
+
+
+If you set two cookies with identical names, paths, and domains,
+the later setting supersedes the earlier one.  Cookies with distinct
+paths and/or domains are considered separate cookies, even if they
+have the same name.  This allows you to send distinct cookie values
+for different resource paths with a single reply.
+
+
+The value can include one or more optional attributes.  These are
+separated from the cookie text and from each other by semicolons, and
+have the form *attribute=value*.  Cookie attributes are defined
+by the HTTP protocol, so for full details you should see your favorite
+HTTP reference material, but for the sake of convenience here's a quick
+overview:
+
+
+- `expires=`*date*, where *date* is a date in Unix
+     format (e.g., "Fri, 31-Dec-2010 23:59:59 GMT").  This specifies
+     the expiration date for a persistent cookie, which is a cookie
+     that the browser is meant to store on disk so that the cookie
+     survives even after the browser program terminates.  If no expiration
+     is specified, the cookie is a "session" cookie, which is meant to be
+     stored in memory only and should be automatically deleted when the
+     user closes the browser.
+- `domain=`*site*, where *site* is a domain name.
+     This scopes the cookie to the site: it will be sent on subsequent
+     requests to this site only.
+     The domain is usually specified with a leading period, as in
+     ".tads.org"; this means that the cookie also applies to subdomains.
+     If you don't specify the domain, the browser will default to the
+     domain of this request.
+- `path=`*path*, where *path* is a URL-style path prefix,
+     starting with a slash '/' character.  This scopes the cookie to resources
+     within the domain starting with the given path prefix.  For example,
+     `path=/home/` makes the cookie apply only to resources in the
+     `/home` directory on the server.  If you don't specify a path,
+     the browser will default to the path of the resource in this request.
+- `httponly` specifies that the cookie is for HTTP use only, and
+     should be hidden from Javascript and other client-side scripting
+     languages.  This is useful for cookies containing privileged information,
+     such as passwords, because it prevents malicious Javascript code from
+     seeing the cookie value and transmitting it to a third-party site.
+     (This isn't a particularly strong security measure, since it's up to
+     the browser to enforce; it doesn't do anything to prevent a malicious
+     native program on the client from stealing the cookie.  It's better to
+     avoid storing sensitive information in cookies in the first place.
+     Rather than storing a password, for example, it's better to store a
+     session key with a limited lifetime.)
+- `secure` specifies that the cookie is only to be transmitted
+     across a secure socket connection (https://...).  As with HttpOnly,
+     this affords a modest level of protection for cookies with sensitive
+     contents, by telling the browser not to send the value over
+     unencrypted socket connections (which are vulnerable to eavesdropping).<a name="sendReply"></a>
 
 `sendReply(body, contentType?, status?, headers?)`
 

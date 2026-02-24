@@ -335,7 +335,7 @@ testCyrillic(args)
   /* get the local display character set */
   local cs = new CharacterSet(getLocalCharSet(CharsetDisplay));
 
-  /*  Check a few representative Cyrillic alphabetic characters
+  /  Check a few representative Cyrillic alphabetic characters
    *  (see http://www.unicode.org/charts/)
    */
   if (cs.isMappable('\u0410\u0411\u041a\u042f\0430\0431\u044f'))

@@ -1604,7 +1604,7 @@ if (result[1] == InEvtTimeout)
   /* timed out - cancel input and forget the buffer */
   inputLineCancel(true);
 
-  /*  gloat about defeating the user with our clever time
+  /  gloat about defeating the user with our clever time
    *  limit ruse, using the spelling enjoyed by usenet
    *  posters everywhere
    */

@@ -118,7 +118,7 @@ behaviors and attributes from the two base classes.  Here's a diagram
 showing a new subclass, C, based on two superclasses, A and B:
 
 
-![](class1.gif)
+![](../class1.gif)
 
 (We could also base a subclass on three or more base classes, not
 just two.  The principles and rules for three or more superclasses are
@@ -135,7 +135,7 @@ A.*p*`=`1, and B.*p*`=`2, what value of *p* does C
 inherit?  Here's a picture of what we mean:
 
 
-![](class1a.gif)
+![](../class1a.gif)
 
 Our new notation in the diagram shows property definitions - that
 little *p=1* next to A means that A defines property *p*
@@ -193,7 +193,7 @@ take into account, which is this: what if A and B themselves
 share a common base class?  Consider this diagram:
 
 
-![](class2.gif)
+![](../class2.gif)
 
 We now have A as a subclass of Z, B as a sublass of Z, and C as a
 subclass of A and B.  In terms of TADS definitions, this would look
@@ -213,7 +213,7 @@ anything - C still inherits *p* from A because of the "leftmost
 superclass" rule.  But now consider this bizarre situation:
 
 
-![](class3.gif)
+![](../class3.gif)
 
 Remember our notation: that little *p=1* next to Z means that
 Z defines property *p* with the value 1.  So we now have
@@ -349,7 +349,7 @@ ordering of all of the instances of a given method in a given object's
 class tree.  For example, take our example from earlier:
 
 
-![](class3.gif)
+![](../class3.gif)
 
 In C's hierarchy, the inheritance order for *p* is [B, Z] - in
 other words, C inherit *p* first from B, then from Z.  We know

@@ -624,7 +624,7 @@ Returns the number of characters in the string.
 `mapToByteArray(charset?)`
 
 
-Creates a [ByteArray](bytearr.md) object based on the
+Creates a [ByteArray](../../bytearr.h) object based on the
 contents of the string.  This is equivalent to calling
 `new ByteArray()` with this string and character set as arguments.
 
@@ -1088,7 +1088,7 @@ this is the same as simply converting to lower case, but it differs
 for a few cases where the upper-case mapping of a lower-case character
 results in more than one character.  For example, the German sharp S,
 ß, converts to upper case as 'SS', so its case folding is lower
-case 'ss'.  This allows the strings 'WEISS' and 'weiß' to match when
+case 'ss'.  This allows the strings 'WEISS' and 'wei�' to match when
 case-folded, for example.  There are a number of other ligatures and
 accented characters that undergo similar expansions when case-folded.
 

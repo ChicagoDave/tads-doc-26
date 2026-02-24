@@ -388,7 +388,7 @@ You might wonder why we wrote each vowel twice.  It's because
 regular expressions are case-sensitive by default - "a" in an
 expression matches "a" in a string, but not "A".  When you want an
 expression to be indifferent to case distinctions, you can make
-it case-insensitive with the [`<NoCase>` flag](#case).
+it case-insensitive with the [`<NoCase>` flag](../../case).
 
 
 You can use a range expression in an expression wherever an
@@ -1551,7 +1551,7 @@ can use range expressions rather than the  class and the like:
 ```
 
 
-A C-style comment (/* ... */) is a little tricky.  At first glance,
+A C-style comment (/* � */) is a little tricky.  At first glance,
 we might try something simple like this:
 
 

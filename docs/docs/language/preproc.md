@@ -73,7 +73,7 @@ be preceded by anything, not even a comment or whitespace.
 The syntax is:
 
 
-```tads3
+```
 #charset "name"
 ```
 
@@ -94,7 +94,7 @@ a simple constant symbol, and one that defines a function-like macro
 with parameters.
 
 
-```tads3
+```
 #define simpleMacro text
 #define funcMacro( [ param1 [ , param2 ... ]  ]  ) textWithParameters
 ```
@@ -172,7 +172,7 @@ These directives allow you to include or exclude code conditionally.
 The syntax of these macros is as follows:
 
 
-```tads3
+```
 #if expression
 #ifdef macroName
 #elif expression
@@ -261,7 +261,7 @@ output.
 #include has two forms.
 
 
-```tads3
+```
 #include "filename"
 ```
 
@@ -276,7 +276,7 @@ containing the top-level source file, then we proceed as for an
 angle-bracketed file.
 
 
-```tads3
+```
 #include <filename>
 ```
 
@@ -680,7 +680,7 @@ It's perfectly legal to undefine a macro that was never defined.
 This is silently ignored; it doesn't even generate a warning.
 
 
-## <a name="macros"></a>
+## <a name="macros"></a>Macros
 
 
 ### Substitution parameters

@@ -128,7 +128,7 @@ the section on [local variable access](#localFrames) for
 more details.
 
 
-## <a name="funcSyntax"></a>
+## <a name="funcSyntax"></a>Source code syntax
 
 
 There are two types of source code you can use to create dynamic

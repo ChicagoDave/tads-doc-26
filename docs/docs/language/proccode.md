@@ -61,7 +61,7 @@ step-by-step instructions for the computer to follow.
 - [Notes for TADS 2 users](#tads2)
 
 
-## <a name="functionsAndMethods"></a>
+## <a name="functionsAndMethods"></a>Functions and methods
 
 
 There are two places where procedural code can appear.  The first
@@ -90,7 +90,7 @@ way to group each data structure with the parts of the code that
 operate on it.
 
 
-### <a name="funcdef"></a>
+### <a name="funcdef"></a>Defining a function
 
 
 A function definition has this form:
@@ -172,7 +172,7 @@ cube(n)
 ```
 
 
-### <a name="optArgs"></a>
+### <a name="optArgs"></a>Optional arguments
 
 
 In some cases, it's convenient to be able to declare a function or
@@ -236,7 +236,7 @@ worth knowing about, see the [optional parameters
 section](optparams.md).
 
 
-### <a name="namedArgs"></a>
+### <a name="namedArgs"></a>Named arguments
 
 
 The usual way of passing arguments, as described above, is
@@ -298,7 +298,7 @@ to use them, see the [named arguments
 chapter](namedargs.md).
 
 
-### <a name="funcModRep"></a>
+### <a name="funcModRep"></a>Replacing or modifying a function
 
 
 When using a library, it's sometimes useful to be able to replace
@@ -382,7 +382,7 @@ of the redefinition.  To get the pointer, use the `replaced` keyword
 without an argument list.
 
 
-### <a name="methdef"></a>
+### <a name="methdef"></a>Defining a method
 
 
 A method definition looks just like a function definition
@@ -473,7 +473,7 @@ first glance.  Rather, it's a method call, and behaves exactly
 as though we'd written `self.isOwned()`.
 
 
-### <a name="shortMeth"></a>
+### <a name="shortMeth"></a>Short-hand method definitions
 
 
 In addition to the standard function-like syntax for defining
@@ -525,7 +525,7 @@ case.  These syntax variations are for your coding convenience;
 they're not performance optimizations.
 
 
-### <a name="floatingMethods"></a>
+### <a name="floatingMethods"></a>Floating methods
 
 
 Another way of defining a method is to define it *without*
@@ -586,7 +586,7 @@ run-time, as an actual method of one or more objects.  You do this
 using `TadsObject.setMethod()`, which you can find more about [here](../intrinsics/classes/tadsobj.md#setMethod).
 
 
-### <a name="varargs"></a>
+### <a name="varargs"></a>Varying argument lists
 
 
 A function or method can be defined as taking a varying number of
@@ -671,7 +671,7 @@ frequently, for example), you might get better execution speed with
 the ellipsis style.
 
 
-### <a name="varargsCall"></a>
+### <a name="varargsCall"></a>Varying-argument calls
 
 
 In addition to being able to *receive* varying arguments as a
@@ -707,7 +707,7 @@ take a variable argument list and later pass the same arguments to
 another variable argument function.
 
 
-## <a name="externDecl"></a>
+## <a name="externDecl"></a>External declarations
 
 
 When you build your program, the compiler scans all of the source
@@ -735,7 +735,7 @@ statement.  This statement can be used to define functions, objects,
 and classes.  The syntax is:
 
 
-```tads3
+```
 extern function functionName ( [ param [ , param ... ]  ]  ) ;
 extern object objectName ;
 extern class className ;
@@ -746,7 +746,7 @@ These statements must be placed in "top level" code, outside
 of all object or function definitions.
 
 
-## <a name="propdecl"></a>
+## <a name="propdecl"></a>Property name declarations
 
 
 For the most part, the compiler automatically determines the
@@ -800,7 +800,7 @@ method name is identical to a property name in terms of the symbol
 type, so there's no difference in the declaration syntax.
 
 
-## <a name="statements"></a>
+## <a name="statements"></a>Procedural statements
 
 
 Within a function or method body, you can write a series of
@@ -839,7 +839,7 @@ false.  The `for` statement sets up a loop, where a group of
 statements is repeatedly executed as long as a condition is true.
 
 
-### <a name="blocks"></a>
+### <a name="blocks"></a>Code blocks
 
 
 A "code block" is a group of statements enclosed in braces (`{ }`).
@@ -901,7 +901,7 @@ myFunc(x)
 ```
 
 
-### <a name="labels"></a>
+### <a name="labels"></a>Statement labels
 
 
 A statement can be given a "label."  This is a symbol that you can
@@ -972,7 +972,7 @@ to do is add an empty statement after the label:
 ```
 
 
-### <a name="emptystm"></a>
+### <a name="emptystm"></a>Empty statements
 
 
 The "empty statement" consists of merely a semicolon:
@@ -1005,7 +1005,7 @@ can use an empty statement to fill the syntactic need without
 adding any run-time overhead.
 
 
-### <a name="local"></a>
+### <a name="local"></a>local
 
 
 The `local` statement defines one or more local variables, and
@@ -1109,7 +1109,7 @@ reserve space for the local variable when the function or method is
 entered.
 
 
-### <a name="exprstm"></a>
+### <a name="exprstm"></a>Expression statements
 
 
 An expression, all by itself, counts as a statement.
@@ -1161,7 +1161,7 @@ myObj.weight *= 2;
 ```
 
 
-### <a name="dqstm"></a>
+### <a name="dqstm"></a>Double-quoted string statement
 
 
 A double-quoted string, written by itself as a statement, displays
@@ -1218,7 +1218,7 @@ For more on embedded expressions, see the section on
 [string literals](strlit.md#embeddings).
 
 
-### <a name="return"></a>
+### <a name="return"></a>return
 
 
 The `return` statement exits the current function or method
@@ -1244,7 +1244,7 @@ the innermost outward.  It then exits the function and resumes
 execution in the caller.
 
 
-### <a name="if"></a>
+### <a name="if"></a>if
 
 
 The `if` statement executes a statement if a given condition
@@ -1323,7 +1323,7 @@ nested code block and therefore out of consideration back in
 the main code block.
 
 
-### <a name="for"></a>
+### <a name="for"></a>for
 
 
 The `for` statement is a flexible and powerful looping construct
@@ -1336,7 +1336,7 @@ TADS has three different kinds of `for` loops: the standard C
 easy to write a loop over a range of integer values.
 
 
-#### <a name="cfor"></a>
+#### <a name="cfor"></a>C-style `for` loops
 
 
 The basic `for` loop in TADS is almost identical to the
@@ -1354,7 +1354,7 @@ The  initializer is either an ordinary expression, or a list
 of local variable declarations, or a mix of both:
 
 
-```tads3
+```
 ( expression | local varName = expression )  [ , ... ]
 ```
 
@@ -1478,7 +1478,7 @@ faster, because it doesn't have to call `lst.length()` every time
 through the loop.
 
 
-#### <a name="forIn"></a>
+#### <a name="forIn"></a>for..in
 
 
 The `for` statement can alternatively iterate over the elements
@@ -1502,7 +1502,7 @@ standard C-style `for` syntax, so that you can add other
 variables (counters, sums, etc.) to a collection loop.
 
 
-#### <a name="forInRange"></a>
+#### <a name="forInRange"></a>for..in range
 
 
 The third type of `for` loop iterates over a range of integers.
@@ -1602,7 +1602,8 @@ because it does the same thing.  It just saves you the trouble of
 coding the extra step by hand, and makes the code easier to read.
 
 
-#### <a name="combinedFor"></a>
+#### <a name="combinedFor"></a>Combining `for`, `for..in`, and
+   `for..in range`
 
 
 So far, we've presented the `for` statement as though it had
@@ -1698,7 +1699,7 @@ values of the `in` control variables, from the loop iteration that
 just finished, if desired.
 
 
-### <a name="foreach"></a>
+### <a name="foreach"></a>foreach
 
 
 The `foreach` statement iterates over a Collection object's
@@ -1872,7 +1873,7 @@ looping variable  loopVar, then execute the loop body once,
 then go to the top of the loop.
 
 
-### <a name="while"></a>
+### <a name="while"></a>while
 
 
 The `while` statement sets up a simple loop that repeats as
@@ -1918,7 +1919,7 @@ while (iter.isNextAvail())
 ```
 
 
-### <a name="dowhile"></a>
+### <a name="dowhile"></a>do...while
 
 
 The `do`...`while` statement sets up a loop similar to
@@ -1963,7 +1964,7 @@ do
 ```
 
 
-### <a name="switch"></a>
+### <a name="switch"></a>switch
 
 
 The `switch` statement selects one of several code branches,
@@ -1972,7 +1973,7 @@ a series of `if`...`else if`...`else if`... statements, but
 has some advantages and restrictions over that approach.
 
 
-```tads3
+```
 switch ( controlExpression )
 {
   case value1 :
@@ -2044,7 +2045,7 @@ first if you want - it won't change anything, since the value labels
 are always checked first, no matter where the `default` appears.
 
 
-#### <a name="caseBreaks"></a>
+#### <a name="caseBreaks"></a>Warning! `break` must be explicit!
 
 
 It's very important to note that a `case` label **does not**
@@ -2203,7 +2204,7 @@ case 2:
 ```
 
 
-#### <a name="indentStyle"></a>
+#### <a name="indentStyle"></a>A note on indentation styles
 
 
 There are basically two ways to indent `switch` bodies.  Some
@@ -2254,7 +2255,7 @@ ordinary statement ("goto") labels, which I like to "outdent" from the
 code they're labeling.
 
 
-### <a name="goto"></a>
+### <a name="goto"></a>goto
 
 
 The `goto` statement transfers the execution position directly
@@ -2300,7 +2301,7 @@ statements largely eliminates even this type of situation, so
 justified uses of `goto` in TADS 3 programs are rare indeed.
 
 
-### <a name="break"></a>
+### <a name="break"></a>break
 
 
 The `break` statement exits a given statement, transferring
@@ -2411,7 +2412,7 @@ it lets you bypass a whole chunk of code by jumping directly out
 of the entire labeled block.
 
 
-### <a name="continue"></a>
+### <a name="continue"></a>continue
 
 
 The `continue` statement bypasses the remainder of a loop
@@ -2475,7 +2476,7 @@ for (local i = 0 ; i < 10 ; ++i)
 ```
 
 
-### <a name="throw"></a>
+### <a name="throw"></a>throw
 
 
 The `throw` statement "throws an exception."  That is, given an
@@ -2499,7 +2500,7 @@ Refer to the section on [exception handling](except.md)
 for more details on `try` and `throw`.
 
 
-### <a name="try"></a>
+### <a name="try"></a>try
 
 
 The `try` statement sets up an exception handler for the duration
@@ -2610,7 +2611,7 @@ For more details on `try` and `throw`, refer to the section on
 [exception handling](except.md).
 
 
-## <a name="tads2"></a>
+## <a name="tads2"></a>Notes for TADS 2 users
 
 
 TADS 2 users should note some important syntax changes from

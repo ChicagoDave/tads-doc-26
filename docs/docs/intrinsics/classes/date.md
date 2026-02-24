@@ -218,7 +218,7 @@ If *tz* is `nil` or missing, the system's local time zone is
 the default.
 
 
-## <a name="tzarg"></a>
+## <a name="tzarg"></a>Timezone arguments
 
 
 Many of the constructors and methods take a "timezone" argument.
@@ -820,7 +820,7 @@ synonyms, the first item is the one used for output; any synonyms
 are purely for input matching.
 
 
-## <a name="inputFormats"></a>
+## <a name="inputFormats"></a>Input formats
 
 
 The Date class can parse a variety of common human and computer
@@ -969,7 +969,7 @@ set to 'eu' for European-style day/month ordering.
 ## Details and background notes
 
 
-### <a name="limits"></a>
+### <a name="limits"></a>Internal representation and range limits
 
 
 The internal representation of a Date has two components: a 32-bit
@@ -989,7 +989,7 @@ of about plus or minus two billion days from 0000-03-01, which is
 about 5.87 million years in each direction.
 
 
-### <a name="tzParsing"></a>
+### <a name="tzParsing"></a>Parsing time zone names date strings
 
 
 The date parser accepts date and time strings that contain explicit
@@ -1088,7 +1088,7 @@ another.  So the Date parser and formatter let you explicitly choose
 the calendar you wish to use for a given operation.
 
 
-### <a name="year0"></a>
+### <a name="year0"></a>Year zero and negative year numbers
 
 
 In the traditional AD/BC timeline, there's no such thing as a Year
@@ -1112,7 +1112,7 @@ can choose the notation by selecting the appropriate format code
 (e.g., `%y` for astronomical years, `%e` for AD/BC eras).
 
 
-### <a name="leapseconds"></a>
+### <a name="leapseconds"></a>Leap seconds
 
 
 For most of human history, the Earth was our master clock.

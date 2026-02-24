@@ -201,7 +201,7 @@ list notation for dictionary properties - you *must* use the
 implied list format.
 
 
-## <a name="spellingCorrection"></a>
+## <a name="spellingCorrection"></a>Spelling correction
 
 
 The Dictionary class provides support for spelling correction

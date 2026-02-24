@@ -107,7 +107,7 @@ A grammar rule is defined using the `grammar` keyword.  A
 definition, but with a few added elements:
 
 
-```tads3
+```
 grammar prodName [ ( tag ) ]  : rules : superclass [ , superclass ... ]
   propsAndMethods
 ;
@@ -289,7 +289,7 @@ fit your needs.
 To use `modify` with a grammar rule, use this syntax:
 
 
-```tads3
+```
 modify grammar prodName ( tag ) : rules :
   propsAndMethods
 ;
@@ -316,7 +316,7 @@ matches.
 To use `replace` with a grammar rule, use this syntax:
 
 
-```tads3
+```
 replace grammar prodName ( tag ) : rules : superclass [ , superclass ... ]
   propsAndMethods
 ;
