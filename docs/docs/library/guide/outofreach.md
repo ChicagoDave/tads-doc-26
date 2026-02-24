@@ -85,4 +85,4 @@ modify OutOfReach
 ;
 ```
 
-It's worth pointing out that we can do far more with the OutOfReach class than the single example here may suggest; for further details see Section 11.7 Nested Rooms and OutOfReach in *Learning TADS 3*.
+It's worth pointing out that we can do far more with the OutOfReach class than the single example here may suggest; for further details see Section 11.7 Nested Rooms and OutOfReach in [*Learning TADS 3*](../../assets/pdf/learning-tads3.pdf).

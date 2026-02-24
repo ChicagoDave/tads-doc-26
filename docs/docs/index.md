@@ -75,7 +75,7 @@ This documentation was generated from the original TADS 3 source materials:
 - **Technical Manual** edited by Michael J. Roberts
 - **Getting Started in TADS 3** by Eric Eve
 - **TADS 3 Tour Guide** by Eric Eve
-- **Learning TADS 3** by Eric Eve
+- **[Learning TADS 3](assets/pdf/learning-tads3.pdf)** by Eric Eve (PDF)
 - **TADS 3 Library Reference Manual** (generated from source)
 
 The original documentation and TADS 3 source code are copyright their respective authors.
