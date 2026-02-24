@@ -311,7 +311,7 @@ element.  If the callback returns a false value (`nil` or 0) for
 every element of the list, the method returns `nil`.
 
 
-`insertAt(index, val1, val2, �)`
+`insertAt(index, val1, val2, ...)`
 
 
 Returns a new list which results from inserting the given values

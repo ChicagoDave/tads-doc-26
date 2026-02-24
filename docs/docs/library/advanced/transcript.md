@@ -859,7 +859,7 @@ tennis ball: Taken.
 old coat: Taken.
 odd sock: Taken.
 large red box: Taken.
-wardrobe: You can�t take that.
+wardrobe: You can't take that.
 small green book: Taken.
 torch: Taken.
 small square table: The small square table is too heavy.
@@ -1021,7 +1021,7 @@ With this code the output becomes:
 >take all
 You take the tennis ball, the old coat, the odd sock, the large red box, the small green book,
 the torch, the small blue box, eight gold coins, three silver coins, and two copper coins.
-You can�t take that. The small square table is too heavy.
+You can't take that. The small square table is too heavy.
 
 ```
 
@@ -1056,7 +1056,7 @@ With this our output becomes what we were aiming for:
 >take all
 You take the tennis ball, the old coat, the odd sock, the large red box, the small green book,
 the torch, the small blue box, eight gold coins, three silver coins, and two copper coins. You
-can�t take the wardrobe. The small square table is too heavy to take.
+can't take the wardrobe. The small square table is too heavy to take.
 
 ```
 
@@ -1093,7 +1093,7 @@ We'd then find that the tennis ball was listed twice:
 >take all
 You take the tennis ball, the tennis ball, the old coat, the odd sock, the large red box, the
 small green book, the torch, the small blue box, eight gold coins, three silver coins, and two
-copper coins. You can�t take the wardrobe. The small square table is too heavy to take.
+copper coins. You can't take the wardrobe. The small square table is too heavy to take.
 
 ```
 

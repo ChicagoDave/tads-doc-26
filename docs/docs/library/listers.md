@@ -908,14 +908,14 @@ You see nothing unusual about it.
 Opened.
 
 >x it
-It�s open but empty.
+It's open but empty.
 
 >put pen in box
 (first taking the pen)
 Done.
 
 >x box
-It�s open, and contains a pen.
+It's open, and contains a pen.
 
 >close box
 Closed.
@@ -1033,7 +1033,7 @@ The standard form of an inventory listing (the listing of the player character's
 ```
 
 >i
-You are carrying a walking stick, a map, and an iceberg lettuce, and you�re wearing a
+You are carrying a walking stick, a map, and an iceberg lettuce, and you're wearing a
 long overcoat and a pair of brown shoes.
 
 ```
@@ -1126,7 +1126,7 @@ This is probably slightly more complex than it needs to be. In the most common c
 ```
 
 >i
-You are holding a walking stick, a map, and an iceberg lettuce, and you�re sporting a long
+You are holding a walking stick, a map, and an iceberg lettuce, and you're sporting a long
 overcoat and a pair of brown shoes.
 
 >i tall
@@ -1155,7 +1155,7 @@ You are holding absolutely nothing.
 
 >wear shoes
 (first taking the pair of brown shoes)
-Okay, you�re now wearing the pair of brown shoes.
+Okay, you're now wearing the pair of brown shoes.
 
 >i
 You aren't holding anything, but are sporting a pair of brown shoes.
@@ -1171,7 +1171,7 @@ Changing the way the inventory of an NPC is listed is similar, except that one i
 >x myrtle
 You think she's very pretty.
 
-Myrtle is carrying a bunch of flowers, and she�s wearing a red dress.
+Myrtle is carrying a bunch of flowers, and she's wearing a red dress.
 
 ```
 
@@ -1197,7 +1197,7 @@ You'll then get:
 ```
 
 >x myrtle
-You think she's very pretty. She is carrying a bunch of flowers, and she�s wearing a red dress.
+You think she's very pretty. She is carrying a bunch of flowers, and she's wearing a red dress.
 
 ```
 

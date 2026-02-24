@@ -90,13 +90,13 @@ catch (SecondExceptionClass exc2)
 }
 finally
 {
-  // do some cleanup work � this gets called
+  // do some cleanup work — this gets called
   // whether an exception occurs or not
 }
 ```
 
 
-A `try` statement can have as many `catch` clauses as needed �
+A `try` statement can have as many `catch` clauses as needed —
 it can even have no `catch` clauses at all.  The `finally` clause
 is optional, but only one is allowed if it's present at all, and it
 must follow all of the `catch` clauses.
@@ -104,7 +104,7 @@ must follow all of the `catch` clauses.
 
 Each `catch` clause has a name following the name of the
 exception.  The `catch` defines a new local variable with the given
-name � the variable is local to the code within the `catch` clause.
+name — the variable is local to the code within the `catch` clause.
 When the exception is caught, the VM will store a reference to the
 thrown exception object in this variable; this is, of course, the same
 object that was used in the `throw` statement that threw the

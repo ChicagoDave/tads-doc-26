@@ -15,7 +15,7 @@ The basis for the game we shall be developing is the so-called 'advanced' starte
 -lib adv3/adv3
 -source goldskull
 
-Now open goldskull.t in Workbench (if you�re using Workbench) or else in text editor of your choice; the TADS Compiler will accept an ASCII file produced with any editor.  Then remove (or modify as shown below) the definition of startroom, i.e. the lines that read:
+Now open goldskull.t in Workbench (if you're using Workbench) or else in text editor of your choice; the TADS Compiler will accept an ASCII file produced with any editor.  Then remove (or modify as shown below) the definition of startroom, i.e. the lines that read:
 
 startRoom: Room 'Start Room'
     "This is the starting room. "

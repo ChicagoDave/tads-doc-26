@@ -285,7 +285,7 @@ Taken.
 You are carrying an old coat (which nobody is wearing right now).
 
 >wear coat
-Okay, you�re now wearing the old coat.
+Okay, you're now wearing the old coat.
 
 >i
 You are carrying nothing, and are wearing an old coat.
@@ -359,7 +359,7 @@ This may not be ideal, but it's serviceable, and in this situation the informati
 
 >x mavis
 She's a funny old woman, when all's said and done. She is sitting on the wooden chair.
-She's rocking back and forth in her chair moaning �Woe!�
+She's rocking back and forth in her chair moaning "Woe!"
 
 ```
 
@@ -387,7 +387,7 @@ Then we'll see:
 
 >x mavis
 She's a funny old woman, when all's said and done. She's rocking back and forth in
-her chair moaning �Woe!�
+her chair moaning "Woe!"
 
 ```
 

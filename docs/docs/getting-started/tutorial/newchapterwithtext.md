@@ -2,7 +2,7 @@
 
 # Preface
 
-The first edition of *Getting Started in TADS 3* was an attempt by one (then fairly novice) TADS 3 user to help others with some experience of programming IF systems to get up to speed on TADS 3. Since then, it has grown and developed as a result both of feedback from people who have used it, and of its author�s attempts to improve it. In its present form it is intended to be used as one possible starting point for anyone wishing to learn to write Interactive Fiction using TADS 3. Another possible starting point would be *Learning TADS 3*, which takes a rather different approach.
+The first edition of *Getting Started in TADS 3* was an attempt by one (then fairly novice) TADS 3 user to help others with some experience of programming IF systems to get up to speed on TADS 3. Since then, it has grown and developed as a result both of feedback from people who have used it, and of its author's attempts to improve it. In its present form it is intended to be used as one possible starting point for anyone wishing to learn to write Interactive Fiction using TADS 3. Another possible starting point would be *Learning TADS 3*, which takes a rather different approach.
 
 This guide has never been intended as a complete manual covering every aspect of the language and library; it is instead intended to introduce new users to the basics of the system. If you are new to TADS 3, the best way for you to get to grips with it is probably for you to work through this guide and gain a reasonably secure understanding of its contents before moving on to the other documentation that covers the language and library in more depth.
 

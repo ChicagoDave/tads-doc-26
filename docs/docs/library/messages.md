@@ -44,7 +44,7 @@ On the small square table is a small blue box.    [5]
 >about   [6]
 This is just a brief demo game to illustrate where various messages come from in TADS 3.   [7]
 Or you could think of it as a high adventure with deep characterization, a riveting plot,
-and a myriad of amazing puzzles � except that if you do think of it this way you'll be
+and a myriad of amazing puzzles — except that if you do think of it this way you'll be
 sadly disappointed!
 
 >credits
@@ -54,7 +54,7 @@ Put credits for the game here.   [8]
 On the small square table is a small blue box.   [5]
 
 >x red box
-It's large, red and box-shaped. It�s closed.   [9]
+It's large, red and box-shaped. It's closed.   [9]
 
 >take box
 Which box do you mean, the small blue box, or the large red box?  [10]
@@ -86,7 +86,7 @@ square table is a small blue box.
 All sorts of stuff, the accumulated detritus of decades, mostly not worth bothering with.
 
 >search junk
-The junk isn�t important.   [12a]
+The junk isn't important.   [12a]
 
 >take table
 The small square table is too heavy. [13]
@@ -103,20 +103,20 @@ It's a copy of Getting Started in TADS 6.
 Reading the book brings back happy memories of writing IF in your early twenties.   [15]
 With TADS 6 all you had to do was fill in a form specifying the genre of the game,
 the names of a few key NPCs, and the median age of the target audience, select a
-plot-type from a drop-down list, and then hit either the �generate two-hour version
-for IF-Comp� button or �generate long version� button, and a bug-free, typo-free
+plot-type from a drop-down list, and then hit either the "generate two-hour version
+for IF-Comp" button or "generate long version" button, and a bug-free, typo-free
 TADS 6 game would be instantly created for you. Shame so many diehards on
 rec.arts.int-fiction thought this took all the fun out of creating IF.
 
 >wear sock
 (first taking the odd sock)   [12]
-Okay, you�re now wearing the odd sock.
+Okay, you're now wearing the odd sock.
 
 >wear sock
-You�re already wearing it.   [16]
+You're already wearing it.   [16]
 
 >i
-You are carrying a large black torch, and you�re wearing an odd sock.   [17]
+You are carrying a large black torch, and you're wearing an odd sock.   [17]
 
 >e
 (first opening the door)   [12]
@@ -147,10 +147,10 @@ He's about your height and build, and really looks quite a lot like you. Since h
 your twin brother this is not altogether surprising.
 
 >x mavis
-She�s too far away to make out any detail.   [21]
+She's too far away to make out any detail.   [21]
 
 >x buck
-The word �buck� is not necessary in this story.   [22]
+The word "buck" is not necessary in this story.   [22]
 
 (If this was an accidental misspelling, you can correct it by typing OOPS followed by the
 corrected word now. Any time the story points out an unknown word, you can correct a
@@ -178,52 +178,52 @@ EXITS ON shows both, and EXITS OFF turns off both kinds of exit lists.)
 
 >x mavis
 She's a funny old woman, when all's said and done. She is sitting on the wooden chair.   [26]
-She's rocking back and forth in her chair moaning �Woe!�
+She's rocking back and forth in her chair moaning "Woe!"
 
 >ask mavis about mavis
-The old woman simply rocks back and forth in her chair moaning, �Woe, woe, woe is me!�   [27]
+The old woman simply rocks back and forth in her chair moaning, "Woe, woe, woe is me!"   [27]
 
 >talk to harold
-�Hello, Harold!� you say.   [28]
+"Hello, Harold!" you say.   [28]
 
-�Hi there!� he replies.
+"Hi there!" he replies.
 
 (You could ask him about Mavis.)   [29]
 
 >a mavis
-�What's up with Mavis?� you ask.   [30]
+"What's up with Mavis?" you ask.   [30]
 
-�She's inconsolable � she can't find her favourite photograph of Buster Keaton,� he tells you.
+"She's inconsolable — she can't find her favourite photograph of Buster Keaton," he tells you.
 
 >topics
 You could ask him about the photo.    [31]
 
 >a photo
-�Where did Mavis leave the photo?� you ask.   [32]
+"Where did Mavis leave the photo?" you ask.   [32]
 
-�I think it may be in the cellar; but it's dark down there so I couldn't find it,� he tells you.
-
->g
-�You think Mavis's photo of Buster Keaton may be in the cellar?� you ask.   [32]
-
-�That's right,� he nods, �Be a good fellow and get it for her, her moaning is getting
- on my nerves.�
+"I think it may be in the cellar; but it's dark down there so I couldn't find it," he tells you.
 
 >g
-�You think Mavis's photo of Buster Keaton may be in the cellar?� you ask.   [32]
+"You think Mavis's photo of Buster Keaton may be in the cellar?" you ask.   [32]
 
-�That's right,� he nods, �Be a good fellow and get it for her, her moaning is getting
-on my nerves.�
+"That's right," he nods, "Be a good fellow and get it for her, her moaning is getting
+ on my nerves."
+
+>g
+"You think Mavis's photo of Buster Keaton may be in the cellar?" you ask.   [32]
+
+"That's right," he nods, "Be a good fellow and get it for her, her moaning is getting
+on my nerves."
 
 >ask harold about american foreign policy
-�I think you'd better help poor Mavis before we discuss that,� he suggests.  [33]
+"I think you'd better help poor Mavis before we discuss that," he suggests.  [33]
 
 >bye
 Nothing obvious happens.   [34]
 
 >d
 In the dark   [35]
-It�s pitch black.
+It's pitch black.
 
 >turn on torch
 Okay, the large black torch is now on.   [36]
@@ -239,14 +239,14 @@ The picture shows Buster Keaton posing in a Confederate uniform in The General.
 >take it
 Taken.
 (Your score has just increased by ten points.)   [38]
-(If you�d prefer not to be notified about score changes in the future, type NOTIFY OFF.)
+(If you'd prefer not to be notified about score changes in the future, type NOTIFY OFF.)
 
 >i
 You are carrying a large black torch (providing light) and a photo of Buster Keaton,   [39]
-and you�re wearing an odd sock.
+and you're wearing an odd sock.
 
 >e
-You can�t go that way. The only obvious exit leads north, back to the hall (west end).   [40]
+You can't go that way. The only obvious exit leads north, back to the hall (west end).   [40]
 
 >turn off torch
 Okay, the large black torch is now off.
@@ -254,7 +254,7 @@ Okay, the large black torch is now off.
 It is now pitch black.   [41]
 
 >e
-It�s too dark; you can�t see where you�re going.   [42]
+It's too dark; you can't see where you're going.   [42]
 
 >up
 Hall (West End)
@@ -815,7 +815,7 @@ Mavis is sitting on the wooden chair at the far end of the hall.
 It shouldn't be too difficult to see where the description of Harold is coming from; it's simply the desc property defined on the [harold](#harold) object. But why aren't we seeing a description for [Mavis](#mavis)?
 
 
-The answer is quite simple: the game defines `sightSize = large` on Harold (which means we can get a description of him from a distance, including from a remote location, as here), but we have omitted to make the same change on Mavis. Mavis's sightSize is thus still at medium (the default), which means that although she can be seen from a distance, any attempt to view her from a remote location will be met with the response "She�s too far away to make out any detail."
+The answer is quite simple: the game defines `sightSize = large` on Harold (which means we can get a description of him from a distance, including from a remote location, as here), but we have omitted to make the same change on Mavis. Mavis's sightSize is thus still at medium (the default), which means that although she can be seen from a distance, any attempt to view her from a remote location will be met with the response "She's too far away to make out any detail."
 
 
 If we want to change this we have several options, depending on what we want to achieve.
@@ -1036,10 +1036,10 @@ Here the destName is defined by including it as the second single-quoted string 
 ### <a name="posture"></a>
 
 
-The description of Mavis seems a little clumsy here, since it refers to the chair twice, first in the sentence "She is sitting on the wooden chair" and then immediately afterwards in the sentence "She's rocking back and forth in her chair moaning �Woe!�" The first of these two sentences looks redundant here; but where is it coming from, and how do we get rid of it?
+The description of Mavis seems a little clumsy here, since it refers to the chair twice, first in the sentence "She is sitting on the wooden chair" and then immediately afterwards in the sentence "She's rocking back and forth in her chair moaning "Woe!"" The first of these two sentences looks redundant here; but where is it coming from, and how do we get rid of it?
 
 
-There are actually three sentences describing Mavis here. The first, "She's a funny old woman, when all's said and done" comes from the desc property of the [mavis](#mavis) object. The last, "She's rocking back and forth in her chair moaning �Woe!�", comes from the stateDesc of the [HermitActorState](#hermit) that Mavis starts out in (if you need an explanation of ActorStates, see the article on [Creating Dynamic Characters](actors/dynamic-characters.md)). It's the troublesome middle sentence that appears to come from nowhere in the author's code.
+There are actually three sentences describing Mavis here. The first, "She's a funny old woman, when all's said and done" comes from the desc property of the [mavis](#mavis) object. The last, "She's rocking back and forth in her chair moaning "Woe!"", comes from the stateDesc of the [HermitActorState](#hermit) that Mavis starts out in (if you need an explanation of ActorStates, see the article on [Creating Dynamic Characters](actors/dynamic-characters.md)). It's the troublesome middle sentence that appears to come from nowhere in the author's code.
 
 
 It may be helpful to explain the chain of events that produces this message:
@@ -1076,7 +1076,7 @@ Then we'll get:
 
 >x mavis
 She's a funny old woman, when all's said and done. She's rocking back and forth
-in her chair moaning �Woe!�
+in her chair moaning "Woe!"
 
 ```
 
@@ -1229,9 +1229,9 @@ We'd then see:
 ```
 
 >bye
-�Bye for now,� you say.
+"Bye for now," you say.
 
-�See you soon,� he replies.
+"See you soon," he replies.
 
 ```
 
@@ -1315,7 +1315,7 @@ We get this score notification because actionDobjTake() on the [photo](#photo) o
 Whatever the precise method use to invoke the scoring, it will usually be routed through the addToScore() function, which in turn calls libScore.addToScore_() (note the underscore).
 
 
-The actual message announcing the change in score comes from scoreNotifier.checkNotification(), which uses libMessages.firstScoreChange() if this is the first time a change of score is being notified in a game, or libMessages.scoreChange() thereafter. Both these libMessages methods then call libMessages.basicScoreChange() to announce the actual change in score, but libMessages.firstScoreChange() then goes on to diplay the additional message "(If you�d prefer not to be notified about score changes in the future, type NOTIFY OFF.)"
+The actual message announcing the change in score comes from scoreNotifier.checkNotification(), which uses libMessages.firstScoreChange() if this is the first time a change of score is being notified in a game, or libMessages.scoreChange() thereafter. Both these libMessages methods then call libMessages.basicScoreChange() to announce the actual change in score, but libMessages.firstScoreChange() then goes on to diplay the additional message "(If you'd prefer not to be notified about score changes in the future, type NOTIFY OFF.)"
 
 
 [[back]](#r38)
@@ -1344,7 +1344,7 @@ We'd then see:
 
 >i
 You are carrying a large black torch (currently switched on) and a photo of Buster
-Keaton, and you�re wearing an odd sock.
+Keaton, and you're wearing an odd sock.
 
 ```
 

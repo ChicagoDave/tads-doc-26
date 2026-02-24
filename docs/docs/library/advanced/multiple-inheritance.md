@@ -721,7 +721,7 @@ initiallyLocked to initialize the locked status of the door is in its initialize
 class Lockable: Linkable
 
      initiallyLocked = true
-     �
+     ...
      initializeThing()
      {
          /* inherit the default handling */
@@ -731,7 +731,7 @@ class Lockable: Linkable
          if (masterObject == self)
              isLocked_ = initiallyLocked;
      }
-      �
+      ...
 ;
 
 ```

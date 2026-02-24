@@ -1551,7 +1551,7 @@ can use range expressions rather than the  class and the like:
 ```
 
 
-A C-style comment (/* � */) is a little tricky.  At first glance,
+A C-style comment (/* ... */) is a little tricky.  At first glance,
 we might try something simple like this:
 
 
