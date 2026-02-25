@@ -1,5 +1,5 @@
 
-!
+![](../t3logo.gif)
   
   
 
@@ -251,7 +251,7 @@ environment.
 
 
 For an example of special character interpretation, refer to
-[TADS Special Characters](special-characters.md).
+[TADS Special Characters](../tadsspch.md).
 
 
 ### Character Set Translation
@@ -546,7 +546,7 @@ application executable containing the VM.
 Because the generic object interface doesn't contain information
 about any specific metaclasses, new metaclasses can be added through
 the interface.  This VM specification
-includes a set of [pre-defined metaclasses](metaclasses.md), but
+includes a set of [pre-defined metaclasses](../metacl.md), but
 individual VM implementations can extend this set through the generic
 interface.  For example, a VM could provide a high-level object type
 for a language other than TADS, such as for C++ or Java.
@@ -875,7 +875,7 @@ table and for generating the appropriate metaclass index values in the
 image file.
 
 
-Refer to the [Metaclass Identifier List Appendix](metaclass-ids.md)
+Refer to the [Metaclass Identifier List Appendix](../metalist.md)
 for a list of the defined metaclasses.
 
 
@@ -1118,7 +1118,7 @@ machine.
 **Data Register 0 (R0):** this register is used for temporary
 storage of data values.  This register can contain any value that can
 be stored in a stack location.  The Return Value
-([RETVAL](bytecode.md#opc_retval)) instruction, for example,
+([RETVAL](../opcode.md#opc_retval)) instruction, for example,
 stores the return value of a function in this register.
 
 
@@ -1460,7 +1460,7 @@ element specifies:
 
 
 Following the exception table are the [debugger
-records](debug-records.md).  The debug records contain information for source-level
+records](../debug.md).  The debug records contain information for source-level
 symbolic debugging: the names and scopes of the local variables, and
 the byte code position of the first instruction of each line of
 executable code.  Debug records are optional; if debug records are
@@ -1686,7 +1686,7 @@ Note that configurations of the VM may have different function sets
 available.  The function set selection process will ensure that a program
 prepared to expect a particular function set will only load into a VM
 that has been configured with that function set.  However, one function
-set is required in *all* T3 implementations: [the "t3vm" function set](function-set.md).
+set is required in *all* T3 implementations: [the "t3vm" function set](../fnset_t3.md).
 
 
 ---

@@ -22,9 +22,9 @@ Some games, however, may occasionally need to do more, such as pausing the outpu
 for dramatic effect, clearing the screen, waiting for a keypress, or asking the
 player to input something other than a command at the regular command prompt.
 TADS 3 provides a set of i/o functions to handle this, which the *System Manual*
-documents in the section on the [tads-io Function Set](../intrinsics/functions/tadsio.md). If you've tried to use some of these functions, however,
+documents in the section on the [tads-io Function Set](../../sysman/tadsio.md). If you've tried to use some of these functions, however,
 you may have found that they don't work in quite the way you expected. In fact, they
-may not be the best tools to get the job done (and if you want to compile your game for the [Web UI](../language/webui.md) they won't work at all). This article will briefly explore
+may not be the best tools to get the job done (and if you want to compile your game for the [Web UI](../../sysman/webui.md) they won't work at all). This article will briefly explore
 some of the alternatives.
 
 
@@ -130,7 +130,7 @@ But that's a sophistication you'll only need if you're trying to implement real-
 input, so it may well be that the simpler definitions will suffice.
 
 
-## <a name="cls"></a>
+## <a name="cls"></a>The About Box and Clearing the Screen
 
 
 There may be points in the game when you want to clear the screen: for example, at the
@@ -139,7 +139,7 @@ function set includea a `clearscreen()` function for this purpose, and
 you may well have been tempted to use it.
 
 
-You may also have come across the <ABOUTBOX> tag than can be used to create an about
+You may also have come across the &lt;ABOUTBOX> tag than can be used to create an about
 box that displays when a player selects Help|About from an interpreter window. For example,
 the following would create a fairly general purpose plain-vanilla about box:
 
@@ -215,7 +215,7 @@ capture output (i.e. store what would have been output to the screen in a variab
 `mainOutputStream.captureOutput(func, [args])`. This takes a function
 pointer as its first argument, and the arguments to that function (if any) as its remaining arguments. It returns the string that would have been output to the screen. The 'function
 pointer' can typically be an anonymous function, and often a short-form one (if you're not
-sure what that means, see the section on [Anonymous Functions](../language/anonfn.md)
+sure what that means, see the section on [Anonymous Functions](../../sysman/anonfn.md)
 in the *System Manual*).
 
 
@@ -303,7 +303,7 @@ to convert whatever `obj.desc()` outputs into a single-quoted
 string that we can then inspect and manipulate as we please.
 
 
-Note that if we know for sure that a property holds a simple double-quoted string, and not a method that prints a double-quoted string, or a double-quoted string that contains an embedded expression (with the << >> syntax), then we could obtain the equivalent single-quoted string with:
+Note that if we know for sure that a property holds a simple double-quoted string, and not a method that prints a double-quoted string, or a double-quoted string that contains an embedded expression (with the &lt;&lt; >> syntax), then we could obtain the equivalent single-quoted string with:
 
 
 ```tads3

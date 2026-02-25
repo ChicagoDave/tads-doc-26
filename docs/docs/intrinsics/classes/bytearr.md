@@ -111,7 +111,7 @@ code, and creates a string with those characters.
 
 ByteArrays can also be used in contexts where values will be
 implicitly converted to strings, such as displaying them with
-"<< >>" expressions.  A ByteArray in such a context
+"&lt;&lt; >>" expressions.  A ByteArray in such a context
 is converted just as with `toString()`.
 
 

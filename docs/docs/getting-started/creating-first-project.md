@@ -108,7 +108,7 @@ chosen filename, then copying the text below into the new file.  Save
 the file when you're finished.
 
 
-```tads3
+```
 
 #include <adv3.h>
 #include <en_us.h>
@@ -137,7 +137,7 @@ firstRoom: Room
 ```
 
 
-(Note that the included file <en_us.h> is for the US English
+(Note that the included file &lt;en_us.h> is for the US English
 version of the library.  If you're working with a version of the
 library for a different language, you'd include a different header
 file for that language.)
@@ -290,7 +290,7 @@ First, create your new source file - let's call it "newfile.t".
 Second, copy the following text into your new file to get started:
 
 
-```tads3
+```
 
   #include <adv3.h>
   #include <en_us.h>
@@ -335,7 +335,7 @@ Documentation" version of TADS Workbench on Windows, the manuals are
 all included, and you can search them using Workbench.
 
 
-Another valuable resource is the Usenet newsgroup [rec.arts.int-fiction](news:rec.arts.int-fiction), which has a
+Another valuable resource is the Usenet newsgroup [rec.arts.int-fiction](../news:rec.arts.int-fiction), which has a
 contingent of TADS 3 experts who can help out with technical
 questions, along with a large group of IF enthusiasts using TADS 3 and
 other systems.  Discussion ranges from programming to game design to
@@ -343,7 +343,7 @@ IF history to almost anything else that's IF-related (and some stuff
 that isn't - it is Usenet, after all...).
 
 
-## <a name="t3m_details"></a>
+## <a name="t3m_details"></a>The project file's contents explained
 
 
 We promised earlier that we'd provide an explanation of the

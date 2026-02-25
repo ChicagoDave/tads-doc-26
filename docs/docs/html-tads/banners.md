@@ -22,10 +22,10 @@ Fortunately, BANNER provides the same type of functionality, and
 is a good fit for the way HTML TADS works.
 
 
-BANNER is a container tag.  The markups between the <BANNER>
-and </BANNER> tags are the contents of the banner.  A banner
+BANNER is a container tag.  The markups between the &lt;BANNER>
+and &lt;/BANNER> tags are the contents of the banner.  A banner
 can contain almost anything, but cannot contain a TITLE tag or another
-BANNER tag (banners cannot be nested; another <BANNER> tag
+BANNER tag (banners cannot be nested; another &lt;BANNER> tag
 within a banner is ignored).
 
 
@@ -227,9 +227,9 @@ drawn, otherwise the banner is drawn without a border.
 
 The REMOVE attribute specifies that a banner is simply to be removed.
 The banner currently being displayed whose ID matches the ID
-specified in the <BANNER REMOVE> tag is removed from the
-screen.  When <BANNER REMOVE> is specified, <BANNER> is
-not a container, so no </BANNER> tag is allowed.
+specified in the &lt;BANNER REMOVE> tag is removed from the
+screen.  When &lt;BANNER REMOVE> is specified, &lt;BANNER> is
+not a container, so no &lt;/BANNER> tag is allowed.
 
 
 The REMOVEALL attribute specifies that *all* banners are to
@@ -300,7 +300,7 @@ to provide a status line similar to the style used in the standard
 TADS interpreter.
 
 
-```tads3
+```
 
     statusLine =
     {
@@ -342,7 +342,7 @@ room's name (usually via its `sdesc` property, although some rooms
 override this to provide additional information, such as "in the raft").
 
 
-The next line uses the <TAB ALIGN=RIGHT> tag to align the
+The next line uses the &lt;TAB ALIGN=RIGHT> tag to align the
 remainder of the current line against the right edge of the banner window.
 Whenever the window is resized, the system will reformat the text so that
 it's aligned properly in the available space.
@@ -353,7 +353,7 @@ played so far in the game.
 
 
 Finally, the last line closes the banner.  Since BANNER is a container
-tag, the closing </BANNER> is required, so that the system can
+tag, the closing &lt;/BANNER> is required, so that the system can
 figure out where the banner's contents end and the rest of the main
 window's text resumes.
 

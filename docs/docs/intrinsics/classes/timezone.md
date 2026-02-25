@@ -383,7 +383,7 @@ the following elements:
 - [4] *when* is a string with a human-readable description of
   the firing date: this will be of the form 'Mar last Sun' (for the last
   Sunday in March), 'Mar Sun>=1' for the first Sunday in March on or
-  after March 1, 'Mar Sun<=28' for the last Sunday in March on or before
+  after March 1, 'Mar Sun&lt;=28' for the last Sunday in March on or before
   March 28, 'Mar 7' for March 7, or 'DOY 72' for the 72nd day of the
   year.
 

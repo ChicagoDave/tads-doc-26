@@ -95,7 +95,7 @@ standard HTML to use HTML TADS.
 #### <a name="IMGrollover"></a>Roll-over Images
 
 
-An extension to the <IMG> tag provides a way of implementing
+An extension to the &lt;IMG> tag provides a way of implementing
 simple roll-over images.  A roll-over image is a hyperlinked image
 that has up to three different appearances: a normal appearance, a
 second appearance when the mouse is hovering over the hyperlink,
@@ -112,12 +112,12 @@ mechanism for roll-overs.
 
 
 **Important:** The roll-over extensions work **only** with
-hyperlinked images (i.e., images nested within <A HREF> tags).
+hyperlinked images (i.e., images nested within &lt;A HREF> tags).
 You cannot create a roll-over image that is not hyperlinked.
 
 
 The HTML TADS roll-over extensions consist of a pair of new
-attributes of the <IMG> tag: HSRC and ASRC.  Both of these
+attributes of the &lt;IMG> tag: HSRC and ASRC.  Both of these
 attributes are optional, and each takes a URL to an image resource,
 just like a standard SRC attribute does.  The HSRC attribute, if
 present, specifies the image resource to use for the "hovering"
@@ -148,11 +148,11 @@ for all three appearances:
 
 
 For proper display, you must ensure that all of the images for
-the different appearances used in a single <IMG> tag are the
+the different appearances used in a single &lt;IMG> tag are the
 same size.
 
 
-#### <BANNER>
+#### &lt;BANNER>
 
 
 BANNER is a tag from HTML 3.0 that allows a document to create a
@@ -170,10 +170,10 @@ for details on how to use this feature.
 <a name="Achanges"></a>
 
 
-#### <A HREF>
+#### &lt;A HREF>
 
 
-The <A> tag lets you set up a normal web-style hyperlink,
+The &lt;A> tag lets you set up a normal web-style hyperlink,
 *or* a special form of hyperlink that enters a command, as though
 the user had typed some text into the command line.
 
@@ -252,7 +252,7 @@ APPEND and NOENTER attributes are ignored for internet links.
 
 Another special non-standard attribute, PLAIN, lets you show a
 hyperlink as though it were normal text.  This attribute takes no
-value.  When you include the PLAIN attribute with a <A> tag, the
+value.  When you include the PLAIN attribute with a &lt;A> tag, the
 interpreter will know that the enclosed text is a hyperlink, but it'll
 render the text without any special hyperlink style - there won't be
 an underline or a special color, for example.  The hyperlinked text
@@ -267,20 +267,20 @@ informational links that are provided as a convenience.  Be careful
 that you're not using it to force the user to play "find the pixel."
 
 
-#### <TAB MULTIPLE>
+#### &lt;TAB MULTIPLE>
 
 
 As described in the [TAB](#TABadditions) section on
 [HTML 3.0 Additions](#additions), HTML TADS
-supports the <TAB>
-feature of HTML 3.0.  Note, though, that the <TAB MULTIPLE>
+supports the &lt;TAB>
+feature of HTML 3.0.  Note, though, that the &lt;TAB MULTIPLE>
 feature is a TADS-specific extension of the HTML 3.0 extension.
 
 
 #### <a name="TABLEadditions"></a>Tables
 
 
-The <TABLE> tag accepts a HEIGHT attribute that lets you set
+The &lt;TABLE> tag accepts a HEIGHT attribute that lets you set
 an explicit height for the table.  (This extension is supported
 by some of the popular browsers, but is not part of either the
 HTML 3.2 or 3.0 specifications.)  As with the WIDTH attribute, the
@@ -329,19 +329,19 @@ with ALIGN=LEFT or ALIGN=RIGHT as an "in-line" item rather than a
 "block" item, which means that such a table does *not* cause a
 paragraph break in the visual display.  Instead, a table with
 ALIGN=LEFT or ALIGN=RIGHT is treated visually exactly as though it
-were an <IMG> tag with the same alignment.  This behavior,
+were an &lt;IMG> tag with the same alignment.  This behavior,
 while non-standard, is actually consistent with the most popular web
 browsers, and allows greater flexibility for special text layout
 effects.  If a paragraph break is desired, the author can simply
-insert a <P> tag explicitly before and/or after the table.  If
-no flow-around is desired at all, a <BR CLEAR=ALL> tag can be
-used immediately after the table's closing </TABLE> tag.
+insert a &lt;P> tag explicitly before and/or after the table.  If
+no flow-around is desired at all, a &lt;BR CLEAR=ALL> tag can be
+used immediately after the table's closing &lt;/TABLE> tag.
 
 
 #### Sound
 
 
-HTML TADS provides support for sound and music through the <SOUND>
+HTML TADS provides support for sound and music through the &lt;SOUND>
 tag, which is an extension to HTML.  Refer to [HTML
 TADS Sounds and Music](sound.md) for details on how to use this extension.
 
@@ -349,7 +349,7 @@ TADS Sounds and Music](sound.md) for details on how to use this extension.
 #### ABOUTBOX
 
 
-The new <ABOUTBOX> tag allows you to define the contents of an
+The new &lt;ABOUTBOX> tag allows you to define the contents of an
 "about box" for your game.  On most GUI systems, by system-dependent
 convention, applications provide a menu item called "About" that
 displays a dialog box showing the name, version, and other relevant
@@ -357,9 +357,9 @@ details of the application.
 
 
 HTML TADS lets you define an about box for your game using this new
-tag.  To define an about box, display the <ABOUTBOX> tag to start
+tag.  To define an about box, display the &lt;ABOUTBOX> tag to start
 the information you want to include in the dialog, then display any
-HTML text, then display the </ABOUTBOX> closing tag.  You will
+HTML text, then display the &lt;/ABOUTBOX> closing tag.  You will
 probably want to put this display in your `init` function,
 since you'll only need to display it once, at the beginning of the
 game.
@@ -377,7 +377,7 @@ from the beginning or with a saved game) each call your
 automatically call, but is merely a convention used in std.t).
 
 
-```tads3
+```
 
     commonInit: function
     {
@@ -407,10 +407,10 @@ the menu item is disabled.)  When the user displays the game's about
 box, HTML TADS opens a dialog box showing the ABOUTBOX information.
 
 
-#### <WRAP>
+#### &lt;WRAP>
 
 
-The <WRAP> tag is a TADS extension that lets the game
+The &lt;WRAP> tag is a TADS extension that lets the game
 switch between word-wrapping and character-wrapping display modes.
 This is discussed in detail in [Word Wrapping
 and Line Breaking](line-breaking.md).
@@ -633,11 +633,11 @@ for entering commands.  Normally, you should define a `commandPrompt`
 function and a `commandAfterRead` function like this:
 
 
-```tads3
+```
 
     commandPrompt: function(code)
     {
-        "><font face='TADS-Input'>";
+        "&gt;<font face='TADS-Input'>";
     }
     commandAfterRead: function(code)
     {
@@ -648,11 +648,11 @@ function and a `commandAfterRead` function like this:
 
 
 The `commandPrompt` function displays the usual prompt (">",
-using the HTML entity name for the greater-than sign, ">"),
+using the HTML entity name for the greater-than sign, "&gt;"),
 then establishes the `TADS-Input` font, which uses the font
 for text entered by the player.  After the player finishes editing
 the command and presses Enter, the `commandAfterRead` function
-closes the <FONT> tag to restore the previous font.
+closes the &lt;FONT> tag to restore the previous font.
 
 
 Note that the standard library file std.t includes a definition of
@@ -744,15 +744,15 @@ The parameterized color names are listed below.
   surrounding text.
 
 
-#### <Q>
+#### &lt;Q>
 
 
-HTML TADS supports the HTML 4.0 <Q> tag.  This tag encloses
+HTML TADS supports the HTML 4.0 &lt;Q> tag.  This tag encloses
 a passage in quotation marks (by placing an open quote where the
-<Q> tag appears, and a matching close quote where the </Q>
-ending tag appears).  <Q> uses typographical quotation marks
+&lt;Q> tag appears, and a matching close quote where the &lt;/Q>
+ending tag appears).  &lt;Q> uses typographical quotation marks
 if available on the interpreter platform, and automatically alternates
-between double and single quotes when <Q> tags are nested.
+between double and single quotes when &lt;Q> tags are nested.
 
 
 #### End-tag syntax
@@ -841,24 +841,24 @@ end tag; the contents are the source of the quote.
 (This is actually only mentioned in the HTML 3.0 proposal as an
 extension implemented by a few of the popular browsers; it's not
 clear if NOBR is actually part of the HTML 3.0 proposal.)  This is a
-container tag.  Text between the <NOBR> and corresponding
-</NOBR> will not be word-wrapped, so the only line breaks
-within the text will be those that are made explicitly by <BR>
+container tag.  Text between the &lt;NOBR> and corresponding
+&lt;/NOBR> will not be word-wrapped, so the only line breaks
+within the text will be those that are made explicitly by &lt;BR>
 tags.
 
 
-#### <P NOWRAP>
+#### &lt;P NOWRAP>
 
 
 The NOWRAP attribute can be used on a paragraph to indicate that text
 within the paragraph is not to be word-wrapped.  The only line breaks
-within the paragraph will be at explicit <BR> tags.  This is
+within the paragraph will be at explicit &lt;BR> tags.  This is
 equivalent to enclosing the text of the paragraph between
-<NOBR> ...  </NOBR> tags.
+&lt;NOBR> ...  &lt;/NOBR> tags.
 
 
 The NOWRAP attribute can be used on most block-level tags, in addition
-to <P>.  NOWRAP works with P, DIV, UL, OL, DL, the heading
+to &lt;P>.  NOWRAP works with P, DIV, UL, OL, DL, the heading
 tags (H1 through H6), ADDRESS, and BLOCKQUOTE.
 
 
@@ -882,40 +882,40 @@ description](banners.md) for more information.
 
 
 The TAB tag provides simple alignment capabilities without the more
-complex TABLE structure.  <TAB ID=abc> defines a tab named 'abc' at
+complex TABLE structure.  &lt;TAB ID=abc> defines a tab named 'abc' at
 the current horizontal position in the line; this can occur within
 ordinary text to indicate an alignment position that can be used in
-subsequent lines.  <TAB TO=abc> adds horizontal whitespace in the
+subsequent lines.  &lt;TAB TO=abc> adds horizontal whitespace in the
 current line up to the position of the previously defined tab 'abc'.
 
 
-The ALIGN attribute can be used with <TAB> to specify the type
-of alignment to use.  ALIGN can be used on the defining <TAB
-ID=abc>, or on each use of <TAB TO=abc>; if no ALIGN is used
+The ALIGN attribute can be used with &lt;TAB> to specify the type
+of alignment to use.  ALIGN can be used on the defining &lt;TAB
+ID=abc>, or on each use of &lt;TAB TO=abc>; if no ALIGN is used
 in the TO tag, the ALIGN from the ID tag is used by default; LEFT is
 used if neither has an ALIGN attribute.  ALIGN=LEFT aligns the
-material after the <TAB TO> with its left edge aligned at the
-tab; ALIGN=RIGHT aligns the material after the <TAB TO> and up
-to the next <TAB TO> or the end of the line, whichever comes first,
+material after the &lt;TAB TO> with its left edge aligned at the
+tab; ALIGN=RIGHT aligns the material after the &lt;TAB TO> and up
+to the next &lt;TAB TO> or the end of the line, whichever comes first,
 flush right at the position of the tab.  ALIGN=CENTER aligns the
-material up to the next <TAB TO> centered on the tab position.
+material up to the next &lt;TAB TO> centered on the tab position.
 ALIGN=DP aligns at a decimal point (or at any other character
 specified with DECIMAL="c", where "c" is the character at which to
 align entries).
 
 
-<TAB ALIGN=CENTER> or <TAB ALIGN=RIGHT>, without a TO
+&lt;TAB ALIGN=CENTER> or &lt;TAB ALIGN=RIGHT>, without a TO
 attribute, align the material with respect to the right margin.  This
 provides a simple way of aligning material against the right margin
 (ALIGN=RIGHT), or centered between the end of the text up to the
-<TAB> and the right margin.
+&lt;TAB> and the right margin.
 
 
-<TAB INDENT=*n*> (where *n* is a number) indents by
+&lt;TAB INDENT=*n*> (where *n* is a number) indents by
 a given number of "en" units; it simply adds the given amount of
-whitespace to the line.  <TAB MULTIPLE=*n*> indents to
+whitespace to the line.  &lt;TAB MULTIPLE=*n*> indents to
 the next multiple of the given number of ens from the left margin.
-You can use <TAB MULTIPLE> to get the effect of tabs set
+You can use &lt;TAB MULTIPLE> to get the effect of tabs set
 at regular intervals across the page, without having to set up
 a bunch of named indent points and figuring out which one you're
 closest to.
@@ -960,9 +960,9 @@ BLOCKQUOTE.
 
 The UL and LI tags accept the PLAIN attribute to indicate that
 the list item (in the case of LI) or all of the items in the list (in
-the case of UL) should be displayed without a bullet.  If <LI
+the case of UL) should be displayed without a bullet.  If &lt;LI
 PLAIN> is specified for an item in an ordered list, the item is
-displayed without a number.  <OL PLAIN> is also accepted, even
+displayed without a number.  &lt;OL PLAIN> is also accepted, even
 though it probably isn't very useful (although it could conceivably
 be used to specify a numbered list where most but not all of the
 items are listed without a number; each of those to be listed with a
@@ -996,7 +996,7 @@ item number 6.
 #### List Headers (LH)
 
 
-HTML TADS supports the HTML 3.0 <LH> tag.  This tag comes
+HTML TADS supports the HTML 3.0 &lt;LH> tag.  This tag comes
 immediately after a UL or OL tag, and prior to the first LI tag in
 the list.  LH is a container tag; the material between the open and
 close tags constitutes the list header.  The list header is set in
@@ -1017,10 +1017,10 @@ The HR tag accepts a SRC attribute, which specifies the URL of an
 image to display in the rule.  The image is repeated as needed to
 fill out the space.  If a SIZE attribute is given, it
 specifies the height of the rule; otherwise, the height of the image
-is used as the height of the rule.  The value that <HR SRC>
-provides beyond <IMG> is that <HR SRC> repeats the image
+is used as the height of the rule.  The value that &lt;HR SRC>
+provides beyond &lt;IMG> is that &lt;HR SRC> repeats the image
 to fill a horizontal area, which can scale in proportion to the window
-size, whereas <IMG> just draws the image once.
+size, whereas &lt;IMG> just draws the image once.
 
 
 ---
@@ -1044,7 +1044,7 @@ adventure game's displays and standard HTML documents.
 
 
 The BODY element can appear multiple times per document, unlike
-with standard HTML renderers.  Each time <BODY> appears, any
+with standard HTML renderers.  Each time &lt;BODY> appears, any
 attributes (such as the background color or text color) replace the
 previous settings for those attributes; these settings affect the
 entire window.
@@ -1101,12 +1101,12 @@ COMPACT attribute's meaning is renderer-defined, this is not actually
 a deviation from the standard).
 
 
-#### <A> element
+#### &lt;A> element
 
 
 The NAME, REL, and REV attributes are accepted but ignored.  The HREF
 attribute is interpreted specially, and not necessarily as an internet
-path (see the section on [<A HREF>
+path (see the section on [&lt;A HREF>
 changes](#Achanges).)
 
 
@@ -1166,9 +1166,9 @@ other shapes.
 
 
 The HREF link specified in an AREA tag is treated the same way as
-in an [<A HREF> tag](#Achanges), so you can use both
+in an [&lt;A HREF> tag](#Achanges), so you can use both
 command links and internet links with AREA tags.  Similarly, you can
-use the APPEND and NOENTER attributes just as with <A HREF>
+use the APPEND and NOENTER attributes just as with &lt;A HREF>
 tag.
 
 

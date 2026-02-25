@@ -237,16 +237,16 @@ Here's a sample Event script.
 ```
 
 
-## Overwrite warnings in <file> events
+## Overwrite warnings in &lt;file> events
 
 
-When inputFile() reads a <file> event from a script, the
+When inputFile() reads a &lt;file> event from a script, the
 function checks the following conditions:
 
 
 - the file named in the event already exists
 - the *dialogType* parameter to inputFile() is InFileSave
-- the <file> element does not include the "overwrite" attribute
+- the &lt;file> element does not include the "overwrite" attribute
 
 
 If all of these conditions are true, then inputFile() momentarily
@@ -297,7 +297,7 @@ overwrite the file each time; and you want the test to run
 automatically, with no user intervention.  In such a case, you can
 put instructions directly in the script that the overwrite is to
 proceed without a prompt.  To do this, edit the script file, and
-add the "overwrite" attribute to the <file> element:
+add the "overwrite" attribute to the &lt;file> element:
 
 
 ```tads3

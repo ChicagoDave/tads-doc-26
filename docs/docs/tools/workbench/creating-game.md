@@ -120,7 +120,7 @@ Workbench to compile and test the changes.
 
 
 At this point, you're ready to start learning more about TADS.
-The Welcome page has more information
+The [Welcome](../../../authkit/welcome.md) page has more information
 on where you can find documentation, examples, and other resources
 for learning TADS.
 

@@ -363,7 +363,7 @@ register.  If you have your object in a local variable, you can do
 this:
 
 
-```tads3
+```
 
    local myobj = bob;
    gMessageParams(myobj);

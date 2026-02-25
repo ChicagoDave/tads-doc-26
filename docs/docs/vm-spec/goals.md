@@ -1,5 +1,5 @@
 
-!
+![](../t3logo.gif)
   
 
   
@@ -8,7 +8,7 @@
 ## T3 Virtual Machine Design Goals
 
 
-This section builds on our [design philosophy](philosophy.md)
+This section builds on our [design philosophy](../philos.md)
 with some specific goals for the T3 VM.
 
 

@@ -24,7 +24,7 @@ Reading this article through sequentially from beginning to end may not be the b
 ---
 
 
-## <a name="sampleTrans"></a>
+## <a name="sampleTrans"></a>A Sample Transcript
 
 
 ```
@@ -44,7 +44,7 @@ On the small square table is a small blue box.    [5]
 >about   [6]
 This is just a brief demo game to illustrate where various messages come from in TADS 3.   [7]
 Or you could think of it as a high adventure with deep characterization, a riveting plot,
-and a myriad of amazing puzzles — except that if you do think of it this way you'll be
+and a myriad of amazing puzzles – except that if you do think of it this way you'll be
 sadly disappointed!
 
 >credits
@@ -54,7 +54,7 @@ Put credits for the game here.   [8]
 On the small square table is a small blue box.   [5]
 
 >x red box
-It's large, red and box-shaped. It's closed.   [9]
+It's large, red and box-shaped. It’s closed.   [9]
 
 >take box
 Which box do you mean, the small blue box, or the large red box?  [10]
@@ -86,7 +86,7 @@ square table is a small blue box.
 All sorts of stuff, the accumulated detritus of decades, mostly not worth bothering with.
 
 >search junk
-The junk isn't important.   [12a]
+The junk isn’t important.   [12a]
 
 >take table
 The small square table is too heavy. [13]
@@ -103,20 +103,20 @@ It's a copy of Getting Started in TADS 6.
 Reading the book brings back happy memories of writing IF in your early twenties.   [15]
 With TADS 6 all you had to do was fill in a form specifying the genre of the game,
 the names of a few key NPCs, and the median age of the target audience, select a
-plot-type from a drop-down list, and then hit either the "generate two-hour version
-for IF-Comp" button or "generate long version" button, and a bug-free, typo-free
+plot-type from a drop-down list, and then hit either the “generate two-hour version
+for IF-Comp” button or “generate long version” button, and a bug-free, typo-free
 TADS 6 game would be instantly created for you. Shame so many diehards on
 rec.arts.int-fiction thought this took all the fun out of creating IF.
 
 >wear sock
 (first taking the odd sock)   [12]
-Okay, you're now wearing the odd sock.
+Okay, you’re now wearing the odd sock.
 
 >wear sock
-You're already wearing it.   [16]
+You’re already wearing it.   [16]
 
 >i
-You are carrying a large black torch, and you're wearing an odd sock.   [17]
+You are carrying a large black torch, and you’re wearing an odd sock.   [17]
 
 >e
 (first opening the door)   [12]
@@ -147,10 +147,10 @@ He's about your height and build, and really looks quite a lot like you. Since h
 your twin brother this is not altogether surprising.
 
 >x mavis
-She's too far away to make out any detail.   [21]
+She’s too far away to make out any detail.   [21]
 
 >x buck
-The word "buck" is not necessary in this story.   [22]
+The word “buck” is not necessary in this story.   [22]
 
 (If this was an accidental misspelling, you can correct it by typing OOPS followed by the
 corrected word now. Any time the story points out an unknown word, you can correct a
@@ -178,52 +178,52 @@ EXITS ON shows both, and EXITS OFF turns off both kinds of exit lists.)
 
 >x mavis
 She's a funny old woman, when all's said and done. She is sitting on the wooden chair.   [26]
-She's rocking back and forth in her chair moaning "Woe!"
+She's rocking back and forth in her chair moaning “Woe!”
 
 >ask mavis about mavis
-The old woman simply rocks back and forth in her chair moaning, "Woe, woe, woe is me!"   [27]
+The old woman simply rocks back and forth in her chair moaning, “Woe, woe, woe is me!”   [27]
 
 >talk to harold
-"Hello, Harold!" you say.   [28]
+“Hello, Harold!” you say.   [28]
 
-"Hi there!" he replies.
+“Hi there!” he replies.
 
 (You could ask him about Mavis.)   [29]
 
 >a mavis
-"What's up with Mavis?" you ask.   [30]
+“What's up with Mavis?” you ask.   [30]
 
-"She's inconsolable — she can't find her favourite photograph of Buster Keaton," he tells you.
+“She's inconsolable – she can't find her favourite photograph of Buster Keaton,” he tells you.
 
 >topics
 You could ask him about the photo.    [31]
 
 >a photo
-"Where did Mavis leave the photo?" you ask.   [32]
+“Where did Mavis leave the photo?” you ask.   [32]
 
-"I think it may be in the cellar; but it's dark down there so I couldn't find it," he tells you.
-
->g
-"You think Mavis's photo of Buster Keaton may be in the cellar?" you ask.   [32]
-
-"That's right," he nods, "Be a good fellow and get it for her, her moaning is getting
- on my nerves."
+“I think it may be in the cellar; but it's dark down there so I couldn't find it,” he tells you.
 
 >g
-"You think Mavis's photo of Buster Keaton may be in the cellar?" you ask.   [32]
+“You think Mavis's photo of Buster Keaton may be in the cellar?” you ask.   [32]
 
-"That's right," he nods, "Be a good fellow and get it for her, her moaning is getting
-on my nerves."
+“That's right,” he nods, “Be a good fellow and get it for her, her moaning is getting
+ on my nerves.”
+
+>g
+“You think Mavis's photo of Buster Keaton may be in the cellar?” you ask.   [32]
+
+“That's right,” he nods, “Be a good fellow and get it for her, her moaning is getting
+on my nerves.”
 
 >ask harold about american foreign policy
-"I think you'd better help poor Mavis before we discuss that," he suggests.  [33]
+“I think you'd better help poor Mavis before we discuss that,” he suggests.  [33]
 
 >bye
 Nothing obvious happens.   [34]
 
 >d
 In the dark   [35]
-It's pitch black.
+It’s pitch black.
 
 >turn on torch
 Okay, the large black torch is now on.   [36]
@@ -239,14 +239,14 @@ The picture shows Buster Keaton posing in a Confederate uniform in The General.
 >take it
 Taken.
 (Your score has just increased by ten points.)   [38]
-(If you'd prefer not to be notified about score changes in the future, type NOTIFY OFF.)
+(If you’d prefer not to be notified about score changes in the future, type NOTIFY OFF.)
 
 >i
 You are carrying a large black torch (providing light) and a photo of Buster Keaton,   [39]
-and you're wearing an odd sock.
+and you’re wearing an odd sock.
 
 >e
-You can't go that way. The only obvious exit leads north, back to the hall (west end).   [40]
+You can’t go that way. The only obvious exit leads north, back to the hall (west end).   [40]
 
 >turn off torch
 Okay, the large black torch is now off.
@@ -254,7 +254,7 @@ Okay, the large black torch is now off.
 It is now pitch black.   [41]
 
 >e
-It's too dark; you can't see where you're going.   [42]
+It’s too dark; you can’t see where you’re going.   [42]
 
 >up
 Hall (West End)
@@ -303,7 +303,7 @@ Thanks for playing!   [47]
 ## Explanations
 
 
-### <a name="showintro"></a>
+### <a name="showintro"></a>[1] showIntro()
 
 
 "Welcome to the TADS 3 Starter Game!" This text is generated from the showIntro() method of [gameMain](#gameMain). This is something you'll normally want to customize.
@@ -313,17 +313,17 @@ Thanks for playing!   [47]
   
 
 
-### <a name="roomname"></a>
+### <a name="roomname"></a>[2] roomName
 
 
 The name of the room printed at the head of its description is taken from the room's
-roomName property. Normally this is assigned through the Room template, as in [boxRoom](#boxRoom), the starting location here.
+roomName property. Normally this is assigned through the Room template, as in [boxRoom](../boxRoom), the starting location here.
 
 
 By default the room name is shown in bold. If you want to change this you can do so by modifying roomnameStyleTag; e.g. to make the room name appear in italics in a fixed-spaced font:
 
 
-```tads3
+```
 
 modify roomnameStyleTag
     openText = '\n<i><FONT FACE=TADS-TYPEWRITER>'
@@ -340,7 +340,7 @@ We could similarly modify statusroomStyleTag to change the way the room name is 
   
 
 
-### <a name="roomdesc"></a>
+### <a name="roomdesc"></a>[3] Room Description
 
 
 The normal description of a room is taken from its desc property. Normally this is assigned through the template, as shown in the [boxRoom](#boxRoom) example.
@@ -349,7 +349,7 @@ The normal description of a room is taken from its desc property. Normally this 
 Normally a room's description is diplayed in the standard font for the game. This can be changed by modifying roomdescStyleTag. For example to make room decriptions display in the same colours as the status line you could do this:
 
 
-```tads3
+```
 
 modify roomdescStyleTag
     openText = "<font bgcolor=statusbg color=statustext>"
@@ -366,7 +366,7 @@ The fact that you *can* do this doesn't make it a particularly good idea, howeve
   
 
 
-### <a name="specialdesc"></a>
+### <a name="specialdesc"></a>[4] specialDesc & initSpecialDesc
 
 
 Items listed in separate paragraphs, like the [table](#table) and the [large red box](#largebox) here, probably
@@ -380,23 +380,23 @@ more apparent later in the transcript: once the box is taken and dropped again i
   
 
 
-### <a name="lister"></a>
+### <a name="lister"></a>[5] Lists of Objects
 
 
-The lists of objects lying on the floor and on the table are automatically generated as part of the room description by lookAroundWithinContents(), which is in turn called by lookAroundWithin(), in turn called by lookAround() or lookAroundPov(), all defined on Thing but called on the room in question. These are fairly complex methods that you probably won't want to mess with too much. If you want to change the way lists are displayed, see the Technical Article on [Lists and Listers](listers.md).
+The lists of objects lying on the floor and on the table are automatically generated as part of the room description by lookAroundWithinContents(), which is in turn called by lookAroundWithin(), in turn called by lookAround() or lookAroundPov(), all defined on Thing but called on the room in question. These are fairly complex methods that you probably won't want to mess with too much. If you want to change the way lists are displayed, see the Technical Article on [Lists and Listers](../t3Lister.md).
 
 
 [[back]](#r2)
   
 
 
-### <a name="cmdprompt"></a>
+### <a name="cmdprompt"></a>[6] Command Prompt
 
 
 Many, perhaps most, games don't bother to customize the command prompt, but if you're looking to do so it may help to know that it's generated by libMessages.mainCommandPrompt(which). So if you did want to change it, you could do something like this (though preferably in better taste):
 
 
-```tads3
+```
 
 modify libMessages
     mainCommandPrompt(which)
@@ -411,7 +411,7 @@ modify libMessages
 By default what the player types is then displayed in bold black type (with the standard black on white display — with other colour schemes this may differ). This may be customised in two different places. One way would be to modify InputDef. For example, to make the player's input appear simply in italics we could use:
 
 
-```tads3
+```
 
 modify InputDef
     beginInputFont() { "<i>"; }
@@ -424,7 +424,7 @@ modify InputDef
 Alternatively, we could modify inputlineStyleTag; e.g. to make what the player types appear in bold green print we could do this:
 
 
-```tads3
+```
 
 modify inputlineStyleTag
     htmlOpenText = '<b><font color=green>'
@@ -444,7 +444,7 @@ Note also that the default behaviour of InputDef.beginInputFont() and InputDef.e
   
 
 
-### <a name="about"></a>
+### <a name="about"></a>[7] About Text
 
 
 The game's ABOUT text, which has been customized here, is defined in the showAbout() method of the [versionInfo](#versionInfo) object. In a more complex game this might launch a menu offering different kinds of information about the game; here just a simple message is displayed. This is something you will always want to customize in your own games.
@@ -454,7 +454,7 @@ The game's ABOUT text, which has been customized here, is defined in the showAbo
   
 
 
-### <a name="credits"></a>
+### <a name="credits"></a>[8] Credits
 
 
 Although it probably should have been, the credits information for this game has not been customised. The place to do this is in the showCredit() method of the the [versionInfo](#versionInfo) object.
@@ -464,7 +464,7 @@ Although it probably should have been, the credits information for this game has
   
 
 
-### <a name="#openableLister"></a>
+### <a name="#openableLister"></a>[9] OpenableContentsLister
 
 
 The text "It's large, red and box-shaped" simply comes from the desc property of the [largeBox](#largeBox) object. Less obvious, but often more vexing, is the "It's closed" message that comes after it. Ultimately, this comes from [openableContentsLister](listers.md#openable), and if you want to change this message drastically, or banish it altogether, this might be the best place to attack it. For less drastic changes you can override the openStatus() method on the object in question (in this instance the large red box) or simply the openDesc property. The openDesc() method must return a complete sentence, without any closing spacing or punctuation, such as "it's closed" or "it's open"; openDesc just returns an appropriate adjective or adjectival phrase such as 'open' or 'closed'.
@@ -477,7 +477,7 @@ For further ideas on how to deal with 'open' and 'closed' messages, see the appr
   
 
 
-### <a name="#disambig"></a>
+### <a name="#disambig"></a>[10] Disambiguation Prompt
 
 
 This disambiguation prompt is being displayed because there's more than one object in scope that matches the noun 'box', in this case the [large red box](#largeBox) and the [small blue box](#smallBox). The two boxes have quite distinct names, so that it's no trouble for the player to select one or the other (as in the next command). The parser uses the disambigName property of the objects concerned to list the objects the player is to choose from in a disambiguation prompt. By default, the disambigName is the same as the name. In special cases you might want to override disambigName to give distinct names for disambiguation purposes for objects you otherwise want to be named alike.
@@ -490,7 +490,7 @@ It's unlikely that you'll often want to override this disambiguation method, but
   
 
 
-### <a name="#defaultResponse"></a>
+### <a name="#defaultResponse"></a>[11] Default Action Report
 
 
 Laconic messages like 'Done' or 'Taken' or 'Dropped' are generally produced by defaultReport() macros in the action methods for the appropriate actions defined on Thing. For further details of this see the [Action](actions/action-results.md#action) section of the article on Action Results.
@@ -499,7 +499,7 @@ Laconic messages like 'Done' or 'Taken' or 'Dropped' are generally produced by d
 To change this on an individual object, simply override the appropriate action method on the object in question, calling its inherited handling and then adding your own custom message: e.g.
 
 
-```tads3
+```
 
 vase: Thing 'delicate antique vase' 'antique vase'
    "It looks incredibly delicate. "
@@ -519,7 +519,7 @@ vase: Thing 'delicate antique vase' 'antique vase'
 Your custom message will automatically displace anything produce by a defaultReport() macro, so you don't have to worry about both messages appearing. What may be trickier is ensuring that your custom message isn't displayed in the event of an [implicit action](#implicit); you may need to do something like this to prevent that:
 
 
-```tads3
+```
 
 vase: Thing 'delicate antique vase' 'antique vase'
    "It looks incredibly delicate. "
@@ -550,7 +550,7 @@ If you want to make a global change, e.g. from the laconic "Dropped" to the slig
 So you could change it with:
 
 
-```tads3
+```
 
 modify playerActionMessages
     okayDropMsg = '{You/he} put{s} {it dobj/him} down. '
@@ -563,7 +563,7 @@ You may find this a more convenient way to change several such message globally,
    for example, instead of the vase code shown above, you could just define:
 
 
-```tads3
+```
 
 vase: Thing 'delicate antique vase' 'antique vase'
    "It looks incredibly delicate. "
@@ -580,7 +580,7 @@ vase: Thing 'delicate antique vase' 'antique vase'
   
 
 
-### <a name="implicit"></a>
+### <a name="implicit"></a>[12] Implicit Action Announcements
 
 
 Messages like "(first opening the large red box)" or "(first opening the door)" are implicit action announcements. That is they are messages from the parser telling the player that the parser has just carried out one or more commands on the player's behalf; these commands will generally have been executed in order to enable the command the player actually typed to be carried out. For example, in order to look inside the large red box it's necessary to open the red box, and in order to go through the door it's first necessary to open the door.
@@ -592,7 +592,7 @@ In a typical TADS 3 game most implicit actions will be generated by [preconditio
   
 
 
-### <a name="notImportant"></a>
+### <a name="notImportant"></a>[12a] Not Important Message
 
 
 The junk object is evidentally a Decoration. What's displayed here is a Decoration's default 'not important' message. This can be changed by overriding notImportantMsg on individual Decorations (or on Decoration itself, if so desired).
@@ -602,7 +602,7 @@ The junk object is evidentally a Decoration. What's displayed here is a Decorati
   
 
 
-### <a name="tooHeavy"></a>
+### <a name="tooHeavy"></a>[13] Too Heavy Message
 
 
 The [table](#table) has evidently been defined of class Heavy, since this is the standard message that is displayed when a player tries to take or move an object of that class. Such messages are generated from either action() or [check()](actions/action-results.md#check), depending on the action in question, but to change them you simply need to override cannotTakeMsg, cannotMoveMsg, and/or cannotPutMsg on the object in question (or the class). By default all these three are the same ("The X is too heavy. ") for a Heavy object.
@@ -612,13 +612,13 @@ The [table](#table) has evidently been defined of class Heavy, since this is the
   
 
 
-### <a name="listgroup"></a>
+### <a name="listgroup"></a>[14] List Group
 
 
 In this case, the three similar crayons have been grouped together, using the crayonGroup ListGroup used in the listWith property of the [Crayon](#crayon) class. The effect is somewhat spoiled, however, because the job hasn't been done properly: the three crayons are introduced as "three blue crayons" instead of just "three crayons". This could be fixed by overriding showGroupCountName() on crayonGroup:
 
 
-```tads3
+```
 
 crayonGroup: ListGroupParen
     showGroupCountName(lst)
@@ -637,7 +637,7 @@ For more details about using ListGroups, see the section on [Grouping](listers.m
   
 
 
-### <a name="readdesc"></a>
+### <a name="readdesc"></a>[15] readDesc
 
 
 You'll notice that X BOOK and READ BOOK give different responses here (which is not the case for most objects). That's because the [green book](#greenBook) has been made of class Readable and given a separate readDesc property.
@@ -647,7 +647,7 @@ You'll notice that X BOOK and READ BOOK give different responses here (which is 
   
 
 
-### <a name="verify"></a>
+### <a name="verify"></a>[16] Verify Message
 
 
 The first time the player types WEAR SOCK the parser is quite happy to carry out the command, since the [sock](#sock) is both within scope and defined as being a Wearable. On the second occasion, however, the parser complains that the sock is already being worn; this type of message, where an action is not (or is not yet or is no longer) reasonable is typically generated by a [verify routine](actions/action-results.md#verify).
@@ -657,14 +657,14 @@ The first time the player types WEAR SOCK the parser is quite happy to carry out
   
 
 
-### <a name="inventory"></a>
+### <a name="inventory"></a>[17] Inventory Listing
 
 
 This is a typical [inventory listing](listers.md#inventory).
 [[back]](#r17)
 
 
-### <a name="roomfirst"></a>
+### <a name="roomfirst"></a>[18] roomFirstDesc
 
 
 Ordinarily it would be a bad idea to include any mention of how you arrived at the location in a room descrption, since this will generally not read well if the room is approached from some other direction, or the room is subsequently examined again. In this case, however, the [landing](#landing) is described differently when it is examined the second time. This is achieved by using roomFirstDesc to display a different description the first time the room is examined. This works well here since the first time the landing is examined the player character *can* only have just entered it from the box room.
@@ -674,7 +674,7 @@ Ordinarily it would be a bad idea to include any mention of how you arrived at t
   
 
 
-### <a name="travelDesc"></a>
+### <a name="travelDesc"></a>[19] travelDesc
 
 
 There's more than one way we could produce this description of the player character walking down the stairs. Perhaps the simplest, which is used the code below, is to make the [stairway](#stairway) a TravelWithMessage as well as a StairwayDown and then simply define the message we want on its travelDesc property.
@@ -684,7 +684,7 @@ There's more than one way we could produce this description of the player charac
   
 
 
-### <a name="remoteactor"></a>
+### <a name="remoteactor"></a>[20] Remotely Described Actors
 
 
 The hall is represented in this game by two different locations, [hallEast](#hallEast) and [hallWest](#hallWest), linked with a [DistanceConnector](#dConn). The implementation is less than perfect, however, as can be seen from the transcript.
@@ -716,7 +716,7 @@ to the definition of the [harold](#harold) object.
 A second infelicity is the fact that both Harold and Mavis are described as being "in the wall (west end)"; while it is probably clear enough what this means, it would read better if they were said to be "in the east end of the hall" or even better, perhaps, "at the other end of the hall". One way of achieving the latter, using inRoomName(), is illustrated below. A second way to deal with this would be to explicitly assign the name property of hallWest, which, using the template, would mean giving it an explicit destName as well, like this:
 
 
-```tads3
+```
 
 hallWest: Room 'Hall (West End)' 'the west end of the hall'
     'west end of the hall'
@@ -809,13 +809,13 @@ Mavis is sitting on the wooden chair at the far end of the hall.
   
 
 
-### <a name="sightSize"></a>
+### <a name="sightSize"></a>[21] Remote Descriptions and sightSize
 
 
 It shouldn't be too difficult to see where the description of Harold is coming from; it's simply the desc property defined on the [harold](#harold) object. But why aren't we seeing a description for [Mavis](#mavis)?
 
 
-The answer is quite simple: the game defines `sightSize = large` on Harold (which means we can get a description of him from a distance, including from a remote location, as here), but we have omitted to make the same change on Mavis. Mavis's sightSize is thus still at medium (the default), which means that although she can be seen from a distance, any attempt to view her from a remote location will be met with the response "She's too far away to make out any detail."
+The answer is quite simple: the game defines `sightSize = large` on Harold (which means we can get a description of him from a distance, including from a remote location, as here), but we have omitted to make the same change on Mavis. Mavis's sightSize is thus still at medium (the default), which means that although she can be seen from a distance, any attempt to view her from a remote location will be met with the response "She’s too far away to make out any detail."
 
 
 If we want to change this we have several options, depending on what we want to achieve.
@@ -827,7 +827,7 @@ First, we could just define `sightSize = large` on Mavis as well as Harold, so t
 Second, if we're happy that Mavis is too small to be clearly discerned from a distance, but we want to customize the message that's shown in such circumstances, we could modify the library method that produces it, namely libMessages.distantThingDesc(obj); e.g.:
 
 
-```tads3
+```
 
 modify libMessages
     distantThingDesc(obj)
@@ -844,7 +844,7 @@ modify libMessages
 An alternative place to customize this message is on Thing.defaultDistantDesc(), so instead of the above we could do the following, with much the same effect:
 
 
-```tads3
+```
 
 modify Thing
     defaultDistantDesc()
@@ -863,7 +863,7 @@ This second method has the advantage of being a bit simpler and more direct, and
 The third possibility is to override remoteDesc(pov) on Mavis, which will define how she's described from a remote point of view regardless of her sight size. For example:
 
 
-```tads3
+```
 
 mavis: Person 'old mavis/woman' 'Mavis' @woodenChair
     "She's a funny old woman, when all's said and done. "
@@ -891,7 +891,7 @@ She's quite aged.
   
 
 
-### <a name="oops"></a>
+### <a name="oops"></a>[22] Oops
 
 
 The first part of the message, saying that word "buck" (presumably a typo for "duck" here) is not necessary in the game (meaning that the game doesn't recognize it), comes from player.messages.AskUnknownWord(). The second half (which would only be displayed the first time an unknown rord is encountered) comes from libMessages.oopsNote() (which playerMessages.askUnknownWord() calls).
@@ -904,7 +904,7 @@ For a slightly fuller explanation of how these messages are reached, see the sec
   
 
 
-### <a name="inRoomName"></a>
+### <a name="inRoomName"></a>[23] inRoomName
 
 
 The rubber duck is sensibly described as being "At the far end of the hall". This is because [hallEast](#hallEast) defines inRoomName() accordingly; the inRoomName(pov) method can be used to define a prepositional phrase (e.g. "at the far end of the hall", "further up the street" or "in the north side of the field") used to describe the whereabouts of objects in this location when they're viewed from another location. The point-of-view parameter (pov) can be used to vary this phrase according to where we're looking from; we could, for example, check `pov.getOutermostRoom` to decide whether to describe a particular stretch of street as "further up the street to the north" or "further down the street to the south".
@@ -913,7 +913,7 @@ The rubber duck is sensibly described as being "At the far end of the hall". Thi
 In this case, since the east end of the hall can only be viewed from one other location, namely the west end of the hall, we could have used actorInName to the same effect:
 
 
-```tads3
+```
 
 hallEast: Room 'Hall (East End)'
     "This large hall continues to the west. A flight of stairs leads up to the
@@ -931,7 +931,7 @@ hallEast: Room 'Hall (East End)'
   
 
 
-### <a name="locActor"></a>
+### <a name="locActor"></a>[24] Listing Local Actors
 
 
 Here [Harold](#harold) and [Mavis](#mavis) are shown in the standard form for listing actors who are present in the player character's location (rather than actors in a remote location, as we discussed above). Tracing where the library actually generates these descriptions is a little complex; here's the chain:
@@ -941,15 +941,15 @@ Here [Harold](#harold) and [Mavis](#mavis) are shown in the standard form for li
 2. By default, ActorState.specialDesc() in turn calls the actorHereDesc() method on the actor (distantSpecialDesc and remoteSpecialDesc both call actorThereDesc on the actor). This is usually a good point to intervene; if you want to change the way an actor is listed in a room description override specialDesc() (or distantSpecialDesc or remoteSpecialDesc) on the ActorState.
 3. If specialDesc has not been overridden on the ActorState, it's routed back to Actor.actorHereDesc. This is turn calls descViaActorContainer (again on the actor). More specifically, actorHereDesc calls `descViaActorContainer(&roomActorHereDesc, nil);` while actorThereDesc calls `descViaActorContainer(&roomActorThereDesc, nil);`
 4. What Actor.descViaActorContainer does is a little hard to describe. Basically it first determines whether the actor's container needs to be explicitly mentioned (as in the case of the chair Mavis is sitting on) or not (as in the case of Harold, who is standing directly in the room that's being described). In the first case it then calls a property of the container; in the second it calls a property of the gLibMessages object. The property it calls is determined by the first parameter passed to descViaActorContainer. In this case, that property is roomActorHereDesc (passed by actorHereDesc in the previous step). For Mavis, this will result in roomActorHereDesc() being called on the chair; for Harold this will result in roomActorHereDesc() being called on libMessages.
-5. For Harold, we reach the end of the chain at libMessages.roomActorHereDesc(actor), which, by default, generates the message "\^<<actor.nameIs>> <<actor.posture.participle>> <<tSel('here', 'there')>>. ", which in this case translates into "Harold is standing here."
+5. For Harold, we reach the end of the chain at libMessages.roomActorHereDesc(actor), which, by default, generates the message "\^&lt;&lt;actor.nameIs>> &lt;&lt;actor.posture.participle>> &lt;&lt;tSel('here', 'there')>>. ", which in this case translates into "Harold is standing here."
 6. For Mavis, the chain continues with a call to roomActorHereDesc(actor) on the object she's sitting upon. By default this will inherit from BasicLocation.roomActorHereDesc(actor), which calls gLibMessages.actorInRoom(actor, self);
-7. For Mavis, the chain thus finally comes to an end at libMessages.actorInRoom(actor, cont), with Mavis being passed as the actor parameter and the chair as the cont parameter. By default this displays the message "\^<<actor.nameIs>> <<actor.posture.participle>> <<cont.actorInName>>. ", which in this case translates into "Mavis is sitting on the wooden chair. "
+7. For Mavis, the chain thus finally comes to an end at libMessages.actorInRoom(actor, cont), with Mavis being passed as the actor parameter and the chair as the cont parameter. By default this displays the message "\^&lt;&lt;actor.nameIs>> &lt;&lt;actor.posture.participle>> &lt;&lt;cont.actorInName>>. ", which in this case translates into "Mavis is sitting on the wooden chair. "
 
 
 For most purposes, this is probably more detail than we really need to know. It's conceivably useful to intervene at any point in this chain; for example we might want to override roomActorHereDesc() on a particular object to customize the way any actor within that object is described (e.g. "Wilbur is perched precariously on the narrow rail", when you'd want the "perched precariously..." bit shown whoever was sitting on the narrow rail). In the vast majority of cases, however, you'll probably want to stick to overriding the specialDesc property of the relevant ActorState. For example we could override the specialDescs on [Harold's](#harold) initial ActorState and [Mavis's](#mavis) thus:
 
 
-```tads3
+```
 
 mavis: Person 'old mavis/woman' 'Mavis' @woodenChair
     "She's a funny old woman, when all's said and done. "
@@ -1003,7 +1003,7 @@ Mavis is slumped miserably in the wooden chair.
   
 
 
-### <a name="exits"></a>
+### <a name="exits"></a>[25] Listing Exits - destName
 
 
 First, the news in brief: the list of exits is produced by exitLister.showExitsCommand(), which in turn calls chain of methods too complex to go into here. Suffice to say that if you want to customize the way exits are listed, that's the place to look. It's also exitLister.showExitsCommand() that's responsible for displaying the explanation of the EXITS command ("You can control the exit listings with the EXITS command. EXITS STATUS ...") the first time it's used. The easiest way to suppress this altogther would be to set exitLister.exitsOnOffExplained to true at the start of the game. If you want a different explanation explained it's probably easiest to override exitLister.showExitsCommand to display your own version, but you could instead override libMessages.explainExitsOnOff.
@@ -1012,7 +1012,7 @@ First, the news in brief: the list of exits is produced by exitLister.showExitsC
 The more noteworthy point here, however, is that the exit listing in the transcript appears slighly clumsy: "Obvious exits lead south; and east, back to the hall (east end)." It would read better if it ended with "back to the east end of the hall." To do that we simply need to define a destName on [hallEast](#hallEast):
 
 
-```tads3
+```
 
 hallEast: Room 'Hall (East End)' 'the east end of the hall'
     "This large hall continues to the west. A flight of stairs leads up to the
@@ -1033,13 +1033,13 @@ Here the destName is defined by including it as the second single-quoted string 
   
 
 
-### <a name="posture"></a>
+### <a name="posture"></a>[26] Actor Posture
 
 
-The description of Mavis seems a little clumsy here, since it refers to the chair twice, first in the sentence "She is sitting on the wooden chair" and then immediately afterwards in the sentence "She's rocking back and forth in her chair moaning "Woe!"" The first of these two sentences looks redundant here; but where is it coming from, and how do we get rid of it?
+The description of Mavis seems a little clumsy here, since it refers to the chair twice, first in the sentence "She is sitting on the wooden chair" and then immediately afterwards in the sentence "She's rocking back and forth in her chair moaning “Woe!”" The first of these two sentences looks redundant here; but where is it coming from, and how do we get rid of it?
 
 
-There are actually three sentences describing Mavis here. The first, "She's a funny old woman, when all's said and done" comes from the desc property of the [mavis](#mavis) object. The last, "She's rocking back and forth in her chair moaning "Woe!"", comes from the stateDesc of the [HermitActorState](#hermit) that Mavis starts out in (if you need an explanation of ActorStates, see the article on [Creating Dynamic Characters](actors/dynamic-characters.md)). It's the troublesome middle sentence that appears to come from nowhere in the author's code.
+There are actually three sentences describing Mavis here. The first, "She's a funny old woman, when all's said and done" comes from the desc property of the [mavis](#mavis) object. The last, "She's rocking back and forth in her chair moaning “Woe!”", comes from the stateDesc of the [HermitActorState](#hermit) that Mavis starts out in (if you need an explanation of ActorStates, see the article on [Creating Dynamic Characters](../t3Actor.md)). It's the troublesome middle sentence that appears to come from nowhere in the author's code.
 
 
 It may be helpful to explain the chain of events that produces this message:
@@ -1050,13 +1050,13 @@ It may be helpful to explain the chain of events that produces this message:
 3. In turn, Actor.postureDesc() calls descViaActorContainer(&roomActorPostureDesc, nil), again on the current actor.
 4. Actor.descViaActorContainer() then calls roomActorPostureDesc on the actor's container (except under particular circumstances when it's called on libMessages instead).
 5. By default, the container uses BasicLocation.roomActorPostureDesc, which then in turn calls gLibMessages.actorInRoomPosture(actor, self) (gLibMessages is normally just libMessages).
-6. Finally, libMessages.actorInRoomPosture(actor, room) produces the message "\^<<actor.itIs>> <<actor.posture.participle>> <<room.actorInName>>", which in this case translates into "She is sitting on the wooden chair."
+6. Finally, libMessages.actorInRoomPosture(actor, room) produces the message "\^&lt;&lt;actor.itIs>> &lt;&lt;actor.posture.participle>> &lt;&lt;room.actorInName>>", which in this case translates into "She is sitting on the wooden chair."
 
 
 Although we could in principle intervene at any stage in the process, the best place for this kind of situation is commonly in Mavis's postureDesc() method. To suppress the unwanted redundancy we can simply make it do nothing at all:
 
 
-```tads3
+```
 
 mavis: Person 'old mavis/woman' 'Mavis' @woodenChair
     "She's a funny old woman, when all's said and done. "
@@ -1076,7 +1076,7 @@ Then we'll get:
 
 >x mavis
 She's a funny old woman, when all's said and done. She's rocking back and forth
-in her chair moaning "Woe!"
+in her chair moaning “Woe!”
 
 ```
 
@@ -1084,7 +1084,7 @@ in her chair moaning "Woe!"
 In this case, that's all we need to do, since Mavis never moves from her chair, and never changes ActorState. In a more complex situation we might want postureDesc() to do its usual stuff in some situations but not in others; in that case we might need to build in an appropriate test, e.g.:
 
 
-```tads3
+```
 
    postureDesc()
    {
@@ -1098,7 +1098,7 @@ In this case, that's all we need to do, since Mavis never moves from her chair, 
 This would give us the default description of Mavis's posture except when she's in either the MavisSitting or the MavisWandering states (which, it is to be assumed, already describe Mavis's posture sufficiently well in their stateDescs). A more general solution might be to modify Actor and ActorState thus:
 
 
-```tads3
+```
 
 modify Actor()
     postureDesc()
@@ -1125,7 +1125,7 @@ For further information on taming posture messages, see the section on Unwanted 
   
 
 
-### <a name="noResponse"></a>
+### <a name="noResponse"></a>[27] HermitActorState.noResponse
 
 
 There are several ways in which Mavis's response, or rather non-response - could have been generated here, but given the nature of her (non-)response and the absence of any greeting protocols, the most likely (and most probable) way this has been generated is from the noResponse property of a [HermitActorState](#hermit).
@@ -1135,7 +1135,7 @@ There are several ways in which Mavis's response, or rather non-response - could
   
 
 
-### <a name="greeting"></a>
+### <a name="greeting"></a>[28] HelloTopic
 
 
 [Harold](#harold) responds to the player character's greeting here because he's been given an explicit HelloTopic in his initially active ConversationReadyState. For a fuller explanation of these terms see the article on [Programming Conversations with NPCs](actors/programming-conversations.md).
@@ -1145,7 +1145,7 @@ There are several ways in which Mavis's response, or rather non-response - could
   
 
 
-### <a name="topics"></a>
+### <a name="topics"></a>[29] Suggested Topics
 
 
 The explicit greeting command has resulted in a list of topics the player could try asking [Harold](#harold) about (here there's actually only one). The greeting triggers a call to suggestTopics(true) on the actor initiating the conversation (in this case, and in most others, the player character); it's the 'explicit' argument that's being called as true here. The suggestTopics method then calls suggestTopicsFor(self, explicit) on the actor who his being addressed (in this case Harold), which in turn calls suggestTopicsFor() on that actor's current ActorState (which should by now be Harold's InConversationState). This then calls the ActorState's showSuggestedTopics() method.
@@ -1161,7 +1161,7 @@ For a fuller explanation of all this see the article on [Programming Conversatio
   
 
 
-### <a name="asktopic"></a>
+### <a name="asktopic"></a>[30] AskTopic
 
 
 Here we see a fairly standard kind of response from an [AskTopic](#mavisask). This one informs the player character about the photograph and so needs to mark that object as known about so that the player can now refer to it in subsequent conversation. At the same time the player's curiosity about Mavis is exausted (that is, she won't appear as a suggested topic of conversation again.
@@ -1174,7 +1174,7 @@ For a fuller explanation of all this see the article on [Programming Conversatio
   
 
 
-### <a name="topics2"></a>
+### <a name="topics2"></a>[31] Explicit Topic Request
 
 
 We have just met a topic inventory display [above](#topics). The procedure for producing it is much the same here, except that the output is not enclosed in parentheses (since it's the response to an explicit TOPICS command, not a by-product of a greetings command). One point to note is that the list has changed: the player character's curiosity about Mavis has been exhausted, but he now knows about the photograph, so that has become available to be asked about.
@@ -1184,7 +1184,7 @@ We have just met a topic inventory display [above](#topics). The procedure for p
   
 
 
-### <a name="stopEvent"></a>
+### <a name="stopEvent"></a>[32] StopEventList
 
 
 Once again we see the output from an ordinary AskTopic, but this one appears also to be a [StopEventList](#photoask), since we get a different response second time round, which repeats thereafter.
@@ -1194,7 +1194,7 @@ Once again we see the output from an ordinary AskTopic, but this one appears als
   
 
 
-### <a name="defresponse"></a>
+### <a name="defresponse"></a>[33] DefaultTopic
 
 
 The player is always likely to ask an NPC about topics for which the author has provided no specific response, as here. At least we can assume that the author of this game would not have thought to provide a response to asking Harold about American foreign policy, so this will almost certainly be the response from some kind of [DefaultTopic](#deftopic). This one has the merit of keeping the player firmly focused on his next objective.
@@ -1207,13 +1207,13 @@ For more information on how DefaultTopics can be used in NPC conversations, see 
   
 
 
-### <a name="bye"></a>
+### <a name="bye"></a>[34] Missing ByeTopic
 
 
 The unfortunate "Nothing happens." response occurs here because the author has forgotten to define an appropriate ByeTopic for Harold at this point. We need to add something like the following (after the HelloTopic in Harold's [ConversationReadyState](#hWaiting):
 
 
-```tads3
+```
 
 +++ ByeTopic
     "<q>Bye for now,</q> you say.\b
@@ -1229,9 +1229,9 @@ We'd then see:
 ```
 
 >bye
-"Bye for now," you say.
+“Bye for now,” you say.
 
-"See you soon," he replies.
+“See you soon,” he replies.
 
 ```
 
@@ -1243,7 +1243,7 @@ For a more sophisticated implementation, we might want to provide a separate Imp
   
 
 
-### <a name="dark"></a>
+### <a name="dark"></a>[35] Darkness
 
 
 There are two library default messages here, which we may as well take together. The first, 'In the dark', is the default value of roomDarkName. The second "It's pitch black" is likewise the default value of roomDarkDesc. These give respectively the name and the description of a location when there's not enough light present to see it by.
@@ -1252,7 +1252,7 @@ There are two library default messages here, which we may as well take together.
 It's easy enough to customize both messages when appropriate, as it probably is here, since the player character is presumably at least aware that the stairs lead down into the cellar. So we might change the definition of the [cellar](#cellar) location thus:
 
 
-```tads3
+```
 
 cellar: DarkRoom 'Cellar'
     "The cellar is almost bare. A flight of stairs leads up to the north. "
@@ -1286,7 +1286,7 @@ Since the dark description now mentions the flight of stairs, it might be a good
   
 
 
-### <a name="torchon"></a>
+### <a name="torchon"></a>[36] Torch Turned On Message
 
 
 This is simply the default message for turning something on, generated from actionDobjTurnOn(). The actual message used is playerActionMessages.okayTurnOnMsg. If you wanted to customize it for a particular Flashlight you'd probably do so in its actionDobjTurnOn() method, i.e. the action part of dobjFor(TurnOn).
@@ -1296,7 +1296,7 @@ This is simply the default message for turning something on, generated from acti
   
 
 
-### <a name="nowlight"></a>
+### <a name="nowlight"></a>[37] A Newly Lit Location
 
 
 Turning on the torch also causes the room description to be re-displayed, now that the player character can see it. This is carried out by the special internal action NoteDarkness, which is called from Actor.noteConditionsAfter() if the lighting conditions have changed over the course of the current action. Action.doAction() calls pc.noteConditionsBefore() (pc = player character) at the start of an action (which makes a note of whether it's light or dark) and then calls pc.noteConditionsAfter() near the end of the action to check whether lighting conditions have changed, requiring a new description of the newly-lit location or else an announcement of the onset of darkness.
@@ -1306,7 +1306,7 @@ Turning on the torch also causes the room description to be re-displayed, now th
   
 
 
-### <a name="score"></a>
+### <a name="score"></a>[38] Score Notification
 
 
 We get this score notification because actionDobjTake() on the [photo](#photo) object calls awardPointsOnce() on an associated Achievement (a number of other methods might have had a similar effect, but this is the one that was used here).
@@ -1315,20 +1315,20 @@ We get this score notification because actionDobjTake() on the [photo](#photo) o
 Whatever the precise method use to invoke the scoring, it will usually be routed through the addToScore() function, which in turn calls libScore.addToScore_() (note the underscore).
 
 
-The actual message announcing the change in score comes from scoreNotifier.checkNotification(), which uses libMessages.firstScoreChange() if this is the first time a change of score is being notified in a game, or libMessages.scoreChange() thereafter. Both these libMessages methods then call libMessages.basicScoreChange() to announce the actual change in score, but libMessages.firstScoreChange() then goes on to diplay the additional message "(If you'd prefer not to be notified about score changes in the future, type NOTIFY OFF.)"
+The actual message announcing the change in score comes from scoreNotifier.checkNotification(), which uses libMessages.firstScoreChange() if this is the first time a change of score is being notified in a game, or libMessages.scoreChange() thereafter. Both these libMessages methods then call libMessages.basicScoreChange() to announce the actual change in score, but libMessages.firstScoreChange() then goes on to diplay the additional message "(If you’d prefer not to be notified about score changes in the future, type NOTIFY OFF.)"
 
 
 [[back]](#r38)
   
 
 
-### <a name="providing"></a>
+### <a name="providing"></a>[39] State-Related Text
 
 
 We've already seen an [inventory listing](#inventory) before. What's new here is the text '(providing light)' following the name of the torch in the inventory listing. Without going into arcane details of the way various inventory listers go about their business, we can say that this text ultimately comes from the listName_ property of lightSourceStateOn, so that one way to customize it would be with the following:
 
 
-```tads3
+```
 
 modify lightSourceStateOn
     listName_ = 'currently switched on'
@@ -1344,7 +1344,7 @@ We'd then see:
 
 >i
 You are carrying a large black torch (currently switched on) and a photo of Buster
-Keaton, and you're wearing an odd sock.
+Keaton, and you’re wearing an odd sock.
 
 ```
 
@@ -1352,7 +1352,7 @@ Keaton, and you're wearing an odd sock.
 This is fine when the torch is the only light source in the game, but if there were multiple light sources it might not be so good, since this change would then apply to all of them. To allow for this we could make the more complicated change:
 
 
-```tads3
+```
 
 modify lightSourceStateOn
     listName(lst)
@@ -1370,7 +1370,7 @@ modify lightSourceStateOn
 The change would then apply only to the torch; any other light source would continue to use the default 'providing light' message. If we had multiple light sources all requiring their own versions of this message, we might come up with a different kind of scheme, making the light source supply its own message:
 
 
-```tads3
+```
 
 modify lightSourceStateOn
     listName(lst)
@@ -1422,7 +1422,7 @@ For further suggestions on dealing with messages of this sort, see the appropria
   
 
 
-### <a name="cantgo"></a>
+### <a name="cantgo"></a>[40] Cannot Go That Way
 
 
 This is the message you get when the player character tries to go in an unavailable direction. The message is generated by cannotGoThatWay() (called on the current room), which in turn first displays the room's cannotGoThatWayMsg, and then calls cannotGoShowExits(gActor) to list the exits that are available.
@@ -1431,7 +1431,7 @@ This is the message you get when the player character tries to go in an unavaila
 There are thus several places at which you can customize this, but two in particular are useful. If you want to change the first part of the message but leave the listing of exits as it is, then simply override cannotGoThatWayMsg, e.g.:
 
 
-```tads3
+```
 
 cellar: DarkRoom 'Cellar'
     "The cellar is almost bare. A flight of stairs leads up to the north. "
@@ -1461,7 +1461,7 @@ Note that this could be improved by giving a destName to [hallWest](#hallWest) s
 The alternative is to replace the entire output by overriding cannotGoThatWay():
 
 
-```tads3
+```
 
 cellar: DarkRoom 'Cellar'
     "The cellar is almost bare. A flight of stairs leads up to the north. "
@@ -1491,13 +1491,13 @@ only way out of here is back up the stairs. "
   
 
 
-### <a name="darkannounce"></a>
+### <a name="darkannounce"></a>[41] Announcement of Darkness
 
 
 The mechanism for recognizing and responding to the onset of light or darkness (involving the NoteDarknessAction and Actor.noteConditionsAfter()) has already been described [above](#nowlight). The new point to note here is that the actual message announcing the darkness ('It is now pitch black') comes from playerActionMessages.newlyDarkMsg. If we wanted to change it this message, this would therefore be the most convenient place to change it, e.g.:
 
 
-```tads3
+```
 
 modify playerActionMessages
     newlyDarkMsg = 'Now it\'s too dark to see anything. '
@@ -1510,13 +1510,13 @@ modify playerActionMessages
   
 
 
-### <a name="darkgo"></a>
+### <a name="darkgo"></a>[42] Cant Go in Darkness
 
 
 This message is produced by the method cannotGoThatWayInDark(), called on the current location. By default it displays playerActionMessages.cannotGoThatWayInDarkMsg, but obviously it could be overridden to display any message you like, e.g.:
 
 
-```tads3
+```
 
 cellar: DarkRoom 'Cellar'
     "The cellar is almost bare. A flight of stairs leads up to the north. "
@@ -1534,7 +1534,7 @@ cellar: DarkRoom 'Cellar'
   
 
 
-### <a name="fuse"></a>
+### <a name="fuse"></a>[43] Winning Cut-Scene
 
 
 There are several distant ways we could generate this brief closing cut-scene. This one was implemented by setting up a Fuse in the enteringRoom() method of [hallWest](#hallWest) if the player enters the room carrying the photograph; the fuse then executes at the end of the turn, displaying the message and ending the game.
@@ -1544,7 +1544,7 @@ There are several distant ways we could generate this brief closing cut-scene. T
   
 
 
-### <a name="winning"></a>
+### <a name="winning"></a>[44] Winning Message
 
 
 This winning message, which marks the end of the game, is here generated by the call to finishGameMsg() in the (custom) winGame() method on [hallWest](#hallWest).
@@ -1560,7 +1560,7 @@ The second parameter used by finishGameMsg is a list of FinishOption objects. On
   
 
 
-### <a name="finalscore"></a>
+### <a name="finalscore"></a>[45] Final Score Notification
 
 
 This final score notification is generated from a call to libGlobal.scoreObj.showScore() in the finishGameMsg() function (which was called from author code; see the definition of [hallWest](#hallWest).winGame).
@@ -1570,17 +1570,17 @@ This final score notification is generated from a call to libGlobal.scoreObj.sho
   
 
 
-### <a name="fullscore"></a>
+### <a name="fullscore"></a>[46]
 
 
-The FULL SCORE command generates this report of the score and list of achievements by calling libScore.showFullScore(). The points awarded for and description of each achievement listed are defined on the various Achievement objects defined in the game and activated by a call to awardPointsOnce(). For a fuller account of the scoring system see the comments in [score.t](../api/by-file/score.t.md).
+The FULL SCORE command generates this report of the score and list of achievements by calling libScore.showFullScore(). The points awarded for and description of each achievement listed are defined on the various Achievement objects defined in the game and activated by a call to awardPointsOnce(). For a fuller account of the scoring system see the comments in [score.t](../../libref/source/score.t.md).
 
 
 [[back]](#r46)
   
 
 
-### <a name="goodbye"></a>
+### <a name="goodbye"></a>[47] Goodbye Message
 
 
 This farewell message is produced by the showGoodbye() method on [gameMain](#gameMain).
@@ -1593,10 +1593,10 @@ This farewell message is produced by the showGoodbye() method on [gameMain](#gam
 ---
 
 
-## <a name="sourcecode"></a>
+## <a name="sourcecode"></a>The Source Code
 
 
-```tads3
+```
 
 #charset "us-ascii"
 
@@ -1627,7 +1627,7 @@ versionInfo: GameID
         /* show our credits */
         "Put credits for the game here. ";
 
-        /*   The game credits are displayed first, but the library will
+        /   The game credits are displayed first, but the library will
          *   display additional credits for library modules.  It's a good
          *   idea to show a blank line after the game credits to separate
          *   them visually from the (usually one-liner) library credits
@@ -1650,7 +1650,7 @@ gameMain: GameMainDef
     /* the initial player character is 'me' */
     initialPlayerChar = me
 
-    /*   Show our introductory message.  This is displayed just before the
+    /   Show our introductory message.  This is displayed just before the
      *   game starts.  Most games will want to show a prologue here,
      *   setting up the situation for the player, and show the title of the
      *   game.
@@ -1660,7 +1660,7 @@ gameMain: GameMainDef
         "Welcome to the TADS 3 Starter Game!\b";
     }
 
-    /*   Show the "goodbye" message.  This is displayed on our way out,
+    /   Show the "goodbye" message.  This is displayed on our way out,
      *   after the user quits the game.  You don't have to display anything
      *   here, but many games display something here to acknowledge that
      *   the player is ending the session.

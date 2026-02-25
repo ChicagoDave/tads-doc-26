@@ -1,5 +1,5 @@
 
-!
+![](../t3logo.gif)
   
   
 
@@ -35,7 +35,7 @@ information local to the method:
 
 
 If a method has a debug record, the debugger records field in
-the [method header](machine-model.md#methods) must give the
+the [method header](../model.md#methods) must give the
 non-zero offset of the record.  If the method has no debugger
 records, this field must be set to zero.
 
@@ -64,7 +64,7 @@ The format of the debug table is as follows:
 
 
 Note that the size of the debug table header is given by the
-"debug table header size" field from the [ENTP block](image-format.md#BlockENTP) in the image file; this information is parameterized
+"debug table header size" field from the [ENTP block](../format.md#BlockENTP) in the image file; this information is parameterized
 in the image file to allow for changes to be made in future versions
 without affecting compatibility.
 
@@ -180,7 +180,7 @@ name string in UTF-8 format.
 The symbol header is arranged as follows.  Note that the record
 might contain additional entries in future versions; when parsing
 these records, debuggers and other tools should always use the "debug
-local symbol header size" from the [entrypoint (ENTP) record](image-format.md#BlockENTP) in the image file to determine the
+local symbol header size" from the [entrypoint (ENTP) record](../format.md#BlockENTP) in the image file to determine the
 record's actual size.
 
 

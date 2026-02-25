@@ -38,16 +38,16 @@ glyph is a separate word, so there is no need to keep most pairs of
 adjacent glyphs together on one line.
 
 
-### Selecting the Wrapping Mode: the <WRAP> Tag
+### Selecting the Wrapping Mode: the &lt;WRAP> Tag
 
 
-The game sets the wrapping mode using the <WRAP> tag (which
-is a TADS extension, not a standard HTML tag).  <WRAP WORD> sets
-word-wrapping mode, and <WRAP CHAR> sets character-wrapping
+The game sets the wrapping mode using the &lt;WRAP> tag (which
+is a TADS extension, not a standard HTML tag).  &lt;WRAP WORD> sets
+word-wrapping mode, and &lt;WRAP CHAR> sets character-wrapping
 mode.  The interpreter always starts in word-wrapping mode.  This tag
 is not a container, but simply an in-line mode switch, so there is no
-</WRAP> tag; to change out of the current mode, simply use another
-<WRAP> tag with the new mode.
+&lt;/WRAP> tag; to change out of the current mode, simply use another
+&lt;WRAP> tag with the new mode.
 
 
 ## Overriding the Default Breaking Rules

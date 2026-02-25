@@ -2,7 +2,7 @@
 # HTML TADS Table Layout Rules
 
 
-The <TABLE> tag is probably the most powerful feature in
+The &lt;TABLE> tag is probably the most powerful feature in
 HTML for controlling visual layout.  The HTML specifications are
 intentionally vague about table layout, because the designers of HTML
 wanted to leave a lot of the details up to each implementation for
@@ -55,8 +55,8 @@ wider than this "maximum" by padding it with blank space.
 
 **Column WIDTH specifications.** Some of the rules involve
 columns with explicitly specified widths.  Column widths are
-specified using the WIDTH attribute of the <TD> and <TH>
-tags.  When a column contains a <TD> or <TH> tag with a
+specified using the WIDTH attribute of the &lt;TD> and &lt;TH>
+tags.  When a column contains a &lt;TD> or &lt;TH> tag with a
 WIDTH attribute, then that column is given that specified width.  If
 a single column contains multiple cells with WIDTH specifications, we
 only pay attention to the widest one.
@@ -137,7 +137,7 @@ for choosing the width are:
   any clipping or overlapping.  If any other rule would choose a table
   size below this minimum, we always override that decision and use
   this minimum table size instead.
-- If the <TABLE> tag specifies a WIDTH attribute, then we
+- If the &lt;TABLE> tag specifies a WIDTH attribute, then we
   use that value (except that the minimum table size above overrides
   this if the WIDTH value is below the minimum).
 - In the absence of a WIDTH attribute, the largest we'll make the
@@ -248,7 +248,7 @@ If a cell or a row has a HEIGHT attribute, then we'll use the
 larger of the minimum height and the explicit HEIGHT attribute value.
 
 
-If the <TABLE> tag has a HEIGHT attribute, and the height is
+If the &lt;TABLE> tag has a HEIGHT attribute, and the height is
 larger than the sum of the minimum heights of the rows, then the
 table's height is the explicitly given HEIGHT; otherwise, the table's
 height is the sum of the minimum row heights.  If the explicit HEIGHT
@@ -257,7 +257,7 @@ between the explicit HEIGHT and the actual minimum height of the
 rows) among the rows as follows:
 
 
-- If there are any rows (<TR> tags) with "HEIGHT=*" settings,
+- If there are any rows (&lt;TR> tags) with "HEIGHT=*" settings,
   then we distribute the extra space evenly among the "HEIGHT=*" rows.
 - Otherwise, we distribute the space to the rows in proportion to
   their minimum heights.  (For example, if there are two rows, and the

@@ -52,11 +52,11 @@ but we should also need to ensure that our code took care of issues such as the 
 
 
 The basic banner window model is described in the *System Manual* article on
-[The Banner Window Display Model](../html-tads/banners.md). If you are not
+[The Banner Window Display Model](../../sysman/banners.md). If you are not
 already reasonably familiar with this, you might like to read it now, since the present article
 assumes some understanding of the screen layout model it describes. This might also be
 a good point to take a look at the the *System Manual*'s description of the
-low-level banner API functions in the section on the [tads-io Function Set](../intrinsics/functions/tadsio.md). Although these low-level functions are not the best way to
+low-level banner API functions in the section on the [tads-io Function Set](../../sysman/tadsio.md). Although these low-level functions are not the best way to
 manipulate banners in a TADS 3 game, some understanding of what they do may nevertheless
 be helpful for seeing the range of banner functions available. In particular it is
 useful to refer to the bannerCreate() function, and in particular its argument list,
@@ -64,7 +64,7 @@ since even if we end up using alternatives to bannerCreate(), our alternatives w
 still use much the same list of arguments.
 
 
-## <a name="tadsio"></a>
+## <a name="tadsio"></a>Using the tadsio Banner API Functions
 
 
 Although you would probably not want to use the low-level Banner API functions in a
@@ -203,7 +203,7 @@ not be the best method to proceed, so from now on we'll look at an alternative: 
 banner windows through the BannerWindow class.
 
 
-## <a name="BannerWindow"></a>
+## <a name="BannerWindow"></a>Using the BannerWindow class
 
 
 The main difference from the previous approach is that instead of calling low-level
@@ -254,7 +254,7 @@ picWindow: BannerWindow
       showBanner(nil, BannerAfter, statuslineBanner, BannerTypeText,
               BannerAlignTop, 10, BannerSizeAbsolute, BannerStyleBorder);
 
-      /* inherited() here simply sets inited_ to true, to show that we have
+      / inherited() here simply sets inited_ to true, to show that we have
        * now initialized this banner.
        */
 
@@ -465,7 +465,7 @@ In the next section, we'll look at using a class that takes care of most of thes
 issues for you.
 
 
-## <a name="CustomBannerWindow"></a>
+## <a name="CustomBannerWindow"></a>Using the CustomBannerWindow Class
 
 
 Using `CustomBannerWindow`, the banners we defined in
@@ -656,7 +656,7 @@ class Picture
   caption = ''
   showPic()
   {
-    /*  We can't be sure that the banners will be active when we want to
+    /  We can't be sure that the banners will be active when we want to
      *  display in them, so we need to check and, if necessary, activate
      *  them.
      */
@@ -671,16 +671,16 @@ class Picture
     picWindow.updateContents('<body bgcolor=statusbg>
          <img src="pics/' + picFile + '.jpg" >');
 
-    captionWindow.updateContents('<- ' + caption);
+    captionWindow.updateContents('&lt;- ' + caption);
   }
 ;
 ```
 
 
-Note that the `<-` in the last line is deliberate
-here; we want this to appear in the window as <-, but since what we send to the
-window will be interpreted as HTML, we need to use the `<`
-entity to represent the < character.
+Note that the `&lt;-` in the last line is deliberate
+here; we want this to appear in the window as &lt;-, but since what we send to the
+window will be interpreted as HTML, we need to use the `&lt;`
+entity to represent the &lt; character.
 
 
 Since we may be defining many Picture objects, we can save ourselves a bit of typing
@@ -921,7 +921,7 @@ class Picture: object
   {
     if(!picWindow.isActive)
     {
-      /* We must be careful to activate the parent window before all
+      / We must be careful to activate the parent window before all
        * its children, and the older sibling windows before the younger
        * siblings that are placed in relation to them.
         We also call activate with the optional (true) argument on
@@ -942,7 +942,7 @@ class Picture: object
     picWindow.updateContents('<body bgcolor=statusbg>
          <img src="pics/' + picFile + '.jpg" >');
 
-    captionWindow.updateContents('<- ' + caption);
+    captionWindow.updateContents('&lt;- ' + caption);
   }
 ;
 
@@ -960,7 +960,7 @@ modify Room
     {
       if(roomPic == nil)
       {
-        /*  The windows need to be deactivated in reverse order of
+        /  The windows need to be deactivated in reverse order of
          *  activation, so that we deactivate all the child windows
          *  before deactivating the parent.
          */

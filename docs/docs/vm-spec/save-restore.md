@@ -1,5 +1,5 @@
 
-!
+![](../t3logo.gif)
   
   
 
@@ -150,7 +150,7 @@ loaded.
 #### Timestamp
 
 
-This is simply the timestamp information from the image file's [signature](image-format.md#Signature) block, in the same 24-byte
+This is simply the timestamp information from the image file's [signature](../format.md#Signature) block, in the same 24-byte
 format used in the image file.  The purpose of this information is to
 ensure that a particular saved state file is restored only with the
 exact image file that created it; saved state files are dependent
@@ -300,7 +300,7 @@ followed by the synthetic exports.  Each export is stored as follows:
 
 - A UINT2 giving the number of bytes in the name of this export.
 - The bytes of the name of the export.  This is one of the
-  [predefined symbol](machine-model.md#predefined) names.
+  [predefined symbol](../model.md#predefined) names.
 - A DATAHOLDER giving the synthesized value of the name.
 
 
@@ -342,14 +342,14 @@ the type metadata.
 ---
 
 
-### <a name="crc-sample"></a>
+### <a name="crc-sample"></a>Sample CRC-32 Implementation
 
 
 This is a sample of the CRC-32 computation used to compute the checksum
 value for the saved state data stream.
 
 
-```tads3
+```
 
 
 /  Compute the CRC-32 value of the given byte buffer

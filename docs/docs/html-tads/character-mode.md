@@ -25,7 +25,7 @@ so non-HTML games are not affected by this processing in any way.
 
 
 The character-mode version supports all of the character-code
-markups (the sequences that begin with an ampersand, such as "&").
+markups (the sequences that begin with an ampersand, such as "&amp;").
 Note that most character-mode consoles and terminals don't actually
 support all of these characters;
 the character-mode interpreter will try to provide a suitable
@@ -43,32 +43,32 @@ be displayed in this character set.
 In addition, the character-mode interpreter supports the following tags:
 
 
-- <BR> ends the current line.  Each extra <BR> after the
+- &lt;BR> ends the current line.  Each extra &lt;BR> after the
   first will add a blank line.
-- <BR HEIGHT=*number*> will display the given number of
+- &lt;BR HEIGHT=*number*> will display the given number of
   blank lines.  Using HEIGHT=0 will make this tag behave the same way
   that the conventional TADS "\n" sequence does: it ends the current
   line, but does not add any new blank lines, even if repeated.
-- <P> displays a blank line.
-- </P> displays a blank line.
-- <B> and <EM> start boldfaced (highlighted) text.
-- </B> and </EM> end boldfaced text.
-- <TAB> inserts spaces to the next tab stop, using the same
+- &lt;P> displays a blank line.
+- &lt;/P> displays a blank line.
+- &lt;B> and &lt;EM> start boldfaced (highlighted) text.
+- &lt;/B> and &lt;/EM> end boldfaced text.
+- &lt;TAB> inserts spaces to the next tab stop, using the same
   spacing as the "\t" escape sequence.  TADS 2 text-only interpreters ignore
   all of the attributes of this tag, but at least the tag will insert
   *some* spacing.
-- <Q> and </Q> enclose a passage in quotation marks.
-- <HR> produces a line of underscores the width of the console
-- <IMG ALT=*alt-text*> displays the *alt-text* string.
+- &lt;Q> and &lt;/Q> enclose a passage in quotation marks.
+- &lt;HR> produces a line of underscores the width of the console
+- &lt;IMG ALT=*alt-text*> displays the *alt-text* string.
   (Other attributes of the IMG tag are allowed but are ignored.)
-- <SOUND ALT=*alt-text*> displays the *alt-text* string.
+- &lt;SOUND ALT=*alt-text*> displays the *alt-text* string.
   (Other attributes of the SOUND tag are allowed but are ignored.)
 
 
-The character-mode interpreter also recognizes the <TITLE> and
-<ABOUTBOX> tags.  The interpreter simply hides all of the text and
+The character-mode interpreter also recognizes the &lt;TITLE> and
+&lt;ABOUTBOX> tags.  The interpreter simply hides all of the text and
 markups between these tags and their corresponding end tags
-(</TITLE> or </ABOUTBOX>).  So, although TITLE and ABOUTBOX
+(&lt;/TITLE> or &lt;/ABOUTBOX>).  So, although TITLE and ABOUTBOX
 don't actually contribute anything to the display formatting in the
 character-mode version, they are harmless, so you can use them in your
 game without worrying about which type of interpreter is being used.
@@ -87,19 +87,19 @@ In addition to the markups mentioned above, TADS 3 supports the
 following:
 
 
-- <TAB> can be used with the full set of attributes, including
-  ID, TO, and ALIGN.  You can use <TAB> to define a tab position
+- &lt;TAB> can be used with the full set of attributes, including
+  ID, TO, and ALIGN.  You can use &lt;TAB> to define a tab position
   and then align text left, right, or center with respect to the tab
   position.
-- <FONT COLOR=*color* BGCOLOR=*color*> sets the text
+- &lt;FONT COLOR=*color* BGCOLOR=*color*> sets the text
   color.  Some text-only platforms do not support text colors at all,
   and most support only a limited set of colors; where colors are
   supported, the platform will use the closest available color if the
   requested color is not available.
-- <BODY BGCOLOR=*color*> sets the background color.  This
+- &lt;BODY BGCOLOR=*color*> sets the background color.  This
   sets the color of the window, including the blank areas where no text
   is displayed as well as the areas where text is displayed without an
-  explicit <FONT BGCOLOR> setting.  As in the HTML interpreters,
+  explicit &lt;FONT BGCOLOR> setting.  As in the HTML interpreters,
   this tag sets the color of the entire window (in other words, even
   text previously displayed in the window is shown in the new background
   color), and takes effect immediately when displayed.
@@ -155,7 +155,7 @@ your game progresses.
 
 Many HTML markups can be used in such a way that they won't be too badly
 missed if simply omitted.  For example, most of the text style markups
-(such as <i> for italics and <font> for setting typeface
+(such as &lt;i> for italics and &lt;font> for setting typeface
 characteristics) can be
 omitted without losing too much of the meaning of the text.  If you
 are careful about the formatting markups you choose, and use them with
@@ -172,7 +172,7 @@ the game fully playable.
 
 
 You should be careful of the more complex formatting tags, such as
-<TABLE> or <BANNER>, the omission of which would
+&lt;TABLE> or &lt;BANNER>, the omission of which would
 substantially alter the layout of your text.
 
 
@@ -195,7 +195,7 @@ the HTML features.)
 For an example of both of these techniques, refer to the status line
 code in `adv.t`.  First, this code uses conditional compilation
 to define either the traditional status line code, or a new version
-that uses the <BANNER> tag to implement a status line.  Second,
+that uses the &lt;BANNER> tag to implement a status line.  Second,
 the HTML version of the code checks at run-time to see if the full
 HTML feature set is supported, and if not, it falls back to the old
 status line code.

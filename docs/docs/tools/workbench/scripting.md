@@ -123,13 +123,13 @@ event type prefix on each line:
 
 
 If you need to customize the QUIT sequence, remember to include
-the event type tag for each line.  Remember also that < and >
+the event type tag for each line.  Remember also that &lt; and >
 are special characters in the regular expression syntax, to to match
 them literally you have to quote them, which the default sequences do
-by writing them as [<] and [>].
+by writing them as [&lt;] and [>].
 
 
-The <nocase> code is included because regular expressions are
+The &lt;nocase> code is included because regular expressions are
 case-sensitive by default.  This code tells the matcher to ignore
 upper/lower case variations.
 

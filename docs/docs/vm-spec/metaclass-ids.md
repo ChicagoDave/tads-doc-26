@@ -1,5 +1,5 @@
 
-!
+![](../t3logo.gif)
   
   
 
@@ -11,7 +11,7 @@ The T3 VM uses metaclass identifiers to associate metaclass types with
 their implementations.  A T3 application stores the identifiers
 of the metaclasses it uses in its image file; the VM uses these identifiers
 to allow the application to call code in the metaclasses.  Refer to
-the [machine model](machine-model.md#metaclass_id) documentation
+the [machine model](../model.md#metaclass_id) documentation
 for details of this mechanism.
 
 

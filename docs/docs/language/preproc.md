@@ -187,7 +187,7 @@ The *macro* of an #ifdef is simply a macro symbol.
 The *expression* of an #if or #elif can evaluate to a string
 constant, an integer constant, or the tokens `true` or
 `nil`.  You can use the standard arithmetic operators (+, -, *,
-/, %, <<, >>, !, &, |, &&, ||, ?:) within
+/, %, &lt;&lt;, >>, !, &, |, &&, ||, ?:) within
 integer and boolean expressions.  In addition, the special operator
 `defined(macro)` evalutes to 1 if the given macro symbol
 is currently defined, 0 if not.  An #if or #elif expression is

@@ -28,11 +28,11 @@ Background: Media Type Syntax
 While media or MIME types were originally introduced by RFC 1341 their current incarnation is defined by a set of five core RFCs, some of which have received minor updates. All these RFCs can be obtained from the [Internet Engineering Task Force](http://www.ietf.org/). These five documents are:
 
 
-- [RFC 2045](urn:ietf:rfc:2045) (Draft Standard), MIME: Format of Internet Message Bodies
-- [RFC 2046](urn:ietf:rfc:2046) (Draft Standard), MIME: Media Types
-- [RFC 2047](urn:ietf:rfc:2047) (Draft Standard), MIME: Message Header Extensions for Non-ASCII Text
-- [RFC 2048](urn:ietf:rfc:2048) (Best Current Practice), MIME: Registration Procedure
-- [RFC 2049](urn:ietf:rfc:2049) (Draft Standard), MIME: Conformance Criteria and Examples
+- [RFC 2045](../urn:ietf:rfc:2045) (Draft Standard), MIME: Format of Internet Message Bodies
+- [RFC 2046](../urn:ietf:rfc:2046) (Draft Standard), MIME: Media Types
+- [RFC 2047](../urn:ietf:rfc:2047) (Draft Standard), MIME: Message Header Extensions for Non-ASCII Text
+- [RFC 2048](../urn:ietf:rfc:2048) (Best Current Practice), MIME: Registration Procedure
+- [RFC 2049](../urn:ietf:rfc:2049) (Draft Standard), MIME: Conformance Criteria and Examples
 
 
 Despite the extensive number of RFCs covering this very subject the structure of media types themselves is quite simple although there are some subtleties to be aware of, too. Every media type consists of a (primary) type and a subtype, separated by a slash. Furthermore a media type can have a list of parameters attached, each parameter starting with a semicolon. Please note that the type, subtype and parameter names are not case sensitive, whereas parameter values might very well be case sensitive, that is unless explicitly stated otherwise. Finally parameter values *may* be included in quotations marks.
@@ -112,7 +112,7 @@ The MIME type system has a couple of advantages over most of these OS-specific s
 For the sake of consistency among applications that work with TADS file types on various operating systems, we've listed the "official" values for several of these ad hoc and proprietary type systems for each of our file types, alongside the MIME type in the tables below.  "Official" is in quotes because these are only official as far as coming from us here at tads.org; for the most part, these aren't registered with the OS vendors or any formal standards body.
 
 
-<a name="gam"></a>
+<a name="gam"></a>Media Type: TADS 2 Game
 
 This media type is defined for game files as used by TADS 2 interpreters and development tools.
 
@@ -135,7 +135,7 @@ It was chosen in consultation with the managers of the [IF Archive](http://www.i
 Please note that the magic number contains, contrary to common usage, the sequence LF CR (`"\x0A\x0D"`) instead of CR LF (`"\x0D\x0A"`).
 
 
-<a name="sav"></a>
+<a name="sav"></a>Media Type: TADS 2 Saved Game
 
 This media type is defined for saved game files as used by TADS 2 interpreters.
 
@@ -155,7 +155,7 @@ This media type is defined for saved game files as used by TADS 2 interpreters.
 Please note that the magic number contains, contrary to common usage, the sequence LF CR (`"\x0A\x0D"`) instead of CR LF (`"\x0D\x0A"`).
 
 
-<a name="rs"></a>
+<a name="rs"></a>Media Type: TADS 2 Resource
 
 This media type is defined for resource files as used by TADS 2 interpreters and development tools.
 
@@ -175,7 +175,7 @@ This media type is defined for resource files as used by TADS 2 interpreters and
 Please note that the magic number contains, contrary to common usage, the sequence LF CR ("\x0A\x0D") instead of CR LF ("\x0D\x0A").
 
 
-<a name="t3x"></a>
+<a name="t3x"></a>Media Type: TADS 3 Executable
 
 This media type is defined for executable files as used by TADS 3 interpreters and development tools.
 
@@ -195,7 +195,7 @@ It was chosen in consultation with the managers of the [IF Archive](http://www.i
 | UTI | `org.tads.tads3-game`   conforms to `org.tads.tads-game` |
 
 
-<a name="t3v"></a>
+<a name="t3v"></a>Media Type: TADS 3 Saved Position
 
 This media type is defined for saved position files as used by TADS 3 interpreters.
 
@@ -212,7 +212,7 @@ This media type is defined for saved position files as used by TADS 3 interprete
 | UTI | `org.tads.tads3-saved-game`   conforms to `org.tads.tads-saved-game` |
 
 
-<a name="t3r"></a>
+<a name="t3r"></a>Media Type: TADS 3 Resource
 
 This media type is defined for resource files as used by TADS 3 interpreters and development tools. Due to the fact that resource files are merely a variation of TADS 3 executables, no new media has been defined. According to [The T3 Virtual Machine Specification](http://www.tads.org/t3spec/format.htm):
 
@@ -238,7 +238,7 @@ TADS 3 resources have the own file extensions and Macintosh file type codes, tho
 Please note that a file extension of `.t3r` *should* only be used for compiler-loaded resources, e.g. `cmaplib.t3r`. In contrast interpreter-loaded resources *must* always use a `.3rn` extension.
 
 
-<a name="t3m"></a>
+<a name="t3m"></a>Media Type: TADS 3 Project
 
 This media type is defined for project files as used by TADS 3 development tools, most notably its build system.
 
@@ -261,7 +261,7 @@ All line breaks *should* be represented as a CR LF (`"\x0D\x0A"`) sequence when 
 Please note that the values of the `charset` parameter are not case sensitive.
 
 
-<a name="tl"></a>
+<a name="tl"></a>Media Type: TADS 3 Library
 
 This media type is defined for library files as used by TADS 3 development tools, most notably its build system.
 
@@ -284,7 +284,7 @@ All line breaks *should* be represented as a CR LF (`"\x0D\x0A"`) sequence when 
 Please note that the values of the `charset` parameter are not case sensitive.
 
 
-<a name="t"></a>
+<a name="t"></a>Media Type: TADS Source
 
 This media type is defined for source and header files as used by both TADS 2 and 3 development tools. Note that, despite sharing media type, file extension, and Macintosh file type code, these files are neither forward nor backward compatible.
 

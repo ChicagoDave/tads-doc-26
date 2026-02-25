@@ -1,5 +1,5 @@
 
-!
+![](../t3logo.gif)
   
   
 
@@ -161,7 +161,7 @@ header, but no data block follows.
 Within the file, all data are stored without any padding or
 alignment, except where otherwise specified.  Primitive types
 are stored using the [TADS Portable Binary
-Encoding](binary-encoding.md) formats.
+Encoding](../bincode.md) formats.
 
 
 The file format is entirely self-relative: all file seek locations
@@ -622,10 +622,10 @@ initializers **before** invoking the program's main entrypoint.
 
 - The original debug version number was 0x0001.
 - Version 0x0002 introduced a new format for the
-     [frame record](debug-records.md#frameRecord), adding two UINT2
+     [frame record](../debug.md#frameRecord), adding two UINT2
      values to give the byte-code range covered by the frame.  This
      version also added a new storage format for the
-     [local variable record](debug-records.md#frameLocalVar),
+     [local variable record](../debug.md#frameLocalVar),
      which allows the name of the local to be stored in the constant
      pool as a string value.
 
@@ -1203,7 +1203,7 @@ that the program uses to invoke object properties.
 
 
 Refer to the [metaclass identifier
-list](machine-model.md#metaclass_id) in the [Machine Model section](machine-model.md) for
+list](../model.md#metaclass_id) in the [Machine Model section](../model.md) for
 more information on metaclass dependencies.
 
 
@@ -1264,7 +1264,7 @@ an image file does not have an FNSD block at all.
 
 
 Refer to the [intrinsic function
-documentation](machine-model.md#intrinsics) in the [Machine Model section](machine-model.md) for
+documentation](../model.md#intrinsics) in the [Machine Model section](../model.md) for
 more information on function sets and intrinsic functions.
 
 
@@ -1285,7 +1285,7 @@ The Symbolic Names block allows the VM to determine the values to use
 for user-defined objects, properties, and any other values that must be
 used directly by the VM.
 Refer to [Pre-defined Objects and
-Properites](machine-model.md#predefined) in the [Machine Model section](machine-model.md) for
+Properites](../model.md#predefined) in the [Machine Model section](../model.md) for
 information on the purpose of this block.
 
 

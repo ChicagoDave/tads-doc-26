@@ -128,7 +128,7 @@ you want to include some code only in a debug version of your
 program, you simply do this:
 
 
-```tads3
+```
 
   #ifdef __DEBUG
 
@@ -143,7 +143,7 @@ Similarly, if you want to include some code only in the release
 version of your game, you can do it like so:
 
 
-```tads3
+```
 
   #ifndef __DEBUG
 
@@ -165,7 +165,7 @@ only in the release version, you can use both of the constructs
 above, obviously.  Or, slightly more concisely, you can use #else:
 
 
-```tads3
+```
 
   #ifdef __DEBUG
 
@@ -209,7 +209,7 @@ Second, inside the new file (dbg_reflect.t, in our example), put
 code like this:
 
 
-```tads3
+```
 
   #charset "us-ascii"
   #ifdef __DEBUG

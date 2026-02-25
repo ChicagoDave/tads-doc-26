@@ -314,7 +314,7 @@ Pressing Alt+Q when the cursor is within a string will
 automatically find the boundaries of the string, and will then re-flow
 the string as though it were a paragraph of text, word-wrapping the
 text to fit the margin width and the current indentation level.  If
-the cursor is within an embedded << >> expression, the
+the cursor is within an embedded &lt;&lt; >> expression, the
 command applies to the entire enclosing string, not just the embedded
 expression.
 
@@ -330,8 +330,8 @@ plus a semicolon, on a line by itself.)
 
 
 The string reformatter recognizes several formatting codes that add
-explicit line breaks in the *displayed* text: \n, \b, <br>,
-<p>, and <.p>.  If one of these codes appears at the end
+explicit line breaks in the *displayed* text: \n, \b, &lt;br>,
+&lt;p>, and &lt;.p>.  If one of these codes appears at the end
 or at the beginning of a line (as the string appears just before the
 command is invoked), the formatter leaves the adjacent line break in
 place.  This will retain the line structure if you intentionally break

@@ -31,8 +31,12 @@ def load_html_fixed(filepath):
     self-close these anchors before parsing.
     """
     import re
-    with open(filepath, "r", encoding="utf-8", errors="replace") as f:
-        html = f.read()
+    with open(filepath, "rb") as f:
+        raw = f.read()
+    try:
+        html = raw.decode("utf-8")
+    except UnicodeDecodeError:
+        html = raw.decode("cp1252")
 
     # Self-close <a name="..."> or <A name=...> anchors that have no href
     # Match: <a name=X> where X is quoted or unquoted, with optional whitespace

@@ -172,7 +172,7 @@ many HTTP reference materials on the Web.
 Retrieves the values of the data-entry fields for an HTML form submitted
 through the POST verb.  This returns a LookupTable containing the field
 values sent with the request: each key is a field name (this is the
-NAME attribute of an <INPUT> tag on the form), and the corresponding
+NAME attribute of an &lt;INPUT> tag on the form), and the corresponding
 value is the value of the field.  All field values are represented as
 strings.
 
@@ -182,7 +182,7 @@ a message body, but it exceeds the maximum upload size for the [HTTPServer](http
 string `'overflow'`.
 
 
-If the form includes uploaded files, via <INPUT TYPE=FILE>
+If the form includes uploaded files, via &lt;INPUT TYPE=FILE>
 fields, the lookup table value for each TYPE=FILE field is a FileUpload
 object instead of a string, or `nil` if the user didn't select a
 file for the field.  The FileUpload object has the following properties:

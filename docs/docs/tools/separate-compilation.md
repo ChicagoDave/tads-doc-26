@@ -141,7 +141,7 @@ standard library, *each and every* source file in your game
 should have these #include's near the top:
 
 
-```tads3
+```
 
    #include <adv3.h>
    #include <en_us.h>
@@ -281,7 +281,7 @@ Here's a sample of what a .h file might look like.  As described
 above, .h files should include your macro and "template" definitions.
 
 
-```tads3
+```
 
    // myHeader.h
 
@@ -301,7 +301,7 @@ earlier, .t files should include all of your object, class, and function
 definitions.
 
 
-```tads3
+```
 
    // mySource.t
 
@@ -326,7 +326,7 @@ definitions.
 
 
 Going back to the very start of this section, we mentioned that you
-should usually #include <adv3.h> and <en_us.h> at the
+should usually #include &lt;adv3.h> and &lt;en_us.h> at the
 start of each source file in your program.  Now you can see why: those
 header files contain the macro and template definitions for the
 standard library, so you have to #include the headers to make those

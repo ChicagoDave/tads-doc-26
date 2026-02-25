@@ -704,10 +704,10 @@ radians.  This simply multiplies the value by (180/*pi*).
 
 Computes the value of this number raised to the power *y* and
 returns the result.  If the value of the target number is negative,
-then *y* must be an integer: if *x* < 0, we can rewrite
+then *y* must be an integer: if *x* &lt; 0, we can rewrite
 *x**y* as
 (-1)*y*(-*x*)*y*, and we know
-that `-`*x* > 0 because *x* < 0.  The result of
+that `-`*x* > 0 because *x* &lt; 0.  The result of
 raising -1 to a non-integer exponent cannot be represented as a real
 number, hence this function throws an error if the target number is
 negative.  Note also that raising zero to any positive exponent yields

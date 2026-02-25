@@ -115,8 +115,8 @@ level.
 | Unary | [++x](#preinc)    [––x](#predec)    [!](#lognot)    [~](#bitnot)    [+x](#pos)    [–x](#neg) |
 | Multiplicative | [*](#times)    [/](#divide)    [%](#mod) |
 | Additive | [+](#plus)    [–](#minus) |
-| Bit-shift | [<<](#shl)    [>>](#ashr)    [>>>](#lshr) |
-| Comparison | [<](#lt)    [<=](#le)    [>](#gt)    [>=](#ge) |
+| Bit-shift | [&lt;&lt;](#shl)    [>>](#ashr)    [>>>](#lshr) |
+| Comparison | [&lt;](#lt)    [&lt;=](#le)    [>](#gt)    [>=](#ge) |
 | Equality | [==](#eq)    [!=](#ne)    [is in](#isin)    [not in](#notin) |
 | Bitwise AND | [&](#bitand) |
 | Bitwise XOR | [^](#bitxor) |
@@ -126,7 +126,7 @@ level.
 | If-nil | [??](#ifnil) |
 | Conditional | [? :](#cond) |
 | Expression chaining | [,](#comma) |
-| Assignment | [=](#asi)    [+=](#asi)    [–=](#asi)    [*=](#asi)    [/=](#asi)    [%=](#asi)    [&=](#asi)    [|=](#asi)    [^=](#asi)    [<<=](#asi)    [>>=](#asi)    [>>>=](#asi) |
+| Assignment | [=](#asi)    [+=](#asi)    [–=](#asi)    [*=](#asi)    [/=](#asi)    [%=](#asi)    [&=](#asi)    [|=](#asi)    [^=](#asi)    [&lt;&lt;=](#asi)    [>>=](#asi)    [>>>=](#asi) |
 
 
 ## Operator associativity
@@ -949,7 +949,7 @@ lst = lst - x;
 ```
 
 
-### <a name="shl"></a><<
+### <a name="shl"></a>&lt;&lt;
 
 
 Left shift.  Both operands must be integers. *a* `<<`
@@ -1047,9 +1047,9 @@ positive values of *a*, *a* `>>` *n* and *a*
 
 
 ### <a name="lt"></a>>  
-   <a name="le"></a><  
+   <a name="le"></a>&lt;  
    <a name="gt"></a>>=  
-   <a name="ge"></a><=
+   <a name="ge"></a>&lt;=
 
 
 These operators each compare two values.  Each operator yields true if
@@ -1057,9 +1057,9 @@ its comparison holds for the two values, nil if not.
 
 
 - *a* > *b* yields true if *a* is greater than *b*
-- *a* < *b* yields true if *a* is less than *b*
+- *a* &lt; *b* yields true if *a* is less than *b*
 - *a* >= *b* yields true if *a* is greater than or equal to *b*
-- *a* <= *b* yields true if *a* is less than or equal to *b*
+- *a* &lt;= *b* yields true if *a* is less than or equal to *b*
 
 
 The meaning of the comparison depends upon the types of the values

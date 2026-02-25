@@ -68,7 +68,7 @@ you're using the std.t library, the easiest place to do this is in
 the `commonInit` function.  Here's an example:
 
 
-```tads3
+```
 
    #include <adv.t>
    #include <std.t>
@@ -99,7 +99,7 @@ First, here's how you'd display some text in a room description using
 ***bold italics***:
 
 
-```tads3
+```
 
    myRoom: room
      // ...
@@ -114,7 +114,7 @@ italic letters* that are slightly larger than the main text font size
 (the "+1" means one size larger than normal):
 
 
-```tads3
+```
 
    warningSign: item
      // ...
@@ -127,7 +127,7 @@ italic letters* that are slightly larger than the main text font size
 Here's how to center some text:
 
 
-```tads3
+```
 
    trespassSign: item
      // ..
@@ -165,7 +165,7 @@ Entities were invented for two reasons:
   markup and hence wouldn't display the character, but would try to
   interpret the markup instead.  For example, a less-than sign is used
   to start a tag; if you want to display a less-than sign in your text,
-  you must use the entity for a less-than sign (which is "<").
+  you must use the entity for a less-than sign (which is "&lt;").
 - Second, entities can be used to avoid character set translation
   problems.  For example, there's no ASCII character for a capital E with
   an acute accent.  Most computers have "extended ASCII" characters for
@@ -186,7 +186,7 @@ As you might have noticed from the examples above, entity names all
 start with an ampersand ("&") and all end with a semicolon (";").
 This means that the ampersand itself is markup-significant -- if you
 want to display an ampersand, you must write its entity instead
-("&").  When you put an entity in your text, all of the characters
+("&amp;").  When you put an entity in your text, all of the characters
 between and including the opening ampersand to the closing semicolon are
 removed from the displayed text, and the single character named by the
 entity is displayed instead.
@@ -199,10 +199,10 @@ Tags are used to insert information about the text into the text.
 All HTML formatting is done with tags.
 
 
-A tag starts with a less-than sign ("<") and ends with a greater-than
+A tag starts with a less-than sign ("&lt;") and ends with a greater-than
 sign (">).  After the less-than sign comes the name of the tag.
 For many tags, that's all there is.  For example, if you want to start
-a new paragraph, you can simply write <P> where you want the
+a new paragraph, you can simply write &lt;P> where you want the
 new paragraph to begin.  In other cases, you will also include
 *attributes*, which contain additional information for the tag.
 
@@ -213,15 +213,15 @@ If it has a value, the value follows an equals sign ("=") that
 follows the attribute's name.
 
 
-For example, the <HR>
+For example, the &lt;HR>
 (horizontal rule) tag takes the NOSHADE attribute, which has no value
 but whose presence indicates that the rule is to be drawn as a simple
-line without any shading.  So, <HR> draws a default, shaded line,
-and <HR NOSHADE> draws a line without any shading.  The tag
+line without any shading.  So, &lt;HR> draws a default, shaded line,
+and &lt;HR NOSHADE> draws a line without any shading.  The tag
 also takes an ALIGN tag, which takes a value indicating what type
 of alignment to use for the rule: LEFT, RIGHT, or CENTER.  So,
-<HR ALIGN=CENTER> draws a horizontally centered rule, and
-<HR ALIGN=RIGHT NOSHADE> draws a right-aligned rule without
+&lt;HR ALIGN=CENTER> draws a horizontally centered rule, and
+&lt;HR ALIGN=RIGHT NOSHADE> draws a right-aligned rule without
 shading.
 
 
@@ -235,12 +235,12 @@ corresponding ending tag is contained in the tag.
 
 
 The ending tag always has the same name as the starting tag,
-but has a slash before the name.  So, the ending tag for <B>
-is </B>.  Ending tags never have any attributes.
+but has a slash before the name.  So, the ending tag for &lt;B>
+is &lt;/B>.  Ending tags never have any attributes.
 
 
 For example,
-the boldface tag, <B>, is a container tag; all of the contained
+the boldface tag, &lt;B>, is a container tag; all of the contained
 text is shown in boldface:
 
 
@@ -268,10 +268,10 @@ so this is illegal:
 ```
 
 
-This is illegal because the <I> tag is nested within the <B>
-tag, but the <B> tag ends before the <I> tag.  To write
-this properly, you must make sure the inner tag, <I>, ends before
-the outer tag, <B>:
+This is illegal because the &lt;I> tag is nested within the &lt;B>
+tag, but the &lt;B> tag ends before the &lt;I> tag.  To write
+this properly, you must make sure the inner tag, &lt;I>, ends before
+the outer tag, &lt;B>:
 
 
 ```
@@ -290,11 +290,11 @@ text you display.
 
 
 For example, suppose you want to put a couple of things in boldface
-in a room's description.  You do this by putting <B> tags around
+in a room's description.  You do this by putting &lt;B> tags around
 the parts you want in bold, right in the text of the room's description:
 
 
-```tads3
+```
 
    coldCave: room
      sdesc = "Cold Cave"
@@ -319,7 +319,7 @@ even if you use what might look like HTML tags, TADS will ignore them
 HTML for formatting the output.  For example, consider this code:
 
 
-```tads3
+```
 
    ampkeyVerb: deepverb
      verb = 'ampkey'
@@ -329,10 +329,10 @@ HTML for formatting the output.  For example, consider this code:
 
        /* THIS IS A BAD EXAMPLE - THIS WON'T WORK!!! */
        x := inputkey();
-       if (x = '&')
-         "You pressed the <q>&</q> key!\n";
-       else if (x = '<')
-         "You pressed the <q><</q> key!\n";
+       if (x = '&amp;')
+         "You pressed the <q>&amp;</q> key!\n";
+       else if (x = '&lt;')
+         "You pressed the <q>&lt;</q> key!\n";
        else
          "You pressed <<x>>!\n";
      }
@@ -355,7 +355,7 @@ screen.
 Here's the correct version of this code:
 
 
-```tads3
+```
 
    ampkeyVerb: deepverb
      verb = 'ampkey'
@@ -365,9 +365,9 @@ Here's the correct version of this code:
 
        x := inputkey();
        if (x = '&')
-         "You pressed the <q>&</q> key!\n";
+         "You pressed the <q>&amp;</q> key!\n";
        else if (x = '<')
-         "You pressed the <q><</q> key!\n";
+         "You pressed the <q>&lt;</q> key!\n";
        else
          "You pressed <<x>>!\n";
      }
@@ -380,8 +380,8 @@ Here's the correct version of this code:
 > documentation is itself written in HTML, coding examples that use
 > markup-significant characters (such as the examples above) must use
 > entities to represent the markups.  To show you something like
-> "`&`" in your web browser, for example, we must write
-> "`&amp;`" in the source code for this page.  You might
+> "`&amp;`" in your web browser, for example, we must write
+> "`&amp;amp;`" in the source code for this page.  You might
 > find it amusing as you hone your HTML skills to try writing out some
 > of the HTML required to show the examples above or other examples on
 > this page.  To check your work, simply look at the HTML source for
@@ -398,41 +398,41 @@ to help get you started, here are a few simple tags that you might find
 handy:
 
 
-**<I> ... </I>** - italics.
+**&lt;I> ... &lt;/I>** - italics.
 
 
-**<B> ... </B>** - boldface.
+**&lt;B> ... &lt;/B>** - boldface.
 
 
-**<U> ... </U>** - underline.
+**&lt;U> ... &lt;/U>** - underline.
 
 
-**<TT> ... </TT>** - typewriter font.  This uses a
+**&lt;TT> ... &lt;/TT>** - typewriter font.  This uses a
 fixed-width font if one is available, which can be useful when you
 want columns of text to line up.  (HTML offers much more
 sophisticated ways to align columns of text, including the
-<TAB> and <TABLE> tags, but for very simple cases it's
+&lt;TAB> and &lt;TABLE> tags, but for very simple cases it's
 sometimes easier to use a fixed-width font.)
 
 
-**<CENTER> ... </CENTER>** - center text.
+**&lt;CENTER> ... &lt;/CENTER>** - center text.
 
 
-**<BLOCKQUOTE> ... </BLOCKQUOTE>** - slightly indent
+**&lt;BLOCKQUOTE> ... &lt;/BLOCKQUOTE>** - slightly indent
 both the left and right margins.  This is usually used to display
 long passages of quoted material, but can be handy for simple formatting
 as well.
 
 
-**<SUP> ... </SUP>** - display text as a superscript,
+**&lt;SUP> ... &lt;/SUP>** - display text as a superscript,
 in a smaller typeface and elevated slightly from the main text line.
 
 
-**<SUB> ... </SUB>** - display text as a subscript,
+**&lt;SUB> ... &lt;/SUB>** - display text as a subscript,
 in a smaller typeface and lowered slightly from the main text line.
 
 
-**<FONT SIZE=n COLOR=c FACE=f> ... </FONT>** - display text
+**&lt;FONT SIZE=n COLOR=c FACE=f> ... &lt;/FONT>** - display text
 in a different size or color.  For sizes, you can use 1 through 7;
 the default size is 3, and larger numbers indicate larger font sizes.
 You can't specify the exact point size because this varies according
@@ -446,32 +446,32 @@ You can also specify a typeface by name; for portability, you should
 try to use one of the special TADS fonts, such as 'TADS-Serif' for
 a serifed font or 'TADS-Sans' for a sans-serif font, since the user
 can select what to display for each of these fonts.  Note that you don't
-have to specify all of these attributes with the <FONT> tag --
+have to specify all of these attributes with the &lt;FONT> tag --
 if you only want to change the current text color but leave its
 size and typeface unchanged, include only the COLOR attribute in the
 tag.
 
 
-**<Q> ... </Q>** - enclose text in quotation marks.
-Nested <Q> tags alternate between double quotes and single quotes,
+**&lt;Q> ... &lt;/Q>** - enclose text in quotation marks.
+Nested &lt;Q> tags alternate between double quotes and single quotes,
 which is the normal typographical convention, and the open and close quotes
 will use typographical ("curly") quotes on platforms that support them.
 
 
-**<BR>** - break: start a new line.
+**&lt;BR>** - break: start a new line.
 
 
-**<HR>** - horizontal rule: show a horizontal line.  You can
+**&lt;HR>** - horizontal rule: show a horizontal line.  You can
 use this as a visual separator.
 
 
-**<IMG SRC='file.jpg'>** - show an image from the file "file.jpg"
+**&lt;IMG SRC='file.jpg'>** - show an image from the file "file.jpg"
 (the ".jpg" suffix indicates a JPEG file; you can also use
 PNG files, which have the suffix ".png", and MNG animated image
 files, which have the suffix ".mng").
 
 
-**<SOUND SRC='file.wav'>** - play a sound.  The [sound system documentation](sound.md) describes the details
+**&lt;SOUND SRC='file.wav'>** - play a sound.  The [sound system documentation](sound.md) describes the details
 of this TADS extension to standard HTML.  HTML TADS can play "WAV"
 files (an uncompressed digitized audio format), MIDI files, MP3's, and
 Ogg Vorbis compressed digitized audio files.

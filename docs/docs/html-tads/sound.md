@@ -142,7 +142,7 @@ by inspecting the file contents.
 Digitized audio is suitable for both music and sound effects, so
 HTML TADS allows MP3 audio to be used in any layer.  TADS doesn't
 assume anything about which layer is appropriate for a particular MP3,
-so a <SOUND> tag with an MP3 source must specify a layer.
+so a &lt;SOUND> tag with an MP3 source must specify a layer.
 
 <a name="ogg"></a>
 
@@ -172,7 +172,7 @@ In HTML TADS, Ogg Vorbis resources must be named with the suffix
 Ogg Vorbis audio is suitable for both music and sound effects, so
 the HTML TADS sound system allows this format to be used in any layer.
 HTML TADS doesn't make assumptions about which layer is appropriate for a
-particular Ogg Vorbis sound, so all <SOUND> tags
+particular Ogg Vorbis sound, so all &lt;SOUND> tags
 with Ogg sources must specify a layer.
 
 
@@ -290,11 +290,11 @@ and how it plays:
   background noise.
 
 
-### The <SOUND> tag
+### The &lt;SOUND> tag
 
 
 The sound features of HTML TADS are activated using a new tag,
-<SOUND>.  This new tag is not an element of the standard
+&lt;SOUND>.  This new tag is not an element of the standard
 HTML definition; this is a TADS extension.
 
 
@@ -393,12 +393,12 @@ with foreground sounds.
 
 
 The CANCEL attribute turns off all currently queued sounds.  With
-no value, a <SOUND CANCEL> tag cancels all queued sounds in
+no value, a &lt;SOUND CANCEL> tag cancels all queued sounds in
 all layers.  You could use this, for example, when switching to a
 new room, to turn off all sounds.  You can also specify a layer
 with CANCEL to specify that sounds in that particular layer are
 to be cancelled; the layer values FOREGROUND, AMBIENT, and
-BACKGROUND are allowed.  For example: <SOUND CANCEL=AMBIENT>
+BACKGROUND are allowed.  For example: &lt;SOUND CANCEL=AMBIENT>
 cancels only the sounds in the ambient layer.
 
 
@@ -482,13 +482,13 @@ capabilities to see if fading is supported.
 
 
 HTML TADS provides five basic fading modes, all controlled through
-the FADEIN and FADEOUT attributes of the <SOUND> tag.
+the FADEIN and FADEOUT attributes of the &lt;SOUND> tag.
 
 
 **1. Fade in at the start of a track.** When you start a new
 sound, you can make it fade in gradually (from silence to full volume)
 as it starts playing, by including the FADEIN attribute in the
-<SOUND> tag for the new track.  Specify FADEIN=*seconds*,
+&lt;SOUND> tag for the new track.  Specify FADEIN=*seconds*,
 giving the duration in seconds of the fade-in.  As the track starts
 playing, the volume will be gradually increased over the period you
 specify.  Here's an example:
@@ -538,8 +538,8 @@ The durations of the two fades don't have to be the same.
 
 
 Note that the FADEOUT setting applies *only* when the track
-plays all the way to the end.  If you use <SOUND CANCEL> or
-<SOUND INTERRUPT> to stop the track before it plays all the way
+plays all the way to the end.  If you use &lt;SOUND CANCEL> or
+&lt;SOUND INTERRUPT> to stop the track before it plays all the way
 through, the fade-out mode of the **new** tag (the CANCEL or
 INTERRUPT) will apply instead.
 
@@ -589,7 +589,7 @@ next track will start playing immediately, overlapping the fade-out of
 the old track.  The next track simply starts normally - it is *not*
 automatically faded.  If you want the next track to fade in during
 the cross-fade period, you have to explicitly say so with a FADEIN
-attribute in its <SOUND> tag.
+attribute in its &lt;SOUND> tag.
 
 
 Note that FADEIN cross-fades won't work with random sounds.  The
@@ -631,9 +631,9 @@ This tells TADS to immediately start fading out the sound currently
 playing in the background layer, reducing it to zero volume over the
 next second and a half.  When the fade is finished, the sound is
 stopped, just as with a normal CANCEL, meaning that a new sound
-(specified with a new <SOUND> tag) as soon as the fade-out
+(specified with a new &lt;SOUND> tag) as soon as the fade-out
 finishes.  Note that you don't have to wait until the fade-out
-finishes to write out the <SOUND> tag for the next track - you
+finishes to write out the &lt;SOUND> tag for the next track - you
 can write out the new tag immediately, and TADS will put the new sound
 in the queue, to start as soon as the outgoing fade finishes.
 
@@ -656,14 +656,14 @@ proceeds.  For example:
 
 
 This causes the current background sound to start fading out,
-and then allows a subsequent <SOUND> tag to start playback
+and then allows a subsequent &lt;SOUND> tag to start playback
 immediately, overlapping the fade-out on the old sound.  Note that
 the new sound must have its own FADEIN attribute if you want a
 fade-in on the new track; otherwise the new sound will simply
 start at full volume on top of the fading-out old track.
 
 
-You can also use <SOUND SRC=*file* FADEIN=CROSSFADE,*time*
+You can also use &lt;SOUND SRC=*file* FADEIN=CROSSFADE,*time*
 INTERRUPT> to cancel the currently playing track and start a new
 track, all in one tag.  If you use this method, the new track starts
 playing immediately, with a fade-in of the specified duration, and the
@@ -728,14 +728,14 @@ fade out at the end.
 ### Sound in Banner Windows
 
 
-<SOUND> tags are only allowed to appear in the main game
-window.  They are allowed to appear within <BANNER> tags, but
-note that sounds played from within <BANNER> tags are still
+&lt;SOUND> tags are only allowed to appear in the main game
+window.  They are allowed to appear within &lt;BANNER> tags, but
+note that sounds played from within &lt;BANNER> tags are still
 effectively part of the main window, and must coordinate with the
 main window for timing and layer sharing.
 
 
-<SOUND> tags **may not** appear in TADS 3 banner API
+&lt;SOUND> tags **may not** appear in TADS 3 banner API
 windows.  Any sound tags that are displayed in banner API windows will
 simply be ignored.
 
@@ -743,7 +743,7 @@ simply be ignored.
 ### Clearing the Screen
 
 
-Because the <SOUND> tag is part of the formatting information
+Because the &lt;SOUND> tag is part of the formatting information
 that makes up the display window, sounds are conceptually part of the
 page on which they appear.  This means that all sounds are cancelled
 as soon as you clear the screen using the `clearscreen()` function.

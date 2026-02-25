@@ -1,5 +1,5 @@
 
-!
+![](../t3logo.gif)
   
   
 
@@ -355,7 +355,7 @@ generate the correct encoding.
 
 
 All multi-byte datatypes in the file use the
-standard [T3 portable binary encoding](binary-encoding.md).
+standard [T3 portable binary encoding](../bincode.md).
 
 
 #### Header

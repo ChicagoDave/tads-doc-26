@@ -1,7 +1,7 @@
 # HTML TADS System Compatibility Notes
 
 
-!
+![](../htmltads.jpg)
   
 System Compatibility Notes
 
@@ -17,7 +17,7 @@ below explain how to fix the configuration problems we know about.
 
 
 If you can't find a solution to your problem here, you might try
-checking the Usenet newsgroup [rec.arts.int-fiction](news:rec.arts.int-fiction) to see if
+checking the Usenet newsgroup [rec.arts.int-fiction](../news:rec.arts.int-fiction) to see if
 anyone else has run into the same problem, or you can go to [tads.org](http://www.tads.org) for information on how to
 contact us.
 
@@ -61,7 +61,7 @@ COMCTL32.DLL.  If you encounter this problem, you can fix it by
 downloading this file from the Microsoft web site:
 
 
-[ftp://ftp.microsoft.com/softlib/mslfiles/com32upd.exe](ftp://ftp.microsoft.com/softlib/mslfiles/com32upd.exe)
+[ftp://ftp.microsoft.com/softlib/mslfiles/com32upd.exe](../ftp:/ftp.microsoft.com/softlib/mslfiles/com32upd.exe)
 
 
 After downloading the file, double-click it to run the

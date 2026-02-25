@@ -45,7 +45,7 @@ about how to put GameInfo data in your project.
 -----------------------------------------------------------------
 
 
-## <a name="ifids"></a>
+## <a name="ifids"></a>IFIDs
 
 
 The first thing you need to do is assign an "IFID" for your game.
@@ -87,7 +87,7 @@ of your game and realize that they comprise a single work.
 -----------------------------------------------------------------
 
 
-## <a name="tads3"></a>
+## <a name="tads3"></a>Steps for adding the information
 
 
 The procedure we outline here lets you generate the GameInfo.txt
@@ -204,7 +204,7 @@ game file.
 -----------------------------------------------------------------
 
 
-## <a name="fields"></a>
+## <a name="fields"></a>The Standard Name/Value Pairs
 
 
 A GameInfo record is simply a list of name/value pairs defining
@@ -335,7 +335,7 @@ Name of the author or authors of the game, as it should appear in
 HTML.  This should contain roughly the same information as the
 "Byline" field, but can include HTML markups in its value.  It is
 desirable (although not required) for this field to incorporate
-<A HREF='mailto:'> tags to provide email address hyperlinks
+&lt;A HREF='mailto:'> tags to provide email address hyperlinks
 for the authors.
 Note that if the HtmlByline field is present, a regular Byline
 field should be included as well, so that the plain text version of
@@ -838,7 +838,7 @@ For example, suppose you want to use a custom key called
 "kids.age-range".  You could accomplish this like so:
 
 
-```tads3
+```
 
    versionInfo: GameID
      metadataKeys = (inherited + ['kids.age-range', &ageRange])
@@ -866,7 +866,7 @@ superclass, GameID; and that class's superclass, GameInfoModuleID.
 -----------------------------------------------------------------
 
 
-## <a name="coverArt"></a>
+## <a name="coverArt"></a>Cover Art
 
 
 You can include a piece of "cover art" with your game.  This
@@ -898,7 +898,7 @@ any color depth or other variation that's valid in your chosen format.
 When you bundle a cover art image into your game as we've just
 described, the image is stored within the compiled game file just
 like any other multimedia resource.  This means that you can display
-it within your game, using the standard HTML <IMG> tag.  Just
+it within your game, using the standard HTML &lt;IMG> tag.  Just
 refer to the image by the special resource name ".system/CoverArt.jpg"
 (or ".png", if you used a PNG image).
 
@@ -907,7 +907,7 @@ For example, here's how you could show the image in your ABOUT
 message in TADS 3:
 
 
-```tads3
+```
 
 versionInfo: GameID
    name = 'My Game'

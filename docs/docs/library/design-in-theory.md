@@ -258,7 +258,7 @@ at least reducing your audience's awareness of these problems.
 
 
 Most people writing IF today write for the established IF
-community, whose center of gravity is the [rec.arts.int-fiction](news:rec.arts.int-fiction) newsgroup.
+community, whose center of gravity is the [rec.arts.int-fiction](../news:rec.arts.int-fiction) newsgroup.
 
 
 If you're writing for the IF community, you can count on your

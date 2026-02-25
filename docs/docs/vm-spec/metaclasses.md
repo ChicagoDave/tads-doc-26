@@ -1,5 +1,5 @@
 
-!
+![](../t3logo.gif)
   
   
 
@@ -465,7 +465,7 @@ one reference will also change the vector visible to the other
 references.  This is not true of lists.  Consider this TADS code:
 
 
-```tads3
+```
 
     s1 = new Vector(10);
     for (i = 1 ; i < 10 ; ++i)

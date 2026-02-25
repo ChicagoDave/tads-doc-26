@@ -21,9 +21,18 @@ LINK_REGISTRY_PATH = SCRIPTS_DIR / "link_registry.json"
 
 
 def load_html(filepath):
-    """Load and parse an HTML file with BeautifulSoup."""
-    with open(filepath, "r", encoding="utf-8", errors="replace") as f:
-        return BeautifulSoup(f.read(), "lxml")
+    """Load and parse an HTML file with BeautifulSoup.
+
+    Tries UTF-8 first; falls back to Windows-1252 for legacy TADS docs
+    that use cp1252 characters (em-dashes, smart quotes, etc.).
+    """
+    with open(filepath, "rb") as f:
+        raw = f.read()
+    try:
+        text = raw.decode("utf-8")
+    except UnicodeDecodeError:
+        text = raw.decode("cp1252")
+    return BeautifulSoup(text, "lxml")
 
 
 def extract_title(soup):
@@ -65,7 +74,9 @@ def convert_element(element, depth=0):
     """
     if isinstance(element, NavigableString):
         text = str(element)
-        # Don't collapse whitespace inside <pre> blocks (handled by parent)
+        # Escape literal < so it won't be interpreted as HTML in markdown.
+        # lxml decodes &lt; entities to <, which would become invisible tags.
+        text = text.replace("<", "&lt;")
         return text
 
     if not isinstance(element, Tag):
@@ -323,11 +334,7 @@ def get_pre_text(pre_element):
     parts = []
     for child in pre_element.descendants:
         if isinstance(child, NavigableString):
-            # Decode HTML entities
-            text = str(child)
-            text = text.replace("&lt;", "<").replace("&gt;", ">")
-            text = text.replace("&amp;", "&").replace("&quot;", '"')
-            parts.append(text)
+            parts.append(str(child))
     return "".join(parts)
 
 
@@ -457,12 +464,8 @@ def clean_markdown(text):
     text = re.sub(r"\*\*\s+\*\*", "", text)  # Empty bold
     text = re.sub(r"\*\s+\*", "", text)  # Empty italic
 
-    # Clean up HTML entities that might have leaked through
+    # Clean up non-breaking spaces that might have leaked through
     text = text.replace("&nbsp;", " ")
-    text = text.replace("&lt;", "<")
-    text = text.replace("&gt;", ">")
-    text = text.replace("&amp;", "&")
-    text = text.replace("&quot;", '"')
 
     # Ensure file ends with single newline
     text = text.rstrip() + "\n"

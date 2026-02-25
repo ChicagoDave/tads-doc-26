@@ -1,5 +1,5 @@
 
-!
+![](../t3logo.gif)
   
   
 
@@ -7,7 +7,7 @@
 ## The "t3vm" Intrinsic Function Set
 
 
-The T3 VM uses [intrinsic function sets](machine-model.md#intrinsics)
+The T3 VM uses [intrinsic function sets](../model.md#intrinsics)
 to provide access to built-in functionality in the VM itself and in
 the host application environment.  The T3 specification allows host
 environments and application configurations to define and provide their
@@ -46,7 +46,7 @@ TADS 3 compiler; other compilers might use different syntax, but the
 meaning will be the same.
 
 
-```tads3
+```
 
     intrinsic 't3vm/010000'
     {

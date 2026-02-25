@@ -150,12 +150,12 @@ when the user starts the interpreter by opening a saved game file directly
 from the operating system shell, which is supported on some systems.*
 
 
-#### Special characters: < and &
+#### Special characters: &lt; and &
 
 
 When HTML mode is active, two characters become special, because
 they introduce HTML sequences.  The first is the less-than sign,
-<, which introduces an HTML tag.  The second is the ampersand,
+&lt;, which introduces an HTML tag.  The second is the ampersand,
 &, which introduces a character specifier sequence.
 
 
@@ -171,7 +171,7 @@ of characters:
 
 ```
 
-    <
+    &lt;
 
 ```
 
@@ -181,13 +181,13 @@ You need to convert each ampersand to this sequence of characters:
 
 ```
 
-    &
+    &amp;
 
 ```
 
 
 Note that the special embedded expression syntax, which uses
-"<<" and ">>" to delimit an expression contained within
+"&lt;&lt;" and ">>" to delimit an expression contained within
 a double-quoted string, does *not* need to be changed, and in
 fact must not be changed.  You should continue to write embedded
 expressions just as you always have.  For example:
@@ -196,17 +196,17 @@ expressions just as you always have.  For example:
 ```
 
     sdesc = "The blackboard has an equation scribbled
-             on it: x < << blackboard.xValue >>"
+             on it: x &lt; << blackboard.xValue >>"
 
 ```
 
 
-The reason that you don't need to change the "<<" sequence
+The reason that you don't need to change the "&lt;&lt;" sequence
 for an embedded expression is that this syntax is used only by the
 TADS compiler.  The compiler recognizes embedded expressions and
 removes them from your strings before the strings are placed in
 your .GAM file.  HTML tags, on the other hand, are handled by the
-HTML TADS interpreter.  Since the "<<" sequence of an embedded
+HTML TADS interpreter.  Since the "&lt;&lt;" sequence of an embedded
 expression is removed at compile time, the HTML TADS interpreter never
 sees it, hence it doesn't need to be changed for HTML.
 

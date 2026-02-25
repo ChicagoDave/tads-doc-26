@@ -239,7 +239,7 @@ string within this \"""triple quoted\""" string!""";
 Other than the tripled delimiters and the treatment of escaped
 quote runs, triple-quoted strings work exactly like their ordinary
 counterparts.  In particular, there's no difference in how they
-behave at run-time, and no difference in how embedded << >>
+behave at run-time, and no difference in how embedded &lt;&lt; >>
 expressions are handled.
 
 
@@ -551,14 +551,14 @@ reference.  Some common tags that TADS recognizes:
 
 An HTML entity is spelled-out version of a single character.
 Entities are written as `&name;` - ampersand, name, semicolon.  For
-example, `<` is the entity markup for a less-than sign, `>`
-is a greater-than sign, and `&` is an ampersand.  (You can check
+example, `&lt;` is the entity markup for a less-than sign, `&gt;`
+is a greater-than sign, and `&amp;` is an ampersand.  (You can check
 any HTML reference for a full list.)
 
 
 The `&` is what triggers an entity interpretation, so if you want
 to use an `&` literally in displayed text, you need to spell it out
-as `&`.  (Were you thinking of using a backslash?  Remember, the
+as `&amp;`.  (Were you thinking of using a backslash?  Remember, the
 backslash only escapes characters at the compiler level.  An `&` in
 a string isn't special to the compiler - it's only special to the HTML
 display engine.  To sneak special characters past the HTML display
@@ -625,19 +625,19 @@ the second character is now the second `<` character.
 
 Second, observe that the HTML sequences are *not* removed from the
 strings or translated in any way.  They're just copied
-character-for-character to the compiled version.  The `<`
+character-for-character to the compiled version.  The `&lt;`
 entities, for example, are actually stored as the chararacters `&`
 `l` `t` `;` - they're not converted to `<` characters.  Note
 also that your program code can tell the difference: when you compare
 a stored `<` character to the string `'<'`, you get a match.  When
-you compare it to the string `'<'`, it *doesn't* match,
+you compare it to the string `'&lt;'`, it *doesn't* match,
 because the latter is actually stored as `&` `l` `t` `;` and
 thus doesn't match a string stored as `<`.
 
 
 Third, you can see that when the running program writes out any of
 these strings to the display, the HTML is
-finally interpreted.  The `<` sequences finally turn into `<`
+finally interpreted.  The `&lt;` sequences finally turn into `<`
 characters, and the tags such as `<B>` serve their control function
 rather than appearing as literal text.
 
@@ -1558,8 +1558,8 @@ Here are all of the special backslash sequences:
 
 | \\ | A (single) literal backslash character |
 |---|---|
-| \< | A literal `<` character.  The only time       it's necessary to write `\<` rather than just `<` is when       you use two (or more) `<`'s in a row: you must escape the second       (and third, etc) to prevent the compiler from treating `<<`       as the start of an embedded expression.  Very important:       writing `\<` does **not** prevent the display layer from       reading the `<` as the start of an HTML tag.  For that, you       must write the less-than sign as "`<`". |
-| \> | A literal `>` character.  It's never necessary       to escape `>`, but it's harmless to do so.  This doesn't prevent       the HTML parser from treating the `>` as the end of a tag;       use "`>`" for that. |
+| \&lt; | A literal `<` character.  The only time       it's necessary to write `\<` rather than just `<` is when       you use two (or more) `<`'s in a row: you must escape the second       (and third, etc) to prevent the compiler from treating `<<`       as the start of an embedded expression.  Very important:       writing `\<` does **not** prevent the display layer from       reading the `<` as the start of an HTML tag.  For that, you       must write the less-than sign as "`&lt;`". |
+| \> | A literal `>` character.  It's never necessary       to escape `>`, but it's harmless to do so.  This doesn't prevent       the HTML parser from treating the `>` as the end of a tag;       use "`&gt;`" for that. |
 | \" | A literal double-quote character |
 | \' | A literal single-quote character |
 | \^ | Caps mode: capitalize the next character to       be displayed, *if* it's alphabetic.  (^ is the circumflex,       usually shift-6 on a QWERTY keyboard.) |

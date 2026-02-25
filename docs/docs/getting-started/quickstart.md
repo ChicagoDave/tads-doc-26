@@ -28,19 +28,19 @@ Enjoy!
 5. In either case, this will display the New Project Wizard. Just step through the wizard screens to tell Workbench the name and location for your new project files. Workbench will automatically create all of the necessary files for your project, and it'll even compile it for you right away.
 
 
-The steps you'd typically follow once the wizard is launched would be:
+The steps you’d typically follow once the wizard is launched would be:
 
 
-1. Click the "Browse" button on the first page of the Wizard.
-2. Use the file dialog that appears to create a new folder (e.g. "MyNewGame") in a TADS 3 folder in your My Documents folder.
-3. Navigate to the new directory you have just created and enter a filename for your new game (e.g. "MyNewGame") into the File Name field of the dialog, and then click the "Save" button.
-4. Click the "Next" button on the wizard.
-5. Click the "Next" button again. On the next page of the wizard select the "Advanced" radio button (for the purposes of this Guide you don't want the "Introductory" option).
-6. Click the "Next" button again. On the next page of the wizard leave the "Standard" radio button selected (the WebUI is a topic beyond the scope of this Guide).
-7. Fill in the four fields on the next page of the Wizard. Under "Story Title" put the full name of your game ("My New Game" or whatever you want to call it; later on in this Guide it will be "The Best Burglar" for example). Then fill in the next two fields with your own name and email address. The final field can be used to give a brief description of the game (e.g. "This is simply a tutorial game I'm using to learn TADS 3 with").
-8. Click "Next" and then click "Finish".
-9. Wait until TADS 3 Workbench has finished created and compiling the new skeleton game (you should see a message saying "Build successfully completed" followed by the date and time). In the left-hand pane of Workbench (headed "Project") look for the section (near the top) that says "Source Files" and double-click on the icon representing the file you asked the Wizard to create at Step 3 above (e.g. "MyNewGame.t"); it should be the third one down. You will then see your new game source file open in the Workbench editing window.
-10. To compile the project again when you've made changes to it, just press the F7 key. (You can also select the "Compile for Debugging" command on the "Build" menu, or click the equivalent toolbar button.)
+1. Click the ‘Browse’ button on the first page of the Wizard.
+2. Use the file dialog that appears to create a new folder (e.g. ‘MyNewGame’) in a TADS 3 folder in your My Documents folder.
+3. Navigate to the new directory you have just created and enter a filename for your new game (e.g. ‘MyNewGame’) into the File Name field of the dialog, and then click the ‘Save’ button.
+4. Click the ‘Next’ button on the wizard.
+5. Click the ‘Next’ button again. On the next page of the wizard select the ‘Advanced’ radio button (for the purposes of this Guide you don’t want the ‘Introductory’ option).
+6. Click the ‘Next’ button again. On the next page of the wizard leave the ‘Standard’ radio button selected (the WebUI is a topic beyond the scope of this Guide).
+7. Fill in the four fields on the next page of the Wizard. Under ‘Story Title’ put the full name of your game (‘My New Game’ or whatever you want to call it; later on in this Guide it will be ‘The Best Burglar’ for example). Then fill in the next two fields with your own name and email address. The final field can be used to give a brief description of the game (e.g. ‘This is simply a tutorial game I’m using to learn TADS 3 with’).
+8. Click ‘Next’ and then click ‘Finish’.
+9. Wait until TADS 3 Workbench has finished created and compiling the new skeleton game (you should see a message saying ‘Build successfully completed' followed by the date and time). In the left-hand pane of Workbench (headed ‘Project’) look for the section (near the top) that says ‘Source Files’ and double-click on the icon representing the file you asked the Wizard to create at Step 3 above (e.g. ‘MyNewGame.t’); it should be the third one down. You will then see your new game source file open in the Workbench editing window.
+10. To compile the project again when you’ve made changes to it, just press the F7 key. (You can also select the "Compile for Debugging" command on the "Build" menu, or click the equivalent toolbar button.)
 
 
 ### 1b. Installing the Compiler and Creating a Project Manually (for non-Windows Users)
@@ -74,7 +74,7 @@ Jim Aikin suggests the following steps for setting up TADS 3 and creating a proj
 5. Open a Terminal window. The Terminal program is located in Applications > Utilities. You may want to make an alias for it and drag it into your Dock.
 6. Create a starter game file, again as a text file, and save it to the MyGame directory. Your starter game should look more or less like this:
 
-  ```tads3
+  ```
 
        #include <adv3.h>
        #include <en_us.h>
@@ -102,7 +102,7 @@ Jim Aikin suggests the following steps for setting up TADS 3 and creating a proj
   ```
 
 
-  Fill in those quoted parts under the line reading "`versionInfo:GameID`" with your own information.  Everything should beself-explanatory, except that last line that starts "`IFID =`". That long, random-looking string of letters and numbers is exactly what it appears to be - a long, random string of letters and numbers. Well, almost: it's actually composed of random "hexadecimal", or base-16, digits, i.e. 0 to 9 plus A to F.  The purpose of this random number is to serve as a unique identifier for your game when you upload it to the IF Archive.  The *format* is important, but the individual digits should simply be chosen randomly.  For your convenience, tads.org provides an on-line IFID generator at [http://www.tads.org/ifidgen/ifidgen](http://www.tads.org/ifidgen/ifidgen ).
+  Fill in those quoted parts under the line reading "`versionInfo:GameID`" with your own information.  Everything should beself-explanatory, except that last line that starts "`IFID =`". That long, random-looking string of letters and numbers is exactly what it appears to be - a long, random string of letters and numbers. Well, almost: it's actually composed of random "hexadecimal", or base-16, digits, i.e. 0 to 9 plus A to F.  The purpose of this random number is to serve as a unique identifier for your game when you upload it to the IF Archive.  The *format* is important, but the individual digits should simply be chosen randomly.  For your convenience, tads.org provides an on-line IFID generator at [http://www.tads.org/ifidgen/ifidgen](../ http:/www.tads.org/ifidgen/ifidgen ).
 7. In the Terminal, use the cd (change directory) command to navigate to the folder where your game files are stored. For instance, you might type 'cd Documents/TADS/MyGame' and then hit Return.
 8. While the Terminal is logged into this directory, you can compile your game using this command:
 
@@ -168,31 +168,31 @@ TADS 3 comes with a number of different guides and manuals. Which of them should
 The first thing to be aware of is that three of the manuals are intended as *tutorials* (for use when learning TADS 3) and three are intended for *reference* (for use when writing your own games once you've mastered the most common features of TADS 3). There is overlap between the contents of these two groups of manuals, since you may well want to use the reference material to remind you of material you first encountered in a tutorial, but they have quite different functions.
 
 
-The three *tutorial* manuals are [Getting Started in TADS 3](tutorial/index.md), [*Learning TADS 3*](../assets/pdf/learning-tads3.pdf), and [TADS 3 Tour Guide](../library/guide/generalintroduction.md). Only the first two of these are intended as introductory; the *TADS 3 Tour Guide* is primarily intended as a follow-on to *Getting Started in TADS 3* for people who want further tutorial material. So your choice of an introductory tutorial is between *Getting Started in TADS 3* and *Learning TADS 3*. So why are there two introductory tutorials and which of them should you choose?
+The three *tutorial* manuals are [Getting Started in TADS 3](../gsg/index.md), [Learning TADS 3](../learning/Learning%20T3.pdf), and [TADS 3 Tour Guide](../tourguide/index.md). Only the first two of these are intended as introductory; the *TADS 3 Tour Guide* is primarily intended as a follow-on to *Getting Started in TADS 3* for people who want further tutorial material. So your choice of an introductory tutorial is between *Getting Started in TADS 3* and *Learning TADS 3*. So why are there two introductory tutorials and which of them should you choose?
 
 
 There are two because people have different learning styles and different needs and come to a system like TADS 3 from different backgrounds and with different previous knowledge and experience. Different people will therefore benefit from different approaches.
 
 
-For most new users the answer to the question "Where do I go next?" is either [Getting Started in TADS 3](tutorial/index.md) or [*Learning TADS 3*](../assets/pdf/learning-tads3.pdf). If you're still unsure which to start off with, take a quick look (by skimming) through the first couple of chapters of each and then choose the one you feel more comfortable with.
+For most new users the answer to the question "Where do I go next?" is either [Getting Started in TADS 3](../gsg/index.md) or [Learning TADS 3](../learning/Learning%20T3.pdf). If you're still unsure which to start off with, take a quick look (by skimming) through the first couple of chapters of each and then choose the one you feel more comfortable with.
 
 
 ### 2a. The Getting Started Guide
 
 
-[Getting Started in TADS 3](tutorial/index.md) walks you through the creation of two TADS 3 games (one very short, one quite a bit bigger), explaining features of the system as it goes along but not presenting them in a particularly systematic fashion (the order of presentation is dictated by the order in which the games are developed). Completing the *Getting Started* tutorial will introduce you to the process of writing Interactive Fiction in TADS 3 and in doing so will introduce you to many of the features of the system, but not in a very systematic fashion. It is the manual you should begin with if you prefer a hands-on, inductive learning style or if you feel more comfortable being walked through the creation of a couple of games before trying to branch out on your own.
+[Getting Started in TADS 3](../gsg/index.md) walks you through the creation of two TADS 3 games (one very short, one quite a bit bigger), explaining features of the system as it goes along but not presenting them in a particularly systematic fashion (the order of presentation is dictated by the order in which the games are developed). Completing the *Getting Started* tutorial will introduce you to the process of writing Interactive Fiction in TADS 3 and in doing so will introduce you to many of the features of the system, but not in a very systematic fashion. It is the manual you should begin with if you prefer a hands-on, inductive learning style or if you feel more comfortable being walked through the creation of a couple of games before trying to branch out on your own.
 
 
 ### 2b. Learning TADS 3
 
 
-[*Learning TADS 3*](../assets/pdf/learning-tads3.pdf), on the other hand, takes a far more systematic approach, and aims to introduce you to all the most commonly-used features of TADS 3. It makes no attempt to walk you through the creation of a game, although it does provide a number of exercises you can try out for yourself (in the form of descriptions of mini-games you can try to write together with heavily-commented sample code you can download to compare with your efforts). This might be the tutorial manual you would choose to begin with if you're reasonably confident about programming or writing Interactive Fiction in another system and you want to see how it's done in TADS 3, or if you prefer to be introduced to the material in an orderly, systematic fashion and you don't particularly need or want to be hand-held through the creation of a couple of tutorial games.
+[Learning TADS 3](../learning/Learning%20T3.pdf), on the other hand, takes a far more systematic approach, and aims to introduce you to all the most commonly-used features of TADS 3. It makes no attempt to walk you through the creation of a game, although it does provide a number of exercises you can try out for yourself (in the form of descriptions of mini-games you can try to write together with heavily-commented sample code you can download to compare with your efforts). This might be the tutorial manual you would choose to begin with if you're reasonably confident about programming or writing Interactive Fiction in another system and you want to see how it's done in TADS 3, or if you prefer to be introduced to the material in an orderly, systematic fashion and you don't particularly need or want to be hand-held through the creation of a couple of tutorial games.
 
 
 ### 2c. The Tour Guide
 
 
-The [TADS 3 Tour Guide](../library/guide/generalintroduction.md) was originally intended as a sequel to *Getting Started in TADS 3* for people who want a more systematic and comprehensive tour of the TADS 3 library than *Getting Started in TADS 3* gives them, though it could also be used as a sequel to [*Learning TADS 3*](../assets/pdf/learning-tads3.pdf) for someone who wants to work through a substantial tutorial game after mastering (or at least, being introduced to) the principal features of TADS 3 introduced in [*Learning TADS 3*](../assets/pdf/learning-tads3.pdf). The *TADS 3 Tour Guide* is *not* intended as an *introductory* tutorial nor is it *primarily* intended as a reference manual (the [TADS 3 Library Reference Manual](../api/by-class/index.md) provides the definitive reference to the TADS 3 Library). What the *Tour Guide* does is to walk you through the creation of a (fairly substantial) game, introducing nearly all the main TADS 3 library features in a reasonably systematic fashion. Many TADS 3 users have found the *Tour Guide* helpful, but you don't have to use it if you don't want to. You may prefer to try to strike out on your own and start working on your own game once you've completed either *Getting Started in TADS 3* or [*Learning TADS 3*](../assets/pdf/learning-tads3.pdf). You could then come back to the *Tour Guide* only if and when you felt a further tutorial might be helpful.
+The [TADS 3 Tour Guide](../tourguide/index.md) was originally intended as a sequel to *Getting Started in TADS 3* for people who want a more systematic and comprehensive tour of the TADS 3 library than *Getting Started in TADS 3* gives them, though it could also be used as a sequel to *Learning TADS 3* for someone who wants to work through a substantial tutorial game after mastering (or at least, being introduced to) the principal features of TADS 3 introduced in *Learning TADS 3*. The *TADS 3 Tour Guide* is *not* intended as an *introductory* tutorial nor is it *primarily* intended as a reference manual (the [TADS 3 Library Reference Manual](../libref/index.md) provides the definitive reference to the TADS 3 Library). What the *Tour Guide* does is to walk you through the creation of a (fairly substantial) game, introducing nearly all the main TADS 3 library features in a reasonably systematic fashion. Many TADS 3 users have found the *Tour Guide* helpful, but you don't have to use it if you don't want to. You may prefer to try to strike out on your own and start working on your own game once you've completed either *Getting Started in TADS 3* or *Learning TADS 3*. You could then come back to the *Tour Guide* only if and when you felt a further tutorial might be helpful.
 
 
 ### 2d. The Reference Manuals
@@ -201,13 +201,13 @@ The [TADS 3 Tour Guide](../library/guide/generalintroduction.md) was originally 
 The three *reference* manuals are the *TADS 3 System Manual*, the *TADS 3 Technical Manual* and the *TADS 3 Library Reference Manual*. These are the three manuals you will probably find yourself consulting most frequently once you have mastered the basics of TADS 3 from one or more of the tutorial manuals and are writing your own game(s), but for most people, they are not the best place to start.
 
 
-That said, the [TADS 3 System Manual](../language/index.md) does contain a lot of material that might be of interest to confident beginners with a strong programming background (whether professional, amateur or hobbyist) who want to see how things are done in TADS 3, and the earlier sections of the [TADS 3 Technical Manual](../library/index.md) do contain a number of "how-to" articles that might be of interest to beginners. Nevertheless, for most new users of TADS 3 these two reference manuals will not be the best place to start; for one thing in addition to the more basic information they cover, they both contain quite a bit of more advanced and complex information that is likely to be not only unnecessary but also potentially quite confusing to new users of TADS 3; for another while the *Technical Manual* contains a lot of useful how-to information, it is anything but systematic or comprehensive in the topics it covers, and is much more useful as a reference for reasonably experienced users than as an introduction. You will also find the [TADS 3 Library Reference Manual](../api/by-class/index.md) an absolutely essential tool once you start working on your own games, and [*Learning TADS 3*](../assets/pdf/learning-tads3.pdf) will introduce you to its use, but it's certainly not the place to begin. Please be assured that you absolutely do *not* have to master the material in these three reference manuals in order to start using (or even continue using) TADS 3, although you will eventually find them helpful when you want to achieve something beyond the basics.
+That said, the [TADS 3 System Manual](../sysman/cover.md) does contain a lot of material that might be of interest to confident beginners with a strong programming background (whether professional, amateur or hobbyist) who want to see how things are done in TADS 3, and the earlier sections of the [TADS 3 Technical Manual](../techman/cover.md) do contain a number of "how-to" articles that might be of interest to beginners. Nevertheless, for most new users of TADS 3 these two reference manuals will not be the best place to start; for one thing in addition to the more basic information they cover, they both contain quite a bit of more advanced and complex information that is likely to be not only unnecessary but also potentially quite confusing to new users of TADS 3; for another while the *Technical Manual* contains a lot of useful how-to information, it is anything but systematic or comprehensive in the topics it covers, and is much more useful as a reference for reasonably experienced users than as an introduction. You will also find the [TADS 3 Library Reference Manual](../libref/index.md) an absolutely essential tool once you start working on your own games, and *Learning TADS 3* will introduce you to its use, but it's certainly not the place to begin. Please be assured that you absolutely do *not* have to master the material in these three reference manuals in order to start using (or even continue using) TADS 3, although you will eventually find them helpful when you want to achieve something beyond the basics.
 
 
 ### 2e. Using the Library Reference Manual
 
 
-When you first gaze upon the [TADS 3 Library Reference Manual](../api/by-class/index.md) (LRM),
+When you first gaze upon the [TADS 3 Library Reference Manual](../libref/index.md) (LRM),
 it may appear to be an impenetrable tangle, but in fact it's an extremely useful resource. To use it, you need to be aware of the
 following basic ideas:
 
@@ -247,7 +247,7 @@ give you a better idea what you're seeing.) TADS 3 isn't too fussy about the amo
 - Even the tiniest punctuation mark such as a bracket or a semicolon can be vital to how TADS 3 understands your source code. A single missing semicolon, for example, can confuse the compiler in ways that can be quite baffling to a new user. If you can't get your version to compile, check very closely for things like braces, commas, brackets and semicolons.
 
 
-The sample game given below is given in three versions, each fuller and more sophisticated than the last, so you can start from something very simple and see how it might be built up into something more complex. Don't worry if you don't understand too much of what's going on — at this point you can hardly expect to, after all — just try copying and compiling the code and then playing the resulting game to see what happens. You may learn something from this approach, and you should at least start to get some kind of feel for what writing a TADS 3 game looks like. If you find at any stage that this approach is simply confusing and frustrating, then give it up and go and start reading [Getting Started in TADS 3](tutorial/index.md) or [*Learning TADS 3*](../assets/pdf/learning-tads3.pdf) instead. But if you feel you're beginning to deduce how at least some of it works, then feel free to experiment (but don't try anything too ambitious, you're probably not ready for it yet).
+The sample game given below is given in three versions, each fuller and more sophisticated than the last, so you can start from something very simple and see how it might be built up into something more complex. Don't worry if you don't understand too much of what's going on — at this point you can hardly expect to, after all — just try copying and compiling the code and then playing the resulting game to see what happens. You may learn something from this approach, and you should at least start to get some kind of feel for what writing a TADS 3 game looks like. If you find at any stage that this approach is simply confusing and frustrating, then give it up and go and start reading [Getting Started in TADS 3](../gsg/index.md) or [Learning TADS 3](../learning/Learning%20T3.pdf) instead. But if you feel you're beginning to deduce how at least some of it works, then feel free to experiment (but don't try anything too ambitious, you're probably not ready for it yet).
 
 
 I repeat, there is absolutely no need to carry out any of this exercise at all; it's simply provided for people who are anxious to dive straight in and try something practical before turning to the manuals. For some people this approach may be helpful (as a kind of inductive learning which will then help make the manuals make more sense); for many others it probably won't help at all.
@@ -259,7 +259,7 @@ I repeat, there is absolutely no need to carry out any of this exercise at all; 
 The plot of the game (such as it is) consists of the player character entering a house, stealing the Orb of Ultimate Satisfaction, and then escaping with it. We start with an absolutely basic bare bones implementation.
 
 
-```tads3
+```
 
 #charset "us-ascii"
 #include <adv3.h>
@@ -363,7 +363,7 @@ The first version wasn't much of a game. In the second we'll complicate things a
 Once again, if you want to try this version out be very careful to copy everything exactly, or it probably won't work. If you already have some experienced with programming, especially in another IF authoring system, you may be able to work out at least some of what's going on in the code below, but if it totally baffles you it may be time to start reaching for the manuals!
 
 
-```tads3
+```
 
 #charset "us-ascii"
 #include <adv3.h>
@@ -619,7 +619,7 @@ At this point you may want to experiment with adding or changing a few things to
 We'll make the third and final version of The Best Burglar just a *little* more challenging by hiding the front door key under a flowerpot, hiding the safe behind a picture, and making the clue to the combination in the notebook a bit more cryptic. We'll also make the Orb of Ulimate Satisfaction a tad more interesting by making it do something (albeit not that much) when it's rubbed, which means we'll also need to define a new RUB verb. We'll add a few decoration objects to field commands directed at things mentioned in room descriptions and the like, and we'll tidy up a couple of things, by, for example, defining the bulk and bulk capacity of various objects so the player can't put something obviously bigger inside something obviously smaller, and, for example, by preventing the player picking up the hall table when there's something still on it. Finally, we'll add some scoring and hints to the game.
 
 
-```tads3
+```
 
 #charset "us-ascii"
 #include <adv3.h>
@@ -1191,7 +1191,7 @@ Doubtless there a great many more things that could be done to improve this game
 Once again, there are far too many features here to discuss in a Quick Start Guide. One thing in particular to note is the use of the `ComplexContainer` class. We use it for the flowerpot because the pot is something we put the key *under* but it would also be possible to put things inside. We also use it for the safe — and this is a more important case — because we have now made the safe door a Component of the safe and the combination dial a Component of the safe door. If we had left the safe as an OpenableContainer (as in version 2), the safe door and the combination dial would have been locked inside the safe along with the orb, and the safe would have been impossible to open (a mistake it's very easy to make, so this is worth noting). Another thing worth noting is the use of `RemapTo()` to redirect certain actions that the player might reasonably try on the desk to its drawer. Finally it's worth pointing out that there's more than one way we could have implemented many of the things shown above.
 
 
-There are plenty of other feature of TADS 3 that haven't been introduced yet. In particular this example doesn't even begin to touch on the creation of NPCs (other characters in your game — the fleeting appearance of Jeannie the Genie doesn't really count). But the three versions of the game shown above should have illustrated quite a few of the most common features of TADS 3 used in developing TADS 3 games, and depending on your background and inclinations you may have learned something by studying the sample code and trying it out. If you feel confident enough to experiment a little more on your own, by all means do so, but at this stage it's getting pretty near the point when you will need to move on to [Getting Started in TADS 3](tutorial/index.md) or [*Learning TADS 3*](../assets/pdf/learning-tads3.pdf).
+There are plenty of other feature of TADS 3 that haven't been introduced yet. In particular this example doesn't even begin to touch on the creation of NPCs (other characters in your game — the fleeting appearance of Jeannie the Genie doesn't really count). But the three versions of the game shown above should have illustrated quite a few of the most common features of TADS 3 used in developing TADS 3 games, and depending on your background and inclinations you may have learned something by studying the sample code and trying it out. If you feel confident enough to experiment a little more on your own, by all means do so, but at this stage it's getting pretty near the point when you will need to move on to [Getting Started in TADS 3](../gsg/index.md) or [Learning TADS 3](../learning/Learning%20T3.pdf).
 
 
 *Eric Eve — May 2012*

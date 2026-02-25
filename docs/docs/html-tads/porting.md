@@ -59,7 +59,7 @@
   in the HTML interpreters, so this style flag must be handled by the
   system-specific CHtmlSysWin implementation.  Note that this flag will
   never be used except in banner API windows (in other words, it'll
-  never be used in windows created with the <BANNER> tag).
+  never be used in windows created with the &lt;BANNER> tag).
 - The class CHtmlSysFont has a couple of new methods that provide
   information on the system-level font.  `is_fixed_pitch()`
   returns TRUE if the font is monospaced, FALSE if it's proportionally
@@ -149,7 +149,7 @@
 - The CHtmlSysWin routines create_banner_subwin(),
   remove_banner_subwin(), and create_aboutbox_subwin() have been moved
   to CHtmlSysFrame.  They really belonged there to start with, but the
-  stream-based design of the original <BANNER>-tag system
+  stream-based design of the original &lt;BANNER>-tag system
   misleadingly suggested that they were part of the main text window.
   In addition, these routines have been superfically renamed to use
   'window' instead of 'subwin', for consistency with the new view of
@@ -215,7 +215,7 @@
   platforms could run into the same sort of thing.)
 - Note that "tab alignment" is inherently always available in any
   full HTML interpreter, since the portable HTML parser/renderer
-  handles the <TAB> tag.  So, for the style flag
+  handles the &lt;TAB> tag.  So, for the style flag
   OS_BANNER_STYLE_TAB_ALIGN, you can ignore this flag on window
   creation, and simply set it unconditionally in
   CHtmlSysWin::get_banner_info().
@@ -223,7 +223,7 @@
   slightly.  In the past, this method simply cleared the entire frame,
   which included deleting all banner windows.  This method should no
   longer delete banner windows unconditionally; instead, it should only
-  delete banners created with <BANNER> tags in the main window.
+  delete banners created with &lt;BANNER> tags in the main window.
   Most implementations will probably use the main window's formatter
   object's remove_all_banners() method to delete the banners, in
   which case they will **not** need any changes: the remove_all_banners()
@@ -497,9 +497,9 @@ The libraries you might find useful are:
   already familiar with, you should use that.  The reference
   implementation, though, is the Independent JPEG Group's library;
   you can find the C source code at
-  [ftp://ftp.simtel.net/pub/simtelnet/msdos/graphics/jpegsr6b.zip](ftp://ftp.simtel.net/pub/simtelnet/msdos/graphics/jpegsr6b.zip)
+  [ftp://ftp.simtel.net/pub/simtelnet/msdos/graphics/jpegsr6b.zip](../ftp:/ftp.simtel.net/pub/simtelnet/msdos/graphics/jpegsr6b.zip)
   (for an MSDOS ZIP file), or
-  [ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz](ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz)
+  [ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz](../ftp:/ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz)
   for a Gnu-tools-friendly version.  (Apart from the bundling format,
   both of these should contain the same source files.)
   Note that you should use **version 6b** or higher - past versions did

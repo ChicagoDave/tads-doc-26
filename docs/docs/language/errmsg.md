@@ -590,7 +590,7 @@ Invalid datatype for the XOR operator.  These values can't be combined with this
 **2036: invalid datatype for left-shift operator '<<'**
 
 
-Invalid datatype for the left-shift operator '<<'.  These values can't be combined with this operator.
+Invalid datatype for the left-shift operator '&lt;&lt;'.  These values can't be combined with this operator.
 
 
 **2037: invalid datatype for arithmetic right-shift operator '>>'**

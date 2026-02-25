@@ -30,7 +30,7 @@ here's a list of the documentation included with HTML TADS.
 
 
 - [Getting Started with HTML TADS](getting-started-with-html.md)
-- Recent changes to HTML TADS
+- [Recent changes to HTML TADS](../../changes.md)
 - [TADS Workbench and the TADS Debugger](../tools/workbench/index.md)
 - [HTML TADS additions to and deviations from
   standard HTML](deviations.md)
@@ -42,7 +42,7 @@ here's a list of the documentation included with HTML TADS.
 - [Distributing your game](distributing.md)
 - [Playing HTML TADS games with the standard
   TADS Interpreter](character-mode.md)
-- Copyright and License information
+- [Copyright and License information](../../../license.txt)
 
 
 If you're interested in porting HTML TADS to a new operating system,
@@ -63,7 +63,7 @@ possible of the problem and the exact steps needed to reproduce it.
 
 For more general advice and information about interactive fiction,
 you may be interested in consulting the usenet newsgroup
-[rec.arts.int-fiction](news:rec.arts.int-fiction), which
+[rec.arts.int-fiction](../news:rec.arts.int-fiction), which
 is concerned with all aspects of interactive fiction, and in particular
 the technical and artistic details of designing and developing adventure
 games.
@@ -158,7 +158,7 @@ If you're using TADS 2, you'll also want the *TADS Author's
 Manual*, which provides information on how to develop a game with
 TADS.  You should be able to get the *Author's Manual* in
 electronic form from the same place you got TADS; try the Interactive
-Fiction Archive at ftp.ifarchive.org ([ftp://ftp.ifarchive.org/if-archive/programming/tads2](ftp://ftp.ifarchive.org/if-archive/programming/tads2)) if you're
+Fiction Archive at ftp.ifarchive.org ([ftp://ftp.ifarchive.org/if-archive/programming/tads2](../ftp:/ftp.ifarchive.org/if-archive/programming/tads2)) if you're
 not sure where to look.  The manual is also available on the Web in
 HTML format (thanks to Neil K. Guy, who converted the manual from the
 original TeX version) at [http://www.tela.bc.ca/tela/tads-manual/](http://www.tela.bc.ca/tela/tads-manual/).  You may also want to get

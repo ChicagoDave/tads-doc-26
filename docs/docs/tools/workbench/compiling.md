@@ -464,7 +464,7 @@ error in your source file by double-clicking on the error message
 in the debug log window.
 
 
-## <a name="settings"></a>
+## <a name="settings"></a>Build Settings
 
 
 If you created your project with the New Project Wizard, the
@@ -500,7 +500,7 @@ header files for those libraries.
 ## Build Settings: Output
 
 
-<a name="dbggam"></a>: This is the
+<a name="dbggam"></a>**Debugging image file**: This is the
 compiled (or "image") file for debugging.  You can't change this
 setting, because it's always the same as the image file that you
 currently have loaded.  This version of the compiled game contains
@@ -520,7 +520,7 @@ Debugging" command on the "Build" menu.
 > information on how multimedia versions of TADS find resource files.
 
 
-<a name="rlsgam"></a>  This is the compiled
+<a name="rlsgam"></a>**Release .t3 file:**  This is the compiled
 image file that you can release to players.  This version of the image file
 does not contain any symbolic debugging information, so it cannot be used
 with the debugger; as a result, it's smaller and runs more quickly than
@@ -541,7 +541,7 @@ use the "Compile for Release" command on the "Build" menu.
 > the latter.
 
 
-<a name="exe"></a>  This is an executable
+<a name="exe"></a>**Executable file:**  This is an executable
 application (.EXE) file that contains your [release
 .t3 file](#rlsgam), including the bundled resources, bound together with the
 HTML TADS 3 Interpreter for Windows.  You can distribute this single file
@@ -652,7 +652,7 @@ for systems in the US and Western Europe).
 **Additional command-line options:** If you need to specify any
 command-line options that cannot be specified elsewhere in the dialog
 box, you can enter the text of the options here.  Look
-the TADS 3 compiler documentation for the full set of compiler options.
+[here](../../../../doc/t3build.md) for the full set of compiler options.
 (In most cases, you won't need to put anything here, since all of the
 common compiler options are all accessible through the dialog without
 resorting to typing them in here directly.)
@@ -661,7 +661,7 @@ resorting to typing them in here directly.)
 ## Build Settings: Windows SETUP
 
 
-<a name="install_exe"></a>  This is the name of
+<a name="install_exe"></a>**Setup Program:**  This is the name of
 the executable application file that will contain the installer for your
 game.  TADS Workbench can create an automatic installation program for
 your game; this installer will be bundled into the single file named here.
@@ -784,7 +784,7 @@ the Build All Packages command will build this package.
 the Build All Packages command will build this package.
 
 
-## <a name="dirtree"></a>
+## <a name="dirtree"></a>Suggested Directory Layout
 
 
 You can arrange your source files and compiled game files into any

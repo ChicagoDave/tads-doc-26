@@ -26,7 +26,7 @@ questions to tell TADS where to put your game files.  See
 instructions.
 
 
-## <a name="loadgame"></a>
+## <a name="loadgame"></a>Loading an Existing Game
 
 
 If you've already created your game's source files, you can load the
@@ -220,7 +220,7 @@ The [Debugger Overview](debugger.md) describes the
 debugger in greater detail.
 
 
-## <a name="config"></a>
+## <a name="config"></a>Project Files (.t3c)
 
 
 TADS Workbench stores information on your game in a special file

@@ -660,7 +660,7 @@ resource item can be one of the following:
 
 A "resource name" is the name by which the resource is
 known at run-time.  This is the name you use to access the resource
-from HTML; for example, it's the name you'd use in an <IMG
+from HTML; for example, it's the name you'd use in an &lt;IMG
 SRC=xxx> tag.  You'd also use this name to access the resource from
 the File class.
 

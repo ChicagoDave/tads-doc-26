@@ -1,5 +1,5 @@
 
-!
+![](../t3logo.gif)
   
   
 
@@ -59,33 +59,33 @@ than the parsed version with special character flags embedded.
 ### Contents
 
 
-[Design Philosophy](philosophy.md)
+[Design Philosophy](../philos.md)
   
-[Design Goals](goals.md)
+[Design Goals](../goals.md)
   
-[Notation and Conventions](notation.md)
+[Notation and Conventions](../notation.md)
   
-[Machine Model](machine-model.md)
+[Machine Model](../model.md)
   
-[The Metaclasses](metaclasses.md)
+[The Metaclasses](../metacl.md)
   
-[Byte-code Instruction Set](bytecode.md)
+[Byte-code Instruction Set](../opcode.md)
   
-[Image File Format](image-format.md)
+[Image File Format](../format.md)
   
-[Portable Binary Encoding](binary-encoding.md)
+[Portable Binary Encoding](../bincode.md)
   
 [Character Mapping](../language/charmap.md)
   
-[Debug Records](debug-records.md)
+[Debug Records](../debug.md)
   
   
 
 **Appendices**
   
-[Metaclass Identifier List](metaclass-ids.md)
+[Metaclass Identifier List](../metalist.md)
   
-[Saving and Restoring State](save-restore.md)
+[Saving and Restoring State](../save.md)
 
 Copyright © 2001, 2010 by Michael J. Roberts.  
 

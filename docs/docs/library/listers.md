@@ -39,7 +39,7 @@ To attempt to cover every single aspect of Lists and Listers in this article wou
           - [Inventory Listings](#inventory)
 
 
-## <a name="simple"></a>
+## <a name="simple"></a>Really Simple Lists
 
 
 The TADS 3 Library uses a variety of Lister objects (i.e. objects
@@ -76,7 +76,7 @@ red, white, and blue
 Well, the good news is that the library now provide this; it now defines:
 
 
-```tads3
+```
 
 class SimpleLister: Lister
     showSimpleList(lst) { showListAll(lst, 0, 0); }
@@ -114,7 +114,7 @@ example of this might be when we're defining a LabeledDial and want to
 include a list of its validSettings in its descriptions, e.g.:
 
 
-```tads3
+```
 
   myDial: LabeledDial, Component 'big red dial' 'big red dial'
      "The dial can be turned to a number of settings, in particular:
@@ -137,7 +137,7 @@ In what follows, we shall look at various ways in which the output from the libr
   
 
 
-## <a name="exclude"></a>
+## <a name="exclude"></a>Including and Excluding Items in Lists
 
 
 The simplest way to control whether an item is or is not shown in a particular list is to set the appropriate isListedXXX property/method:
@@ -153,7 +153,7 @@ The simplest way to control whether an item is or is not shown in a particular l
 The library has sensible defaults for all these properties and methods, but if you want something other than the default behaviour, it's easy enough to override the appropriate method accordingly. For example, supposing Myrtle is carrying a bunch of flowers and a revolver, and wearing a red dress, but that she's somehow managed to conceal the revolver in her dress (or in the bunch of flowers?). To prevent the revolver being listed in Myrtle's inventory we could do this:
 
 
-```tads3
+```
 
 myrtle: Person 'pretty myrtle/woman' 'Myrtle' @westRoom
     "You think she's very pretty. "
@@ -192,7 +192,7 @@ You see a large black pot (which contains a small silver coin) here.
 We may think it more realistic for the player not to notice the coin unless he explicitly examines (or looks in) the pot. We could achieve this like so:
 
 
-```tads3
+```
 
 + pot: Container 'large black pot' 'large black pot'
 ;
@@ -210,7 +210,7 @@ Note how we override isListed so that it's only nil when the coin is in the pot;
 It's possible that we think examining the pot is not enough to reveal the coin, and that the player character would only notice it if he actually looks in the pot. We then need to override isListedInContents rather than isListed, but the complication is that we want isListedInContents to be true for a LOOK IN command but not for an EXAMINE command, so we'd have to do something like this:
 
 
-```tads3
+```
 
 ++ coin: Thing 'small silver coin*coins' 'small silver coin'
     isListedInContents = (!isIn(pot) || gActionIs(LookIn))
@@ -229,7 +229,7 @@ Note that if we override isListedInContents we don't need to override isListed a
 Using these properties, we could make the pot hide its contents from a room description, revealing them only when the pot is explictly examined or looked in, like so:
 
 
-```tads3
+```
 
 + pot: Container 'large black pot' 'large black pot'
     contentsListed = nil
@@ -263,7 +263,7 @@ The large black pot contains a small silver coin.
 If we also want the contents of the pot to remain unlisted until the player explicitly looks in the pot, we can set contentsListedInExamine to nil:
 
 
-```tads3
+```
 
 + pot: Container 'large black pot' 'large black pot'
     contentsListedInExamine = nil
@@ -304,16 +304,16 @@ Between them, the isListedXXX and contentsListedXXX properties provide the most 
 - *contentsListed(obj)* — determines if this object's contents is to be listed; by default returns the value of obj.contentsListed.
 
 
-One further technique that can be used to adjust the list of objects to be displayed in a room description is to override the adjustLookAroundTable() method of the room in question. This technique is illustrated in the [Looking Through the Window](../getting-started/tutorial/lookingthroughthewindow.md) section of *Getting Started in TADS 3*.
+One further technique that can be used to adjust the list of objects to be displayed in a room description is to override the adjustLookAroundTable() method of the room in question. This technique is illustrated in the [Looking Through the Window](../../gsg/lookingthroughthewindow.md) section of *Getting Started in TADS 3*.
 
 
   
 
 
-## <a name="ordgroup"></a>
+## <a name="ordgroup"></a>Ordering and Grouping List Items
 
 
-### <a name="ordering"></a>
+### <a name="ordering"></a>Ordering
 
 
 A typical room description might contain a list of items present in something like the following form:
@@ -363,7 +363,7 @@ A large box rests in the corner.
   
 
 
-### <a name="grouping"></a>
+### <a name="grouping"></a>Grouping
 
 
 There is no standard listOrder property for miscellaneous items (analagous to specialDescOrder), but just about any custom ordering of miscellaneous item can be achieved by grouping them. Indeed, you could even assign every single item in your game to the same list group, and then define a listOrder property of your own that your list group could then be made to sort on. But let's take things one step at a time.
@@ -390,7 +390,7 @@ and a piece of paper here.
 But since the ruler, the pencil, the ink, the pen and the paper are all writing implements of a sort, we might prefer them all to be listed together. The first step is to create an appropriate ListGroup:
 
 
-```tads3
+```
 
 writingMaterials: ListGroupSorted
 ;
@@ -401,7 +401,7 @@ writingMaterials: ListGroupSorted
 Then we assign each of the objects in question to this ListGroup, e.g.:
 
 
-```tads3
+```
 
 + ruler: Thing 'ruler' 'ruler'
     listWith = [writingMaterials]
@@ -424,10 +424,10 @@ and a bucket of water here.
 Note that we made our writingMaterials list group a *ListGroupSorted* and not just a *ListGroup*. This is because the base ListGroup class doesn't actually display anything when it comes to listing its members; it's nearly always more useful, therefore, to use a subclass of ListGroup, ListGroupSorted being perhaps the most general-purpose of those subclasses. As its name suggest, ListGroupSorted can also sort the items it lists. Suppose, for example, we not only wanted to group the writing implements together, but wanted them to appear in the order: pen, pencil, ink, paper, ruler. We can do this by first defining a *compareGroupItems()* method on our writingMaterials list group, which could make use of a custom *listOrder* property on the writing implements themselves:
 
 
-```tads3
+```
 
 writingMaterials: ListGroupSorted
-    /* Return an integer > 0 if the first item sorts after the second item;
+    / Return an integer > 0 if the first item sorts after the second item;
      * Return an integer < 0 if the second item sorts after the first item;
      * Return zero if the two items are at the same sorting order.
      */
@@ -463,7 +463,7 @@ and a bucket of water here.
 ListGroupSorted has a couple of subclasses we can also use for particular purposes. We could use *ListGroupPrefixSuffix* to explicitly introduce the list of writing implements as "some writing implements":
 
 
-```tads3
+```
 
 writingMaterials: ListGroupPrefixSuffix
     compareGroupItems (a, b)
@@ -503,7 +503,7 @@ Note that we could likewise use the *groupSuffix* property to append text to the
 We can use *ListGroupParen* to give a general description of the items (e.g. "five writing implements" followed by the actual items listed in parentheses:
 
 
-```tads3
+```
 
 writingMaterials: ListGroupParen
     compareGroupItems (a, b)
@@ -545,7 +545,7 @@ Note that if we hadn't overridden showGroupCountName() it would simply have used
 Finally, we could use *ListGroupCustom* (a subclass of ListGroup, but not of ListGroupSorted) just to give a summary name for the pen, pencil etc. without listing the individual items at all:
 
 
-```tads3
+```
 
 
 writingMaterials: ListGroupCustom
@@ -596,10 +596,10 @@ One final point: the property *specialDescListWith* can be used to group items d
   
 
 
-## <a name="introtext"></a>
+## <a name="introtext"></a>Introductory and Concluding Text
 
 
-### <a name="contcont"></a>
+### <a name="contcont"></a>Container Contents
 
 
 A room description might typically include a list of objects like the following:
@@ -638,7 +638,7 @@ In fact, these four properties are all defined on Thing, and hence exist on all 
 The property we're after right now is the *inlineContentsLister*, since this is the one that's responsible for displaying the object's contents parenthetically as part of its list entry in a second-level contents listing (or, in other words, in producing a sublist in brackets after an object that's itself being shown as part of a list). If we look at the definition of inlineContentsLister on Surface, we'll find that it simply points to the surfaceInLineContentsLister object. If we look this up in turn we'll find that it's defined as:
 
 
-```tads3
+```
 
 surfaceInlineContentsLister: inlineListingContentsLister
     showListPrefixWide(cnt, pov, parent)
@@ -654,7 +654,7 @@ surfaceInlineContentsLister: inlineListingContentsLister
 From this we can already see where the text "(on which is/are ... _)" is coming from, but for the sake of completeness we might want to see the definition of inLineContentsLister, from which surfaceInlineContentsLister inherits:
 
 
-```tads3
+```
 
 inlineListingContentsLister: ContentsLister
     showListEmpty(pov, parent) { }
@@ -673,7 +673,7 @@ It should be reasonably self-evident what the methods shown here do. First, *sho
 So, if we want to see "across which are scattered" instead of "on which are", we need to override the showListPrefixWide() method; but the next question is, where exactly should we override it? Unless we want to see "across which are scattered" introducing the list of items on top of every Surface in our game, we probably don't want to modify inLineListingContentsLister. We could create a special new lister object just for our table, but if we only want to use it on our table and not for any other object in our game this is probably best done as an anonymous object defined on the table itself:
 
 
-```tads3
+```
 
 + table: Surface 'table' 'table'
     inlineContentsLister: surfaceInlineContentsLister
@@ -707,7 +707,7 @@ The main things to note here are that (1) we've subclassed our custom inLineCont
 Had we wanted to use this "scattered" wording on more than one object in our game, we could instead have defined a separate custom lister object which we then attached to the objects we wanted to use it on, e.g.:
 
 
-```tads3
+```
 
 + smallTable: Surface 'small table*tables' 'small table'
     inlineContentsLister = scatteredSurfaceInlineContentsLister
@@ -731,7 +731,7 @@ scatteredSurfaceInlineContentsLister: surfaceInlineContentsLister
 The same method can be used to customize the way what's on the table is described when we EXAMINE or SEARCH the table. We just need to customize the appropriate Listers in the same way:
 
 
-```tads3
+```
 
 + table: Surface 'table' 'table'
     inlineContentsLister: surfaceInlineContentsLister
@@ -787,7 +787,7 @@ a cup, and a priceless antique vase.
 Tto get the "scattered across the table" version, it's the contentsLister property we need to override:
 
 
-```tads3
+```
 
 + table: Surface, Heavy 'table' 'table'
     specialDesc = "A table stands in the middle of the room. "
@@ -808,7 +808,7 @@ Tto get the "scattered across the table" version, it's the contentsLister proper
 Finally, we should note that we are not restricted to changing the text that introduces the list; we can also change the text that concludes it, which would allow us, for example, to turn the sentence round so that the table is mentioned at the end rather than the beginning. We could even use the lister to describe the presence of the table in the room, rather than (also) mentioning it in the room description or giving it a specialDesc. For example, instead of the example above, we could have written:
 
 
-```tads3
+```
 
 + table: Surface, Heavy 'table' 'table'
     contentsLister: surfaceContentsLister
@@ -858,10 +858,10 @@ Notes:
 5. Openable overrides descContentsLister to openableContentsLister, so that, for example, an OpenableContainer uses openableContentsLister rather than thingDescContentsLister.
 
 
-<a name="openable"></a>
+<a name="openable"></a>This last point is particularly worth noting, since OpenableContainers are far from uncommon, and also because (which may be far from initially obvious), openableContentsLister also reports whether an Openable object is open or closed:
 
 
-```tads3
+```
 
 openableContentsLister: thingContentsLister
     showListEmpty(pov, parent)
@@ -880,7 +880,7 @@ openableContentsLister: thingContentsLister
 So, for example, if you have an OpenableContainer which is reporting "It's closed" when the player examines it, this is where the message is coming from (and this is the place to change it if, for example, you only want the container to report when it's open, not when it's closed). It's also the place where you could add an explicit "It's empty" message to an empty, open container. e.g.:
 
 
-```tads3
+```
 
 + box: OpenableContainer 'box' 'box'
     descContentsLister: openableContentsLister
@@ -908,14 +908,14 @@ You see nothing unusual about it.
 Opened.
 
 >x it
-It's open but empty.
+It’s open but empty.
 
 >put pen in box
 (first taking the pen)
 Done.
 
 >x box
-It's open, and contains a pen.
+It’s open, and contains a pen.
 
 >close box
 Closed.
@@ -929,7 +929,7 @@ You see nothing unusual about it.
   
 
 
-### <a name="other"></a>
+### <a name="other"></a>Other Lister Properties and Objects (including Room and Inventory Listings)
 
 
 We have now covered the four standard lister properties found on all Things, but there are also some others that are specific to particular classes (and which deal with specific situations). These include:
@@ -982,13 +982,13 @@ Other commonly used Lister *objects* (some of which have just been mentioned abo
      and labeled "(being worn)".
 
 
-#### <a name="room"></a>
+#### <a name="room"></a>Room Contents Listings
 
 
 A couple of examples should suffice to show how these might be useful. Suppose that instead of having a room description say "You see X, Y and Z here" you want it to say "X, Y and Z are lying around on the floor. ". This can be achieved by overriding the roomContentsLister property on the Room in question, for example:
 
 
-```tads3
+```
 
 westRoom: Room 'West Room'
     "This is the west room. An exit leads east. "
@@ -1024,7 +1024,7 @@ the middle of the room.
 ```
 
 
-#### <a name="inventory"></a>
+#### <a name="inventory"></a>Inventory Listings
 
 
 The standard form of an inventory listing (the listing of the player character's inventory shown in response to an INVENTORY command) typically looks something like this:
@@ -1033,7 +1033,7 @@ The standard form of an inventory listing (the listing of the player character's
 ```
 
 >i
-You are carrying a walking stick, a map, and an iceberg lettuce, and you're wearing a
+You are carrying a walking stick, a map, and an iceberg lettuce, and you’re wearing a
 long overcoat and a pair of brown shoes.
 
 ```
@@ -1042,7 +1042,7 @@ long overcoat and a pair of brown shoes.
 You can change the format to show a single list, with worn items shown as "(being worn)" simply by overriding the inventoryLister property on the gPlayerChar object (typically me) to singleActorInventoryLister. For example this:
 
 
-```tads3
+```
 
 me: Actor
    location = westRoom
@@ -1067,7 +1067,7 @@ walking stick, a map, and an iceberg lettuce.
 To customize further, e.g. to make an inventory lister that replaces "carrying" with "holding" and "wearing" with "sporting" requires rather more work, since the standard lister that divides the PC's possessions into what's being carried and what's being worn needs to define several methods to keep track of several possibilities. By copying and adapting the library's definition of actorInventoryLister one might come up with something like this:
 
 
-```tads3
+```
 
 me: Actor
     location = westRoom
@@ -1106,7 +1106,7 @@ me: Actor
             "<<buildParam('The/he', nm)>> {is} holding <<carrying>>.
             <<buildParam('It\'s', nm)>> sporting <<wearing>>. ";
         }
-        /*   For 'tall' listings, we'll use the standard listing style, so we
+        /   For 'tall' listings, we'll use the standard listing style, so we
          *   need to provide the framing messages for the tall-mode
          *   listing.
          */
@@ -1126,7 +1126,7 @@ This is probably slightly more complex than it needs to be. In the most common c
 ```
 
 >i
-You are holding a walking stick, a map, and an iceberg lettuce, and you're sporting a long
+You are holding a walking stick, a map, and an iceberg lettuce, and you’re sporting a long
 overcoat and a pair of brown shoes.
 
 >i tall
@@ -1155,7 +1155,7 @@ You are holding absolutely nothing.
 
 >wear shoes
 (first taking the pair of brown shoes)
-Okay, you're now wearing the pair of brown shoes.
+Okay, you’re now wearing the pair of brown shoes.
 
 >i
 You aren't holding anything, but are sporting a pair of brown shoes.
@@ -1171,7 +1171,7 @@ Changing the way the inventory of an NPC is listed is similar, except that one i
 >x myrtle
 You think she's very pretty.
 
-Myrtle is carrying a bunch of flowers, and she's wearing a red dress.
+Myrtle is carrying a bunch of flowers, and she’s wearing a red dress.
 
 ```
 
@@ -1179,7 +1179,7 @@ Myrtle is carrying a bunch of flowers, and she's wearing a red dress.
 But here the description of Myrtle is so short, that you might want to combine it with the descripition of what she's carrying. This can be done by using actorHoldingDescInventoryListerShort instead:
 
 
-```tads3
+```
 
 myrtle: Person 'pretty myrtle/woman' 'Myrtle' @westRoom
     "You think she's very pretty. "
@@ -1197,7 +1197,7 @@ You'll then get:
 ```
 
 >x myrtle
-You think she's very pretty. She is carrying a bunch of flowers, and she's wearing a red dress.
+You think she's very pretty. She is carrying a bunch of flowers, and she’s wearing a red dress.
 
 ```
 

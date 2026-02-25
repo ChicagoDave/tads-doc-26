@@ -1,5 +1,5 @@
 
-!
+![](../t3logo.gif)
   
 
   
@@ -162,7 +162,7 @@ no operands; the opcode byte is the entirety of such instructions.
 
 
 Operands are encoded in a portable binary format.  Refer to the
-[TADS portable binary encoding documentation](binary-encoding.md) for
+[TADS portable binary encoding documentation](../bincode.md) for
 details of the portable representations used; this format specifies
 for each of a set of datatypes a coding that uses the same
 size and byte layout on all types of computers.
@@ -381,7 +381,7 @@ in the stack, because local variable operations don't affect the stack
 pointer (i.e., they don't change the number of items on the stack).
 
 
-#### <a name="opov"></a>
+#### <a name="opov"></a>Operator Overloading
 
 
 Starting with the December 2010 revision (3.1 of the MJR-T3 reference
@@ -399,7 +399,7 @@ shown in the table below.
 | division | binary | [DIV](#opc_DIV) | 'operator /' |
 | modulo | binary | [MOD](#opc_MOD) | 'operator %' |
 | XOR | binary | [XOR](#opc_XOR) | 'operator ^' |
-| left-shift | binary | [SHL](#opc_SHL) | 'operator <<' |
+| left-shift | binary | [SHL](#opc_SHL) | 'operator &lt;&lt;' |
 | arithmetic right-shift | binary | [ASHR](#opc_ASHR) | 'operator >>' |
 | logical right-shift | binary | [LSHR](#opc_LSHR) | 'operator >>>' |
 | bitwise NOT | unary | [BNOT](#opc_BNOT) | 'operator ~' |
@@ -487,7 +487,7 @@ addition of new fake return addresses doesn't cost anything because we
 already had to check for a fake return anyway.
 
 
-#### <a name="listlike"></a>
+#### <a name="listlike"></a>List-like Objects
 
 
 Operator overloading makes it possible to define custom byte-code
@@ -939,7 +939,7 @@ and the meaning of the "+" operator depend upon the type of *val1*:
 - Integer: *val2* must also be a number, or NUM_VAL_REQD is
   thrown.  The result is the arithmetic sum of the two integer values.
 - String: *val2* is implicitly converted to a string (see
-  [data conversions](machine-model.md#conversions)).  The result
+  [data conversions](../model.md#conversions)).  The result
   is the string concatenation of *val1* and *val2*.  The
   result is always a new object; the string contained in *val1*
   is not altered, but instead a new string object is created.
@@ -1101,7 +1101,7 @@ For any other types, throw an error (BAD_TYPE_BOR).
 **SHL (0x27)*No operands.*
 
 Stack: ... *val1val2* →
-  ... (*val1* << *val2*)
+  ... (*val1* &lt;&lt; *val2*)
 
 
 Remove the top element from the stack, calling this value *val2*,
@@ -1110,7 +1110,7 @@ then remove the next element from the stack, calling this value *val1*.
 
 If both values are integers, shift *val1* left by *val2*
 bits, effectively multiplying *val1* by 2 raised to the power
-*val2*; in C language terms, the value is *val1* <<
+*val2*; in C language terms, the value is *val1* &lt;&lt;
 *val2*.  Push the result onto the stack.
 
 
@@ -1125,7 +1125,7 @@ arithmetic overflow exception, whereas a logical shift can't.
 
 If *val1* is an object,
 try [operator overloading](#opov) with the imported
-property symbol "operator <<".
+property symbol "operator &lt;&lt;".
 
 
 For any other type, throw an error (BAD_TYPE_SHL).
@@ -1459,7 +1459,7 @@ true if not.  The same equality comparison rules that the
 **LT (0x42)*No operands.*
 
 Stack: ... *val1val2* →
-  ... (*val1* < *val2*)
+  ... (*val1* &lt; *val2*)
 
 
 Remove the top element from the stack, calling this value *val2*,
@@ -1501,7 +1501,7 @@ The result of the comparison depends on the type of the first value:
 **LE (0x43)*No operands.*
 
 Stack: ... *val1val2* →
-  ... (*val1* <= *val2*)
+  ... (*val1* &lt;= *val2*)
 
 
 Remove the top element from the stack, calling this value *val2*,
@@ -1681,7 +1681,7 @@ NAMEDARGTAB opcode.
 
 This instruction can be placed after a call instruction (CALL,
 PTRCALL, GETPROP, etc) that passes named arguments to its callee, in
-lieu of a NAMEDARGTAB instruction and
+lieu of a [NAMEDARGTAB](../opc_namedargtab) instruction and
 table.  Instead of storing the table in-line directly after the call
 instruction, the code generator can store a NAMEDARGPTR that points to
 the table, and then store the table in an unreachable section of the
@@ -1852,7 +1852,7 @@ is inside a function rather than a method), throw an error
 
 
 If the *val* is of type object, check the "ObjectCallProp"
-[predefined property ID](machine-model.md#predefined).  If the
+[predefined property ID](../model.md#predefined).  If the
 predefined symbol "ObjectCallProp" is defined in the image, and the
 object referenced by *val* defines or inherits this property,
 retrieve the value of this property, which must be of type
@@ -1913,7 +1913,7 @@ of the property's value:
 **Case 2:** If the object *target_val* does **not**
 define or inherit the property *prop_id*, check to see if
 *target_val* defines or inherits the imported property with the
-[predefined property identifier](machine-model.md#predefined)
+[predefined property identifier](../model.md#predefined)
 "propNotDefined".  If this property is defined, push *prop_id*
 as an additional (first) argument, and then proceed with **case
 1** above as though the "propNotDefined" property had been invoked
@@ -1984,7 +1984,7 @@ proceed according to the type of the value stored in the property:
 **Case 2:** If the object *target_val* does **not**
 define or inherit the property *prop_id*, check to see if
 *target_val* defines or inherits the imported property with the
-[predefined property identifier](machine-model.md#predefined)
+[predefined property identifier](../model.md#predefined)
 "propNotDefined".  If this property is defined, push *prop_id*
 as an additional (first) argument, and then proceed with **case
 1** above as though the "propNotDefined" property had been invoked
@@ -3690,7 +3690,7 @@ instructions had been executed.*
 Pop the top element of the stack, calling this *exception_obj*.
 If this value is not of type object, throw an error (OBJ_VAL_REQD).
 Otherwise, handle the exception as described in the VM specification
-section on [exceptions](machine-model.md#exceptions).
+section on [exceptions](../model.md#exceptions).
 
 
 To summarize,
@@ -3886,7 +3886,7 @@ metaclass, but is simply an index into the metaclass dependency
 table.  The image file contains the metaclass dependency table, which
 establishes the correspondence between the *metaclass_id* index
 value and the actual metaclass, which the table identifies by a
-universally unique metaclass name.  Refer to the [metaclass ID list](machine-model.md#metaclass_id) for more
+universally unique metaclass name.  Refer to the [metaclass ID list](../model.md#metaclass_id) for more
 information on the metaclass dependency table.
 
 
@@ -3935,7 +3935,7 @@ Stack: *same as*[NEW1](#opc_new1)
 
 This instruction performs the same operation as
 [NEW1](#opc_new1), but the object created is
-[transient](machine-model.md#transient).
+[transient](../model.md#transient).
 
 ----------------------------------------------------------------
 <a name="opc_trnew2"></a>
@@ -3955,7 +3955,7 @@ Stack: *same as*[NEW1](#opc_new1)
 
 This instruction performs the same operation as
 [NEW2](#opc_new1), but the object created is
-[transient](machine-model.md#transient).
+[transient](../model.md#transient).
 
 ----------------------------------------------------------------
 <a name="opc_inclcl"></a>
@@ -4292,7 +4292,7 @@ of compiling an assignment to an indexed value.  Consider this code
 in the TADS language:
 
 
-```tads3
+```
 
     local x;
     x = [1 2 3 4];
@@ -4671,7 +4671,7 @@ changing the meaning of a byte code sequence.
 | [JR0T](#opc_jr0t) | [JSF](#opc_jsf) | [JST](#opc_jst) | [JT](#opc_jt) |
 | [LE](#opc_le) | [LSHR](#opc_lshr) | [LT](#opc_lt) | [LJSR](#opc_ljsr) |
 | [LOADCTX](#opc_loadctx) | [LRET](#opc_lret) | [MAKELSTPAR](#opc_makelstpar) | [MOD](#opc_mod) |
-| [MUL](#opc_mul) | [NAMEDARGPTR](#opc_namedargptr) | NAMEDARGTAB | [NE](#opc_ne) |
+| [MUL](#opc_mul) | [NAMEDARGPTR](#opc_namedargptr) | [NAMEDARGTAB](#opc_namedargtab) | [NE](#opc_ne) |
 | [NEG](#opc_neg) | [NEW1](#opc_new1) | [NEW2](#opc_new2) | [NILLCL1](#opc_nillcl1) |
 | [NILLCL2](#opc_nillcl2) | [NOP](#opc_nop) | [NOT](#opc_not) | [OBJCALLPROP](#opc_objcallprop) |
 | [OBJGETPROP](#opc_objgetprop) | [OBJSETPROP](#opc_objsetprop) | [ONELCL1](#opc_onelcl1) | [ONELCL2](#opc_onelcl2) |
@@ -5081,7 +5081,7 @@ changing the meaning of a byte code sequence.
 > 
 > [NAMEDARGPTR](#opc_namedargptr)  
 > 
-> NAMEDARGTAB
+> [NAMEDARGTAB](#opc_namedargtab)
 
 
 ----------------------------------------------------------------

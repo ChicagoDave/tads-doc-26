@@ -479,7 +479,7 @@ with their markup codes, using a single `findReplace()` call:
 
 
 ```tads3
-str = str.findReplace(['&', '<', '>'], ['&', '<', '>']);
+str = str.findReplace(['&', '<', '>'], ['&amp;', '&lt;', '&gt;']);
 ```
 
 
@@ -575,7 +575,7 @@ appropriate HTML sequences, and returns the resulting string.  If the
 flags argument is not included, the method acts as though flags has
 the value 0 (zero).  By default, this method scans the string for the
 characters `&` (ampersand) and `<` (less than), and converts these
-characters to the sequences `&` and `<` respectively.  This
+characters to the sequences `&amp;` and `&lt;` respectively.  This
 conversion ensures that, when the string is rendered in HTML mode, the
 display shows ampersands and less-than signs where they appeared in
 the original string's text.  In addition, you can specify a
@@ -878,7 +878,7 @@ For reference, though, they are:
     - 0x0020 - on if within a single-quoted attribute value in an HTML tag
     - 0x0040 - on if the last character was an ordinary space
     - 0x0080 - on if the last character was a quoted space ('\ ')
-    - 0x0100 - on if the <Q> tag quote nesting level is odd,
+    - 0x0100 - on if the &lt;Q> tag quote nesting level is odd,
             off if the level is even (at even levels, double quotes are
             used; at odd levels, single quotes are used)
     - 0x0200 - on if an HTML entity (& sequence) is in progress
@@ -936,10 +936,10 @@ This function performs the following conversions:
      tags (both open and close tags) are converted to `\n`.
 - `<Tag>` for any tag not mentioned above is simply stripped out.
 - ` ` is converted to a space.
-- `>` is converted to >.
-- `<` is converted to <.
-- `&` is converted to &.
-- `"`, `&ldquo;`, and `&rdquo;` are converted to " (a
+- `&gt;` is converted to >.
+- `&lt;` is converted to &lt;.
+- `&amp;` is converted to &.
+- `&quot;`, `&ldquo;`, and `&rdquo;` are converted to " (a
      plain double-quote).
 - `&lsquo;` and `&rsquo;` are converted to '
      (a plain single-quote).
@@ -1088,7 +1088,7 @@ this is the same as simply converting to lower case, but it differs
 for a few cases where the upper-case mapping of a lower-case character
 results in more than one character.  For example, the German sharp S,
 ß, converts to upper case as 'SS', so its case folding is lower
-case 'ss'.  This allows the strings 'WEISS' and 'wei�' to match when
+case 'ss'.  This allows the strings 'WEISS' and 'weiß' to match when
 case-folded, for example.  There are a number of other ligatures and
 accented characters that undergo similar expansions when case-folded.
 
